@@ -1,6 +1,7 @@
 //#pragma CODE_SEG DEFAULT @20180920 cfj
 #include "includes.h"
 #include "Typedefine.h"
+#include "Coupler.h"
 extern const unsigned char table_lc[];
 
 /************************************************************/
@@ -179,11 +180,11 @@ extern const unsigned short table_lc_on[17];
 
 
 extern unsigned char t_key_dly;
-extern unsigned char t_key3s;
+extern uint32_t t_key3s;
 extern unsigned char r_key;//扫描的时候调整到一个字节的按键值
 extern unsigned char r_keyz;//有按键按下的时候的记录的按键值
 extern unsigned char r_sfkeyz;//存储按键的值
-extern unsigned char t_write_e2;//上次写E2时间
+extern uint32_t t_write_e2;//上次写E2时间
 extern unsigned char r_lcad;
 extern unsigned char r_set_state;//调节时显示的屏编码
 extern unsigned char r_flash_bit;//数码管位数
@@ -449,8 +450,9 @@ extern BitType  g_CommErrflag1;
 /*************************************************/
 
 extern unsigned char t_1ms;
+extern unsigned int  t_1ms_2 ;
 extern unsigned char t_2ms;
-extern unsigned char t_halfsec;
+extern uint32_t t_halfsec;
 extern unsigned char t_1min;
 extern unsigned char t_onems;//1ms加1
 extern unsigned char t_twoms;
@@ -458,7 +460,7 @@ extern unsigned char t_20ms;//20ms加1
 extern unsigned char t_j20ms;
 extern unsigned char t_10s;
 extern unsigned char t_tens;//10s+1
-extern unsigned char t_auto_lock;
+extern uint32_t t_auto_lock;
 extern unsigned char t_data_to_led;
 
 extern unsigned char r_hwxswd;
@@ -478,7 +480,7 @@ extern unsigned char t_hwdisp;
 extern unsigned char t_on_off_dly;
 extern unsigned char t_valve_dly;
 extern unsigned char r_hwhc;
-extern unsigned char t_lc_err_disp;
+extern  uint32_t t_lc_err_disp;
 extern unsigned char t_lc_high_buzz;
 extern unsigned char t_lc_low_buzz;
 extern unsigned char u8_LdRule;
@@ -502,11 +504,11 @@ extern unsigned char r_voltage_ad;
 extern unsigned char r_voltage;
 extern unsigned char r_voltageCopy;
 extern unsigned char r_lcgzwd;
-extern unsigned char t_lc_rule;
+extern  uint32_t t_lc_rule;
 extern unsigned char t_yj_delay;	//压缩机延迟时间
 extern unsigned char t_yj_delayx;
 extern unsigned char t_yj_dly_time;
-extern unsigned char t_ld_rule;//用于冷冻显示规则的一个计时单元
+extern uint32_t t_ld_rule;//用于冷冻显示规则的一个计时单元
 extern unsigned char r_ldwdjz;	//冷冻温度校准,上偏10
 extern unsigned char r_ldwdjzx;//冷冻校准差值,上偏10
 extern unsigned char r_ld_high_alarm;//冷冻高温报警设定的差值
@@ -518,12 +520,12 @@ extern unsigned char r_lc_high_alarmCopy;
 extern unsigned char r_lc_low_alarm; //冷藏低温报警设定的差值
 extern unsigned char r_lc_low_alarmCopy;
 extern unsigned char t_compressor;
-extern unsigned char t_ld_err_disp;
+extern uint32_t t_ld_err_disp;
 extern unsigned char t_ld_high_buzz;
 extern unsigned char t_ld_low_buzz;
-extern unsigned char t_voltage_buzz;
-extern unsigned char t_power_buzz;
-extern unsigned char t_power_Off; //@20181226 CFJ 掉电的时间
+extern uint32_t t_voltage_buzz;
+extern uint32_t t_power_buzz;
+extern uint32_t t_power_Off; //@20181226 CFJ 掉电的时间
 extern unsigned char t_stop_alarm;
 extern unsigned char r_battery_ad;
 extern unsigned char r_lcwdjz;//冷藏温度校准值
@@ -540,7 +542,7 @@ extern unsigned char r_receiver;
 extern unsigned char r_recsum;
 extern unsigned char r_rec55sum;
 extern unsigned char t_err200ms;
-extern unsigned char t_ack5s;
+extern uint32_t t_ack5s;
 extern unsigned char t_lightms;
 extern unsigned char t_lc_on_off_dly;
 extern unsigned char t_lc_compressor;

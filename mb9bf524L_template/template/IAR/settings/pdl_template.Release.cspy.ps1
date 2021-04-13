@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_V1.2.5\mb9bf524L_template\template\IAR\settings\pdl_template.Release.general.xcl" --backend -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_V1.2.5\mb9bf524L_template\template\IAR\settings\pdl_template.Release.driver.xcl" 
+& "C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\settings\pdl_template.Release.general.xcl" --backend -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\settings\pdl_template.Release.driver.xcl" 
 }
 else
 {
-& "C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_V1.2.5\mb9bf524L_template\template\IAR\settings\pdl_template.Release.general.xcl" --debug_file=$debugfile --backend -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_V1.2.5\mb9bf524L_template\template\IAR\settings\pdl_template.Release.driver.xcl" 
+& "C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\settings\pdl_template.Release.general.xcl" --debug_file=$debugfile --backend -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\settings\pdl_template.Release.driver.xcl" 
 }

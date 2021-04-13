@@ -2,13 +2,13 @@
 
 "C:\Program Files\IAR Systems\Embedded Workbench 8.3\arm\bin\armjlink2.dll" 
 
-"G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_V1.2.5\mb9bf524L_template\template\IAR\output\release\Exe\pdl_template.out" 
+"G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\output\release\Exe\pdl_template.out" 
 
 --plugin="C:\Program Files\IAR Systems\Embedded Workbench 8.3\arm\bin\armbat.dll" 
 
 --device_macro="C:\Program Files\IAR Systems\Embedded Workbench 8.3\arm\config\debugger\Cypress\MB9Axx_MB9Bxx.dmac" 
 
---flash_loader="G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_V1.2.5\mb9bf524L_template\template\IAR\config\mb9bf12x\mlk\flashloader\FlashLoader.board" 
+--flash_loader="G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\config\mb9bf12x\mlk\flashloader\FlashLoader.board" 
 
 
 

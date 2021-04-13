@@ -22,7 +22,7 @@
 #include "pdl_header.h"
 #include "math.h"
 #include "Program_Cfg.h" //程序功能配置，比如禁止蜂鸣器、控制冷藏温度分辨率
-
+#include "Coupler.h"
 //#define nop asm("nop")
 
 //uchar u8_Send_Print_Time;
@@ -37,6 +37,7 @@ float r_lcwd_float = 0, r_lcgzwd_float = 0, r_lczt_float = 0, r_lcxswd_float = 0
 unsigned char flag_Now_Disp_LCWD = 0, flag_Disp_LCWD_D = 0;
 unsigned char Cnt_SetTime_Sended = 0;
 unsigned char f_Set_Time = 0;  //设置时间标志
+unsigned char f_door_state = 0;  //门状态，0：关，1：开
 
 /***********************************************/
 #if 0
@@ -578,22 +579,8 @@ void RuleForLdDisp(void)
 	//实际温度>设定温度+1或者实际温度<设定温度
 	else if ((r_ldsjwd > (unsigned char)(r_ldzt + 1)) || (r_ldsjwd < r_ldzt)) //30s变化一度
 	{
-		//u8_LdRule = t_tens; @20181130 CFJ
-		/*
-	  if((unsigned char)(t_halfsec-t_ld_rule)>=60)//30s @20181120
-		{
-			t_ld_rule = t_halfsec;
-			if(r_ldsjwd>r_ldgzwd)
-			{
-				r_ldgzwd++;
-			} 
-			else if(r_ldsjwd<r_ldgzwd)
-			{
-				r_ldgzwd--;
-			}
-		}
-		*/
-		if ((unsigned char)(t_halfsec - t_ld_rule) >= 120) //60s HW 20190810
+
+		if ((t_halfsec - t_ld_rule) >= 120) //60s HW 20190810
 		{
 			t_ld_rule = t_halfsec;
 			if (r_ldsjwd > r_ldgzwd)
@@ -611,7 +598,7 @@ void RuleForLdDisp(void)
 		if ((r_ldgzwd > (unsigned char)(r_ldzt + 1)) || (r_ldgzwd < r_ldzt))
 		{
 			//u8_LdRule = t_tens; @20181130 CFJ
-			if ((unsigned char)(t_halfsec - t_ld_rule) >= 120) //60s HW 20190810
+			if ((t_halfsec - t_ld_rule) >= 120) //60s HW 20190810
 			{
 				t_ld_rule = t_halfsec;
 				if (r_ldgzwd > r_ldzt)
@@ -624,56 +611,7 @@ void RuleForLdDisp(void)
 				}
 			}
 		}
-		/*
-		if(( r_ldgzwd>(unsigned char)(r_ldzt+1)) || (r_ldgzwd<r_ldzt))  
-		{
-			u8_LdRule = t_tens;
-			if((unsigned char)(t_halfsec-t_ld_rule)>=60)    //30s @20181120
-			{
-				t_ld_rule = t_halfsec;
-				if(r_ldgzwd>r_ldzt)
-				{
-					r_ldgzwd--;
-				}
-				else if(r_ldgzwd<r_ldzt)
-				{
-					r_ldgzwd++;
-				}
-			}
-		} 
-		else if(r_ldzt>=165)//set >= -35 5min变化1度
-		{
-			t_ld_rule = t_halfsec;
-			if((unsigned char)(t_tens-u8_LdRule)>=30)       //5min @20181120
-			{
-				u8_LdRule = t_tens;
-				if(r_ldgzwd>r_ldzt)
-				{
-					r_ldgzwd--;
-				}
-				else if(r_ldgzwd<r_ldzt)
-				{
-					r_ldgzwd++;
-				}
-			}
-		}
-		else//SET<-35 10min的速度变化
-		{
-			t_ld_rule = t_halfsec;
-      if((unsigned char)(t_tens-u8_LdRule)>=60) //10min @20181120
-			{
-				u8_LdRule = t_tens;
-				if(r_ldgzwd>r_ldzt)
-				{
-					r_ldgzwd--;
-				}
-				else if(r_ldgzwd<r_ldzt)
-				{
-					r_ldgzwd++;
-				}
-			}
-		}
-		*/
+		
 	}
 	r_ldxswd = r_ldgzwd;
 
@@ -716,7 +654,7 @@ void RuleForLcDisp(void)
 	{
 		{
 			//u8_LcRule = t_tens; @20181130 CFJ
-			if ((uchar)(t_halfsec - t_lc_rule) >= 120) //60秒 @20181130 CFJ
+			if ((t_halfsec - t_lc_rule) >= 120) //60秒 @20181130 CFJ
 			{
 				t_lc_rule = t_halfsec;
 				if (r_lcwd > r_lcgzwd) //显示温度<实际温度
@@ -735,7 +673,7 @@ void RuleForLcDisp(void)
 		if (r_lcgzwd != r_lczt)
 		{
 			// t_lc_rule = t_halfsec;
-			if ((uchar)(t_halfsec - t_lc_rule) >= 120) //60S钟 @20181120
+			if ((t_halfsec - t_lc_rule) >= 120) //60S钟 @20181120
 			{
 				t_lc_rule = t_halfsec;
 				if (r_lcgzwd > r_lczt) //显示温度>实际温度
@@ -772,7 +710,7 @@ void RuleForLcDisp_0D1(void)
 	{
 		{
 			//u8_LcRule = t_tens; @20181130 CFJ
-			if ((uchar)(t_halfsec - t_lc_rule) >= 12) //6秒
+			if ((t_halfsec - t_lc_rule) >= 12) //6秒
 			{
 				t_lc_rule = t_halfsec;
 
@@ -797,7 +735,7 @@ void RuleForLcDisp_0D1(void)
 		if (r_lcgzwd_float != r_lczt_float) //拟显示温度 不等于 设置温度
 		{
 			// t_lc_rule = t_halfsec;
-			if ((uchar)(t_halfsec - t_lc_rule) >= 12) //6S
+			if ((t_halfsec - t_lc_rule) >= 12) //6S
 			{
 				t_lc_rule = t_halfsec;
 				float xxx = fabs(r_lcgzwd_float - r_lczt_float);
@@ -1225,7 +1163,7 @@ void LdDisp(void)
 	{
 		if (f_ld_high && f_ld_high_disp)
 		{
-			if ((unsigned char)(t_halfsec - t_ld_err_disp) >= 6) //3s
+			if ((t_halfsec - t_ld_err_disp) >= 6) //3s
 			{
 				t_ld_err_disp = t_halfsec;
 				f_ld_high_disp = 0;
@@ -1236,7 +1174,7 @@ void LdDisp(void)
 		}
 		else if (f_ld_low && f_ld_low_disp)
 		{
-			if ((unsigned char)(t_halfsec - t_ld_err_disp) >= 6) //3s
+			if ((t_halfsec - t_ld_err_disp) >= 6) //3s
 			{
 				t_ld_err_disp = t_halfsec;
 				f_ld_low_disp = 0;
@@ -1253,7 +1191,7 @@ void LdDisp(void)
 	}
 	else if (f_key_defrost && f_key_defrost_disp) //除霜时,显示3sDF,显示5秒温度
 	{
-		if ((unsigned char)(t_halfsec - t_ld_err_disp) >= 6)
+		if ((t_halfsec - t_ld_err_disp) >= 6)
 		{
 			t_ld_err_disp = t_halfsec;
 			f_key_defrost_disp = 0;
@@ -1270,7 +1208,7 @@ void LdDisp(void)
 	}
 	else if (f_ld_sensor_err)
 	{
-		if ((uchar)(t_halfsec - t_ld_err_disp) >= 10) //5s
+		if ((t_halfsec - t_ld_err_disp) >= 10) //5s
 		{
 			f_key_defrost_disp = 1;
 			t_ld_err_disp = t_halfsec;
@@ -1287,7 +1225,7 @@ void LdDisp(void)
 	}
 	else
 	{
-		if ((uchar)(t_halfsec - t_ld_err_disp) >= 10) //5s
+		if ((t_halfsec - t_ld_err_disp) >= 10) //5s
 		{
 			f_key_defrost_disp = 1;
 			t_ld_err_disp = t_halfsec;
@@ -1660,7 +1598,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	{
 		if (f_battery && f_BatteryErrDisp)
 		{
-			if ((uchar)(t_halfsec - t_lc_err_disp) >= 6) //3s
+			if ((t_halfsec - t_lc_err_disp) >= 6) //3s
 			{
 				t_lc_err_disp = t_halfsec;
 				f_BatteryErrDisp = 0;
@@ -1671,7 +1609,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 		}
 		else if (f_lc_high && f_lc_high_disp)
 		{
-			if ((unsigned char)(t_halfsec - t_lc_err_disp) >= 6) //3s
+			if ((t_halfsec - t_lc_err_disp) >= 6) //3s
 			{
 				t_lc_err_disp = t_halfsec;
 				f_lc_high_disp = 0;
@@ -1682,7 +1620,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 		}
 		else if (f_lc_low && f_lc_low_disp)
 		{
-			if ((unsigned char)(t_halfsec - t_lc_err_disp) >= 6) //3s
+			if ((t_halfsec - t_lc_err_disp) >= 6) //3s
 			{
 				t_lc_err_disp = t_halfsec;
 				f_lc_low_disp = 0;
@@ -1693,7 +1631,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 		}
 		else if (f_hw_sensor_err && f_hw_sensor_err_disp)
 		{
-			if ((unsigned char)(t_halfsec - t_lc_err_disp) >= 6) //3s
+			if ((t_halfsec - t_lc_err_disp) >= 6) //3s
 			{
 				t_lc_err_disp = t_halfsec;
 				f_hw_sensor_err_disp = 0;
@@ -1704,7 +1642,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 		}
 		else if (f_hw_high38 && f_hw_high_disp)
 		{
-			if ((unsigned char)(t_halfsec - t_lc_err_disp) >= 6) //3s
+			if ((t_halfsec - t_lc_err_disp) >= 6) //3s
 			{
 				t_lc_err_disp = t_halfsec;
 				f_hw_high_disp = 0;
@@ -1721,7 +1659,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	}
 	else if (f_power_off && f_power_off_disp) //电量很低，关闭显示
 	{
-		if ((uchar)(t_halfsec - t_lc_err_disp) >= 60) //30s
+		if ((t_halfsec - t_lc_err_disp) >= 60) //30s
 		{
 			t_lc_err_disp = t_halfsec;
 			t_ld_err_disp = t_halfsec; //加 2010 0506
@@ -1733,7 +1671,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	}
 	else if (f_lc_sensor_err) //冷藏传感器错误  E3
 	{
-		if ((uchar)(t_halfsec - t_lc_err_disp) >= 10) //5s
+		if ((t_halfsec - t_lc_err_disp) >= 10) //5s
 		{
 			t_lc_err_disp = t_halfsec;
 			f_power_off_disp = 1;
@@ -1745,7 +1683,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	else //显示实际冷藏温度
 	{
 		flag_Now_Disp_LCWD = 1;
-		if ((uchar)(t_halfsec - t_lc_err_disp) >= 10) //5s
+		if ((t_halfsec - t_lc_err_disp) >= 10) //5s
 		{
 			t_lc_err_disp = t_halfsec;
 			f_power_off_disp = 1; //低电量时关闭显示    在低电量时，关闭30s,显示5s
@@ -2275,7 +2213,7 @@ void JudgeVoltageErr(void)
 		if (r_voltage < 196 || r_voltage > 238)
 		{
 			f_voltage_err = 1;
-			if ((unsigned char)(t_halfsec - t_voltage_buzz) >= 120) //1min
+			if ((t_halfsec - t_voltage_buzz) >= 120) //1min
 			{
 				if (!f_voltage_buzz)
 				{
@@ -2297,7 +2235,7 @@ void JudgeVoltageErr(void)
 		if (r_voltage < 99 || r_voltage > 122)
 		{
 			f_voltage_err = 1;
-			if ((unsigned char)(t_halfsec - t_voltage_buzz) >= 120) //1min/////////////规格书是30s
+			if ((t_halfsec - t_voltage_buzz) >= 120) //1min/////////////规格书是30s
 			{
 				if (!f_voltage_buzz)
 				{
@@ -2321,12 +2259,12 @@ void JudgePowerOff(void)
 	if (r_voltage < 70)
 	{
 		//f_power_off = 1;
-		if ((uchar)(t_halfsec - t_power_Off) >= 6) //低电压持续3s，则报断电 @20181226 CFJ
+		if ((t_halfsec - t_power_Off) >= 6) //低电压持续3s，则报断电 @20181226 CFJ
 		{
 			f_power_off = 1;
 		}
 
-		if ((uchar)(t_halfsec - t_power_buzz) >= 60) //30s
+		if ((t_halfsec - t_power_buzz) >= 60) //30s
 		{
 			if (!f_power_buzz)
 			{
@@ -2559,11 +2497,11 @@ void KeyAction(void)
 				}
 				else
 				{
-					if ((unsigned char)(t_halfsec - t_key3s) >= 10)
+					if ((t_halfsec - t_key3s) >= 10)
 					{
 						KeyPut5s(); //按下5秒有效的按键处理
 					}
-					/*if((unsigned char)(t_halfsec-t_key3s)>=6)
+					/*if((t_halfsec-t_key3s)>=6)
             {
                 KeyPut3s();  //按下3秒有效的按键处理
             }*/
@@ -3534,7 +3472,7 @@ NotSaveKey2:
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 void AutoLock(void)
 {
-	if ((uchar)(t_halfsec - t_auto_lock) >= 20)
+	if ((t_halfsec - t_auto_lock) >= 20)
 	{
 		f_lock = 1;
 		if (r_set_state == SET_LD)
@@ -4192,6 +4130,7 @@ void LnFan(void)
 /********************判断冷藏照明灯程序****************/
 void Lc_lightProg(void)
 {
+    static unsigned char t_open_ms = 0;
 	if (!DOOR_ONFLAG | !LED_ONFLAG) //if(!PTBD_PTBD7|!PTDD_PTDD0)
 	{
 		if ((uchar)(t_onems - t_lightms) >= 60)
@@ -4204,6 +4143,20 @@ void Lc_lightProg(void)
 		LED_OUT = 0; //PTDD_PTDD2=0;      @20180920 cfj
 		f_LightStatusPin = 0;
 	}
+
+    //检测门状态
+    if(!DOOR_ONFLAG)
+    {
+        if ((uchar)(t_onems - t_open_ms) >= 60)
+        {
+            f_door_state = 1;
+        }
+    }
+    else
+    {
+        t_open_ms = t_onems;
+        f_door_state = 0;
+    }
 }
 /********************内胆风机程序****************/
 void Nd_fan_Prog(void)
@@ -4265,235 +4218,7 @@ void Defrost_Prog(void)
 		f_defrost = 0;
 	}
 }
-/***************发送程序*****************************/
-/****************************************************/
-/* @20181130 CFJ 
-#if 0
-void SendData(void)
-{
-  
-  if(f_first_ad)       
-  {
-  	if(f_txbuzz)//蜂鸣器要响，立刻准备开始发送新一帧
-  	{
-      f_txbuzz = 0;
-      f_newframe = 0;
-      f_senddata = 0;
-      f_sendbit = 0;
-      //C_send = 1; @20181008 CFJ
-      f_gdp = 1;
-      t_send = t_onems;
-  	}
-    else if(!f_newframe)//不是新一帧，等待新一帧到来,相当于出示化端口
-    {
-      if(f_gdp)
-      {
-        if((unsigned char)(t_onems - t_send) >= 2)
-        {
-          f_gdp = 0;
-          //C_send = 0;
-          t_send = t_onems;
-        }    
-      } 
-      else
-      {
-        if((unsigned char)(t_onems - t_send) >= 2)
-        {
-          f_newframe = 1;
-          f_gdp = 1;
-          //C_send = 1;  @20181008 CFJ
-          t_send = t_onems;
-        }  
-      }
-    }
-    else
-    {
-      if(f_senddata) 
-      {
-        if(f_sendbit)//正在发送一位数据
-        {
-          if(f_gdp)
-          {
-            if((unsigned char)(t_onems - t_send) >= 1)    //发送高电平期间
-            {
-              f_gdp = 0;
-             // C_send = 0;  @20181008 CFJ
-              t_send = t_onems;
-            }
-          }
-          else// 发送低电平期间
-          {
-            if((!f_sbit && ((unsigned char)(t_onems - t_send) >= 2))
-                || (f_sbit && ((unsigned char)(t_onems - t_send) >=6)))
-            {
-              f_sendbit = 0;
-              f_gdp = 1;
-              //C_send = 1; @20181008 CF
-              t_send = t_onems; 
-              r_bit--;
-              if(r_bit <= 0)
-              {
-                r_byte++;
-                if((!f_bp&&(r_byte>=C_byte))
-                	 ||(f_bp&&(r_byte>=C_bp_byte)))
-                {
-                  f_senddata = 0;
-                  f_newframe = 0;
-                                                 //刷新数据
-                  send[0] = 0xaa;
-                  send[1] = flag_jqzt;
-                  send[2] = 0;                
-                  send[3] = 0;
-                  send[4]= (unsigned char)(send[0]+send[1]+send[2]+send[3]);
-                  if(f_bp_over)
-                  {
-                    f_bp_over = 0;
-                    f_bp = 0;
-                  }
-                }
-                else
-                {
-                  r_bit = C_bit;
-                }
-              }
-            }
-          }
-        }
-        else
-        {
-          if(send[r_byte] & 0x80)
-          {
-            f_sbit = 1;
-          }
-          else
-          {
-            f_sbit = 0;
-          }
-          send[r_byte] = send[r_byte] << 1;
-          f_sendbit = 1;
-          f_gdp = 1;
-          //C_send = 1;  @20181008 CFJ
-          t_send = t_onems;
-        }
-      }
-      else
-      {
-        if(f_gdp)
-        {
-          if((unsigned char)(t_onems-t_send) >= 2)
-          {
-            f_gdp = 0;
-            //C_send = 0; @20181008 CF
-            t_send = t_onems;
-          }
-        }
-        else if(!f_bp) 
-        {
-          if((unsigned char)(t_onems-t_send)>=10)
-          {
-                                                  //接收到起始信号
-            f_senddata = 1;
-            f_gdp = 1;
-            //C_send = 1; @20181008 CFJ
-            t_send = t_onems;
-            r_bit = C_bit;
-            r_byte = 0;                           //要发送的字节数
-          }                    
-        }
-        else                                      //蜂鸣器帧为2ms高，20ms低
-        {
-          if((unsigned char)(t_onems-t_send)>=20)
-          {
-                                                  //接收到起始信号
-            f_senddata = 1;
-            f_gdp = 1;
-            //C_send = 1; @20181008 CFJ
-            t_send = t_onems;
-            send[0] = 1;
-            r_bit = C_bit;
-            r_byte = 0;                           //要发送的字节数
-            f_bp_over = 1;
-          }                  
-        }
-      }
-    }
-  }
-  else
-  {
-    t_send = t_onems;
-  }    
-}
 
-void RecData(void)
-{
-  //if(!C_rec) @20181008 CF
-  {
-    f_ddp = 1;
-  }
-  //else @20181008 CF
-  {
-    if(f_ddp)
-    {
-      f_ddp = 0;
-      if(f_startrec)                                        //1开始接收新一帧数据
-      {
-        if((unsigned char)(t_onems - t_rec) >= 10)
-        {
-          r_rbit = C_rbit;
-          r_rbyte = 0;
-          t_rec = t_onems;
-          f_recdata =1;
-        } 
-        else if(f_recdata)
-        {
-          if((unsigned char)(t_onems - t_rec) >=6)
-          {
-            rec[r_rbyte] = rec[r_rbyte] << 1;
-            rec[r_rbyte] |= 0x01;
-          }
-          else if((unsigned char)(t_onems - t_rec) >=2)
-          {
-            rec[r_rbyte] = rec[r_rbyte] << 1;
-            rec[r_rbyte] &= 0xfe;
-          } 
-          else
-          {
-            return;
-          }
-          t_rec = t_onems;
-          r_rbit--;
-          if(r_rbit <= 0)
-          {
-            r_rbyte++;
-            if(r_rbyte >= C_rbyte)
-            {
-              f_startrec = 0;
-              f_recdata = 0;
-              if(rec[0] == 0x5a)
-              {
-               	if(rec[8]==(unsigned char)(rec[0]+rec[1]+rec[2]+rec[3]+rec[4]+rec[5]+rec[6]+rec[7]))
-               	{
-                  f_com_ok = 1;            		
-                }
-              }    
-            }
-            else
-            {
-              r_rbit = C_rbit;
-            }
-          } 
-        }
-      }
-      else
-      {
-        f_startrec = 1;
-        t_rec = t_onems;
-      }
-    }
-  }
-}
-#endif
-*/
 /****************************************************/
 /***************更新设定值程序***********************/
 /****************************************************/
@@ -4501,7 +4226,7 @@ void WriteToE2(void)
 {
 	if (f_need_write_e2)
 	{
-		if ((uchar)(t_halfsec - t_write_e2) >= 4) //2s
+		if ((t_halfsec - t_write_e2) >= 4) //2s
 		{
 			f_need_write_e2 = 0;
 			f_e2prom = 1;
@@ -4520,6 +4245,10 @@ void Sendscl(void);
 void WriteByte(unsigned char tem_dat);
 unsigned char ReadByte(void);
 /*****************************************************/
+
+//^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
 void WriteE2(void)
 {
 	if (f_e2prom)
@@ -4732,107 +4461,7 @@ void Sendscl(void)
 	C_scl = 0;
 	DelayControl(4);
 }
-/*********************Timer Interrupt************/
-/************************************************/
-/* @20181130 CFJ  
-void  isrVtpm2ovf(void) 
-{
-  //////(void)(TPM2SC==0);
- // //////TPM2SC_TOF =0; 
-  u16_random++;
-  if ( u16_random > 16383)
-  u16_random = 1;
-  t_onems++;                                     //1ms
-  R_NetTimeBase1ms++;
-  SendData();
-  RecData(); //面板接受主板数据 cfj
-	t_1ms++;
-	t_j20ms++;
-	R_HomeNetResponseTimeSecond++;
-	if(t_j20ms>=20)
-  {
-  	t_j20ms = 0;
-  	t_20ms++;
-  }
-	if(t_1ms>=2)                                   //2ms
-	{
-	  t_2ms++;
-	  t_twoms++;
-	  t_1ms = 0;
-	  if(t_2ms>=250)
-  	{
-	    t_halfsec++;
-	    t_2ms = 0;
-		  f_05s = 1;                                 //0.5s
-	  }
-	}
-	if (R_NetTimeBase1ms >= 100)
-	{
-		R_NetTimeBase1ms = 0;
-		R_HomeNetResponseCheckTime100ms++;
-	}
-}
-*/
-/************************************************/
-/****************SCITransmit Interrupt***********/
-/************************************************/
-/*
-void  SCITransmit(void) 
-{
-	uchar a;
-	/////a = SCI1S1;                                    //清发送中断请求位，首先读SCI1S1然后写SCI1D
-	if(f_send_data)
-	{
-		if(f_send55)
-		{
-			f_send55 = 0;
-			/////SCI1D = 0x55;
-			if(r_sendr>=r_sendsum)
-	    {
-	  	  //////SCI1C2_TCIE = 0;                           //关闭发送中断
-	  	  f_send_1ff = 0;
-	  	  f_send_2ff = 0;
-	  	  f_send_data = 0;
-	    }
-		}
-		else if(send_net[r_sendr]==0xff)
-		{
-			f_send55 = 1;
-			//////SCI1D = 0xff;
-			r_sendr++;
-		}
-		else
-		{
-			//////SCI1D = send_net[r_sendr];
-	    r_sendr++;
-	    if(r_sendr>=r_sendsum)
-	    {
-	  	  /////SCI1C2_TCIE = 0;                           //关闭发送模块
-	  	  f_send55 = 0;
-	  	  f_send_1ff = 0;
-	  	  f_send_2ff = 0;
-	  	  f_send_data = 0;
-	    }
-		}
-	}
-  else if(f_send_2ff)
-  {
-  	f_send_data = 1;
-  	r_sendr = 0;
-  	////SCI1D = r_sendsum;
-  }
-  else if(f_send_1ff)
-  {
-  	f_send_2ff = 1;
-  	////SCI1D = 0xff;
-  }
-  else
-  {
-  	f_send_1ff = 1;
-  	//////SCI1D = 0xff;
-  }	
-}  
-*/
+
 uchar u8_Rec2data[20];
 uchar u8_Send2data[20];
 uchar u8_Send2dataMemory[20];
@@ -4862,10 +4491,7 @@ void GetSum2(void)
 	u8_Send2dataMemory[count + 3] = r_checksum;
 	u8_Send2_data_Num = u8_Send2_data_Num + 3;
 
-	u8_Send2_data_Num_Count = 0;
-	u8_Send2_data_State = 1;
-	Mfs_Uart_EnableIrq(&UART0, UartTxIrq); //UartTxIrq); //使能发送中断
-										   /////////// SCI2C2_TCIE = 1;                                 //使能发送模块
+	SendData(u8_Send2dataMemory, u8_Send2_data_Num); 
 }
 
 void ReturnPrintFrame(void)
@@ -4993,131 +4619,7 @@ void Rec2Action(void)
 		u8_Send_Print_Time = 0;
 	}
 }
-/*
-void  SCI2Transmit(void)
-{
-	uchar Sendata ;
 
-	///////Sendata = SCI2S1;  
-
-   //// SCI2D = u8_Send2dataMemory[u8_Send2_data_Num_Count];
-	if(++u8_Send2_data_Num_Count>=u8_Send2_data_Num)
-	{
-	  ///SCI2C2_TCIE = 0; 
-	  u8_Send2_data_State=0;
-	
-	
-	}
-
-}
-
-void  SCI2Receive(void) 
-{
-
-		uchar Recdata ;
-
-		/////Recdata = SCI2S1;
-		
-		///////u8_Rec2data[u8_Rec2_data_Num++]=SCI2D;
-		if(u8_Rec2_data_Num>=20)
-		{
-		u8_Rec2_data_State=1;
-		u8_Rec2_data_Num=0;
-		
-		
-		}
-
-}
-*/
-/************************************************/
-/*****************SCIReceive Interrupt***********/
-/************************************************/
-/*@20181130 CFJ
-void SCIReceive(void) 
-{
-	uchar a;                                       //清接收中断请求位，首先读SCI1S1然后读SCI1D
-	/////a = SCI1S1;
-	if(f_rec_over)                                 //待处理符号，如果 f_rec_over为1，再接收为无效数据                    
-	{		                                                                
-	 //// a = SCI1D;		
-	}
-	else if(f_rec_data)
-	{
-		if(f_rec55)
-		{
-			f_rec55 = 0;
-		//////	a = SCI1D;
-			if(a==0x55)
-			{
-				r_rec55sum = r_rec55sum+0x55;
-			}
-			else
-			{
-				f_rec_over = 0;
-  		  f_rec_1ff = 0;
-  		  f_rec_2ff = 0;
-  		  f_rec_data = 0;
-  		  r_rec55sum = 0;
-			}
-		}
-		else
-		{
-		 //// rec_net[r_receiver] = SCI1D;
-		  if(rec_net[r_receiver]==0xff)
-		  {
-		  	f_rec55 = 1;
-		  }
-  	  r_receiver++;
-  	  if(r_receiver>=r_recsum)
-  	  {
-  		  f_rec_over = 1;
-  		  f_rec_1ff = 0;
-  		  f_rec_2ff = 0;
-  		  f_rec_data = 0;
-  		  f_rec55 = 0;
-  	  }
-  	}
-	}
-  else if(f_rec_2ff)
-  {
-  	/////r_recsum = SCI1D;
-  	if(r_recsum<=20)
-  	{	
-  	  f_rec_data = 1; 	
-  	  r_receiver = 0;
-  	  t_net_rec = t_onems;
-  	}
-  	else
-  	{
-  		f_rec_data = 0;
-  		f_rec_2ff = 0;
-  		f_rec_1ff = 0;
-  		t_net_rec = t_onems;
-  	}
-  }
-  else if(f_rec_1ff)
-  {
-  	//////if(SCI1D==0xff)
-  	////{
-  	///	f_rec_2ff = 1;
-  	///	r_receiver = 0;
-  	/////	t_net_rec = t_onems;
-  	///}
-  	/////else
-  	////{
-  		///f_rec_1ff = 0;
-  	////}
-  }
-  else
-  {
-  	///if(SCI1D==0xff)
-  	///{
-  		////f_rec_1ff = 1;
-  		///t_net_rec = t_onems;
-  	////}
-  }
-}
-*/
 /************************************************/
 /*****************接收完成处理程序***************/
 /************************************************/
@@ -5709,109 +5211,7 @@ void ResponseFirstPowerState(void)
 	send_net[6] = 0x72;
 	GetSum();
 }
-/****************************************************/
-/******************判断发送汇报帧程序****************/
-//void r_voltage_report_judge(void);
-//void r_lczt_report_judge(void);
-//void r_ldzt_report_judge(void);
-//void lc_high_alarm_report_judge(void);
-//void lc_low_alarm_report_judge(void);
-//void ld_high_alarm_report_judge(void);
-//void ld_low_alarm_report_judge(void);
-/****************************************************/
-/*void report_judge(void) 
-{   r_voltage_report_judge();
-    r_lczt_report_judge(); 
-    r_ldzt_report_judge();
-    lc_high_alarm_report_judge(); 
-    lc_low_alarm_report_judge();
-    ld_high_alarm_report_judge(); 
-    ld_low_alarm_report_judge();  
-}*/
-/****************************************************/
-/*void r_voltage_report_judge(void) 
-{  if(r_voltage != r_voltage_report) 
-   {  if((uchar)(t_halfsec-t_voltage)>=120) 
-      {      
-        t_voltage = t_halfsec;
-        r_voltage_report = r_voltage;     
-        report = 1;
-        t_report = t_20ms;   
-        u16_random_copy = u16_random;
-      }
-   } 
-   else
-   {
-      t_voltage = t_halfsec;
-   }
-}*/
-/****************************************************/
-/*void r_lczt_report_judge(void) 
-{
-  if(r_lczt!=r_lczt_report)
-  {
-    r_lczt_report = r_lczt;
-    report = 1; 
-    t_report = t_20ms;
-    u16_random_copy = u16_random;  
-  }
-}*/
-/****************************************************/
-/*void r_ldzt_report_judge(void)
-{
-  if(r_ldzt!=r_ldzt_report)
-  {    
-    r_ldzt_report = r_ldzt;
-    report = 1;
-    t_report = t_20ms;
-    u16_random_copy = u16_random; 
-  }
-}*/
-/****************************************************/
-/*void lc_high_alarm_report_judge(void) 
-{
-  if(r_lc_high_alarm != lc_high_alarm_report)
-   {
-     lc_high_alarm_report = r_lc_high_alarm;
-     report = 1;
-     t_report = t_20ms;
-     u16_random_copy = u16_random;
-   }
-}*/
 
-/****************************************************/
-/*void lc_low_alarm_report_judge(void)
-{
-  if(r_lc_low_alarm != lc_low_alarm_report)
-  {
-     lc_low_alarm_report = r_lc_low_alarm;
-     report = 1;
-     t_report = t_20ms;
-     u16_random_copy = u16_random; 
-  }
-}*/
-/****************************************************/
-/*void ld_high_alarm_report_judge(void)
-{
-  if(r_ld_high_alarm != ld_high_alarm_report)
-  {
-    ld_high_alarm_report = r_ld_high_alarm;
-     report = 1;
-     t_report = t_20ms;
-     u16_random_copy = u16_random;
-  }
-}*/
-/****************************************************/
-/*void ld_low_alarm_report_judge(void) 
-{
-  if(r_ld_low_alarm != ld_low_alarm_report)
-  {
-     lc_low_alarm_report = r_lc_low_alarm;
-     report = 1;
-     t_report = t_20ms;
-     u16_random_copy = u16_random; 
-  }
-}    */
 /*******************故障报警程序*********************/
 /****************************************************/
 void NetErrAlarm(void)
@@ -5841,7 +5241,7 @@ void NetErrAlarm(void)
 		}
 		else if (f_ack)
 		{
-			if ((uchar)(t_halfsec - t_ack5s) >= 10)
+			if ((t_halfsec - t_ack5s) >= 10)
 			{
 				f_ack = 0;
 			}
