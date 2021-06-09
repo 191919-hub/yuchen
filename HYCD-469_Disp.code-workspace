@@ -4,5 +4,10 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+    "settings": {
+        "files.associations": {
+            "coupler.h": "c",
+            "pdl_header.h": "c"
+        }
+    }
 }

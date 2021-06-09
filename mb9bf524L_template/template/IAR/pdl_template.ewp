@@ -351,6 +351,7 @@
                     <state>$PROJ_DIR$\..\..\utility</state>
                     <state>$PROJ_DIR$\..\..\template\source</state>
                     <state>$PROJ_DIR$\..\..\template\IAR\source</state>
+                    <state>G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\source\Wifi</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -2273,10 +2274,16 @@
     <group>
         <name>source</name>
         <file>
+            <name>$PROJ_DIR$\source\Wifi\Coupler.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\source\Disp.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\source\Disp.H</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\source\Wifi\esp8266.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\source\Init_config.c</name>
