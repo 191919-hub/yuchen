@@ -18,6 +18,7 @@ void DealDispData(void);
 void AlarmControl(void);
 void JudgeErrs(void);
 void DataToLed(void);
+void SendData(void);
 void RecData(void);
 void NetRecOver(void);
 void RecOkAction(void);
@@ -63,7 +64,3 @@ void l_Pannel_Self_DataTx(void);
 //---------------------------------------------------------------//
 /*********************加热丝控制函数*********************************/
 void  EheatConTrolP(void);
-
-extern unsigned char f_door_state ;  //门状态，0：关，1：开
-extern void WriteByte(unsigned char tem_dat);
-extern unsigned char ReadByte(void);

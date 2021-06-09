@@ -2532,16 +2532,10 @@
     <group>
         <name>source</name>
         <file>
-            <name>$PROJ_DIR$\source\Wifi\Coupler.c</name>
-        </file>
-        <file>
             <name>$PROJ_DIR$\source\Disp.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\source\Disp.H</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\source\Wifi\esp8266.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\source\Init_config.c</name>

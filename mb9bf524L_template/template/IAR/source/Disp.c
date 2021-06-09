@@ -1,7 +1,6 @@
 //#pragma CODE_SEG DEFAULT @20180920 cfj
 #include "includes.h"
 #include "Program_Cfg.h"  //程序功能配置，比如禁止蜂鸣器、控制冷藏温度分辨率
-#include "Coupler.h"
 //#include "Disp.H"
 const unsigned char table_lc[]= //环温表,上偏38度,表头偏移24 
 {
@@ -1960,11 +1959,11 @@ const unsigned short table_lc_off[17]=
 
 
 unsigned char t_key_dly;
-uint32_t t_key3s;
+unsigned char t_key3s;
 unsigned char r_key;//扫描的时候调整到一个字节的按键值
 unsigned char r_keyz;//有按键按下的时候的记录的按键值
 unsigned char r_sfkeyz;//存储按键的值
-uint32_t t_write_e2;//上次写E2时间
+unsigned char t_write_e2;//上次写E2时间
 unsigned char r_lcad;
 unsigned char r_set_state;//调节时显示的屏编码
 unsigned char r_flash_bit;//数码管位数
@@ -2007,9 +2006,8 @@ unsigned char r_led34;
 /*************************************************/
 
 unsigned char t_1ms;
-unsigned char t_1ms_2;
 unsigned char t_2ms;
-uint32_t t_halfsec;
+unsigned char t_halfsec;
 unsigned char t_1min;
 unsigned char t_onems;//1ms加1
 unsigned char t_twoms;
@@ -2017,7 +2015,7 @@ unsigned char t_20ms;//20ms加1
 unsigned char t_j20ms;
 unsigned char t_10s;
 unsigned char t_tens;//10s+1
-uint32_t t_auto_lock;
+unsigned char t_auto_lock;
 unsigned char t_data_to_led;
 
 unsigned char r_hwxswd;
@@ -2037,7 +2035,7 @@ unsigned char t_hwdisp;
 unsigned char t_on_off_dly;
 unsigned char t_valve_dly;
 unsigned char r_hwhc;
-uint32_t t_lc_err_disp;
+unsigned char t_lc_err_disp;
 unsigned char t_lc_high_buzz;
 unsigned char t_lc_low_buzz;
 unsigned char u8_LdRule;
@@ -2061,11 +2059,11 @@ unsigned char r_voltage_ad;
 unsigned char r_voltage;
 unsigned char r_voltageCopy;
 unsigned char r_lcgzwd;
- uint32_t t_lc_rule;
+unsigned char t_lc_rule;
 unsigned char t_yj_delay;	//压缩机延迟时间
 unsigned char t_yj_delayx;
 unsigned char t_yj_dly_time;
- uint32_t t_ld_rule;//用于冷冻显示规则的一个计时单元
+unsigned char t_ld_rule;//用于冷冻显示规则的一个计时单元
 unsigned char r_ldwdjz;	//冷冻温度校准,上偏10
 unsigned char r_ldwdjzx;//冷冻校准差值,上偏10
 unsigned char r_ld_high_alarm;//冷冻高温报警设定的差值
@@ -2077,12 +2075,12 @@ unsigned char r_lc_high_alarmCopy;
 unsigned char r_lc_low_alarm; //冷藏低温报警设定的差值
 unsigned char r_lc_low_alarmCopy;
 unsigned char t_compressor;
-uint32_t t_ld_err_disp;
+unsigned char t_ld_err_disp;
 unsigned char t_ld_high_buzz;
 unsigned char t_ld_low_buzz;
-uint32_t t_voltage_buzz;
- uint32_t t_power_buzz;
-uint32_t t_power_Off; //@20181226 CFJ 掉电的时间
+unsigned char t_voltage_buzz;
+unsigned char t_power_buzz;
+unsigned char t_power_Off; //@20181226 CFJ 掉电的时间
 unsigned char t_stop_alarm;
 unsigned char r_battery_ad;
 unsigned char r_lcwdjz;//冷藏温度校准值
@@ -2099,7 +2097,7 @@ unsigned char r_receiver;
 unsigned char r_recsum;
 unsigned char r_rec55sum;
 unsigned char t_err200ms;
-uint32_t t_ack5s;
+unsigned char t_ack5s;
 unsigned char t_lightms;
 unsigned char t_lc_on_off_dly;
 unsigned char t_lc_compressor;
