@@ -475,7 +475,7 @@ void ReadCfgData(void)  //需要自行适配
     volatile int i;
     char *Read_Ptr = (char *)(&Cfg_Data);
 	unsigned char temp;
-    Delay_ms(1500);  
+    Delay_ms(15);  
 	Begin();
 	WriteByte(0xA0); ///write chip addres 0xa0
 	WriteByte(0x50); ///write data addres
@@ -496,14 +496,14 @@ void ReadCfgData(void)  //需要自行适配
 
 	if (temp != 0xAB)
 	{
-		strcpy(Cfg_Data.WifiSSID, "123456789abcdefghijklmnopqrstuvwxyz");
+		strcpy(Cfg_Data.WifiSSID, "AP");
           //strcpy(Cfg_Data.WifiSSID, "123456789abcdefghijklmnopqrstuvwxyz");
         strcpy(Cfg_Data.WifiPwd, "12345678");
         strcpy(Cfg_Data.MQTTServerDomain, "msgtest.haierbiomedical.com");
         strcpy(Cfg_Data.MQTTServerPort, "1777");
         strcpy(Cfg_Data.Username, "haierTest");
         strcpy(Cfg_Data.Password, "haier");
-        strcpy(Cfg_Data.BECode, "BE0F1400000000000000");
+        strcpy(Cfg_Data.BECode, "BE0F130AR00000000000");
         Delay_ms(15);  
         WriteCfgData();
 	}

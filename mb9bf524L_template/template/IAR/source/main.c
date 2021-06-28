@@ -122,7 +122,7 @@ int32_t main(void)
 
     bUartSendStartFlag = 1;
     //g_Txd_Time = 250; @20190121 CFJ//面板周期500ms发送数据  CFJ
-    ReadE2();
+    //ReadE2();
     ReadE2();
     ReadCfgData(); //从flash中读取wifi物联的配置数据，比如SSID/密码/BE码等信息
     InitialUserRegister();

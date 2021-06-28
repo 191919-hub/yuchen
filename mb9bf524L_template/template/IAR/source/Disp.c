@@ -2007,7 +2007,7 @@ unsigned char r_led34;
 /*************************************************/
 
 unsigned char t_1ms;
-unsigned char t_1ms_2;
+unsigned int t_1ms_2;
 unsigned char t_2ms;
 uint32_t t_halfsec;
 unsigned char t_1min;

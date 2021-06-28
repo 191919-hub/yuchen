@@ -23,6 +23,7 @@
 #include "math.h"
 #include "Program_Cfg.h" //程序功能配置，比如禁止蜂鸣器、控制冷藏温度分辨率
 #include "Coupler.h"
+#include "esp8266.h"
 //#define nop asm("nop")
 
 //uchar u8_Send_Print_Time;
@@ -770,7 +771,40 @@ void LdDisp(void)
 	{
 		return;
 	}
-	if (f_test_alarm || f_First_PowerOnFlag) //@20181120 CFJ
+    if(f_disp_Wifi_Cfg)
+	{
+		if(f_disp_Wifi_Cfg == 1)
+		{
+			if (t_halfsec & 0x01) //0b00000001)  @20181008 CFJ
+			{
+				r_bw = 25;  //.
+				r_sw = 25;	//.
+				r_gw = 25;	//.
+			}
+			else
+			{
+				r_bw = DISP_NO;
+				r_sw = DISP_NO;
+				r_gw = DISP_NO;
+			}
+		}
+		else if(f_disp_Wifi_Cfg == 2)
+		{
+			if (t_halfsec & 0x01) //0b00000001)  @20181008 CFJ
+			{
+				r_bw = DISP_C;
+				r_sw = DISP_F;
+				r_gw = 9;
+			}
+			else
+			{
+				r_bw = DISP_NO;
+				r_sw = DISP_NO;
+				r_gw = DISP_NO;
+			}
+		}
+	}
+	else if (f_test_alarm || f_First_PowerOnFlag) //@20181120 CFJ
 	{
 		r_led11 = 0xff;
 		r_led12 = 0xff;
@@ -2947,6 +2981,8 @@ void KeyPutUp(void) //按键抬起有效
 	}
 	else if (r_sfkeyz == KEY_DISABLE_BUZZ) //消音
 	{
+        if(f_disp_Wifi_Cfg)		//短摁蜂鸣取消建，退出wifi配置模式
+			f_Exit_WifiCfg = 1;
 		f_stop_alarm = ON;
 		t_stop_alarm = 0;
 		goto NotSaveKey2;
@@ -3464,6 +3500,14 @@ void KeyPut5s(void)
 			goto NotSaveKey2;
 		}
 	}
+    else if (r_keyz == KEY_DISABLE_BUZZ) //长摁蜂鸣取消键，进入wifi配置模式
+	{
+		//if (!f_lock)
+		{
+			f_Enter_WifiCfg = 1;
+			goto NotSaveKey2;
+		}
+	}
 	return;
 NotSaveKey2:
 	BuzzBi();
@@ -3475,6 +3519,10 @@ void AutoLock(void)
 	if ((t_halfsec - t_auto_lock) >= 20)
 	{
 		f_lock = 1;
+        if (r_set_state1 == SET_F1 || r_set_state1 == SET_F0 )	  // 解锁过程中超时自动退出，正常显示温度   2021-1-15  wpf
+		{
+			r_set_state1 = SET_NC;
+		}
 		if (r_set_state == SET_LD)
 		{
 			if ((r_swtj * 10 + r_gwtj) >= 10 && (r_swtj * 10 + r_gwtj) <= 45)
@@ -4498,10 +4546,10 @@ void ReturnPrintFrame(void)
 {
 
 	uchar data;
-	if (u8_Send2_data_State == 1)
-	{
-		return;
-	}
+	// if (u8_Send2_data_State == 1)
+	// {
+	// 	return;
+	// }
 
 	u8_Send2_data_Num = 0x10;
 	//45;
