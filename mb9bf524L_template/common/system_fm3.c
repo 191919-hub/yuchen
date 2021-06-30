@@ -191,8 +191,8 @@ void SystemInit (void) {
   }while ((FM_CRG->SCM_STR & 0xE0) != u32IoRegisterRead);
   
 #elif (CLOCK_SETUP == CLOCK_SETTING_NONE)
-  
   // user defined clock setting
+  //FM_CRG->APBC2_PSR = 0x00000080;              /* set APB2 presacaler 使能PCLK2输出，二分频*/
   
 #else
   #error Clock setup type unknown!

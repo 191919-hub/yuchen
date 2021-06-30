@@ -1127,7 +1127,8 @@ en_result_t Mfs_Uart_SetBaudRate(volatile stc_mfsn_uart_t* pstcUart,
     u32Pclk1 = __HCLK/(1ul << (APBC2_PSR_Val & 0x03u)); /* MFS is attached on APB2 bus in FM3, FM4 device */
 #endif    
     //pstcUart->BGR_f.BGR = (SystemCoreClock /u32BaudRate) - 1;
-    pstcUart->BGR_f.BGR = (u32Pclk1 /u32BaudRate) - 1;
+    //pstcUart->BGR_f.BGR = (u32Pclk1 /u32BaudRate) - 1;
+    pstcUart->BGR_f.BGR = 34;   //避免偏频
     return Ok;
 }
 
