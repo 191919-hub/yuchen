@@ -24,7 +24,8 @@ void Main_ClkInit(void)
         stcClockConfig.enPLLOWaitTime = PlloWaitExp112;
         // PLLCLK = Main Osc * (PLLN / PLLK), please refer to Clock chapter in peripehral manual for K, N, M value
         stcClockConfig.u8PllK = 1; //
-        stcClockConfig.u8PllN = 1;
+        //stcClockConfig.u8PllN = 1;
+        stcClockConfig.u8PllN = 16;
         stcClockConfig.u8PllM = 1;
 
         /* Initialize clock */
@@ -35,8 +36,10 @@ void Main_ClkInit(void)
                 ;
         }
 
-        Clk_EnableMainClock(TRUE); //使能主时钟
-        Clk_SetSource(ClkMain);    //切换到主时钟
+        //Clk_EnableMainClock(TRUE); //使能主时钟
+        //Clk_SetSource(ClkMain);    //切换到主时钟
+        Clk_EnablePllClock(TRUE);
+        Clk_SetSource(ClkPll);
 
     } while (0);
     SystemCoreClockUpdate();

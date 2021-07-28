@@ -50,6 +50,7 @@ BitType g_PannelCommflag1;
 BitType g_CommErrflag1;
 uchar BuzzEnable;
 unsigned char g_1s_flag_Iot = 0;
+unsigned int Clock_Test;
 
 void SetupMaxCore_CLK(void)
 {
@@ -142,6 +143,7 @@ int32_t main(void)
 
     for (;;)
     {
+        Clock_Test ++;
         Clear_Watchdog(); ///// __RESET_WATCHDOG();                           /* feeds the dog */
         BuzzPrg();
         PowerUpBuzzDelaylc();
