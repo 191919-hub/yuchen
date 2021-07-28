@@ -2339,28 +2339,32 @@ void JudgeBattery(void)
 ***********************************************************/
 void DelayControl(uchar R8_DelayCnt)
 {
+    int i = 0;
 	for (; R8_DelayCnt > 0; R8_DelayCnt--)
 	{
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
-		nop;
+        for(i = 0; i< 16; i++)  //由4MHz倍频到了64MHz,快了16倍，所以nop变为原来16倍
+        {
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+            nop;
+        }
 	}
 }
 /*****************Data to stled361s******************/
@@ -4395,8 +4399,8 @@ void ReadE2(void)
 		r_ldzt = 160; //-40
 		r_lczt = 43;  //5°C
 		r_lczt_float = r_lczt;
-		t_yj_delayx = 1;
-		t_yj_delay = 1;
+		t_yj_delayx = 0;
+		t_yj_delay = 0;
 		r_ldwdjzx = 10;
 		r_ldwdjz = 10;
 		r_ld_high_alarm = 5;

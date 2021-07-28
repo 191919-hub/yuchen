@@ -36,7 +36,7 @@ void Main_ClkInit(void)
                 ;
         }
 
-        //Clk_EnableMainClock(TRUE); //使能主时钟
+        Clk_EnableMainClock(TRUE); //使能主时钟
         //Clk_SetSource(ClkMain);    //切换到主时钟
         Clk_EnablePllClock(TRUE);
         Clk_SetSource(ClkPll);
@@ -748,7 +748,8 @@ void BT1_Init(void) //定时器1初始化，Reload 模式
     //  Bt_ConfigIOMode(&BT0, BtIoMode0);
 
     // Initialize BT
-    stcRtConfig.enPres = RtPres1Div4; // BT_CLK_DIV_4: T = 1us @ PCLK = 4 MHz
+    //stcRtConfig.enPres = RtPres1Div4; // BT_CLK_DIV_4: T = 1us @ PCLK = 4 MHz
+    stcRtConfig.enPres = RtPres1Div16; //pll=64mhz
     stcRtConfig.enSize = RtSize16Bit;
     stcRtConfig.enMode = RtReload;
     stcRtConfig.enExtTrig = RtExtTiggerDisable;
@@ -761,7 +762,8 @@ void BT1_Init(void) //定时器1初始化，Reload 模式
     Bt_Rt_Init(&BT1, &stcRtConfig);
 
     // Write cycle value
-    Bt_Rt_WriteCycleVal(&BT1, 999); // Cycle = T*(m+1)= 1000us @ T = 1 us
+    //Bt_Rt_WriteCycleVal(&BT1, 999); // Cycle = T*(m+1)= 1000us @ T = 1 us
+    Bt_Rt_WriteCycleVal(&BT1, 3999); // pll=64MHz  
     Bt_Rt_EnableCount(&BT1);
     Bt_Rt_EnableSwTrig(&BT1);
 }
