@@ -3163,10 +3163,20 @@ void KeyPutDown(void)
 			if (r_flash_bit == 2) //冷冻冷藏十位调节
 			{
 				r_swtj++;
-				if (r_swtj > 9)
-				{
-					r_swtj = 0;
-				}
+                if(r_set_state == SET_LC)
+                {
+                    if (r_swtj > 1)
+                    {
+                        r_swtj = 0;
+                    }
+                }
+				else if(r_set_state == SET_LD)  //冷冻十位最大4
+                {
+                    if (r_swtj > 4)
+                    {
+                        r_swtj = 0;
+                    }
+                }
 			}
 			else if (r_flash_bit == 3) //冷冻冷藏个位调节
 			{

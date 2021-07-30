@@ -12,7 +12,7 @@
         <ByteLimit>50</ByteLimit>
     </Stack>
     <DebugChecksum>
-        <Checksum>4009986163</Checksum>
+        <Checksum>1753711628</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -202,10 +202,12 @@
         <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\..\HAIER\项目\HYCD-282\新版0271800138+0271800139\程序代码\显示板0271800139\0271800009_PROGRAM_V1.1.0 TEST---河南项目 冷藏温度分辨率0.1假显示\MB9BF524L_TEMPLATE\TEMPLATE\SOURCE\logicsub.c}.786.17" 0 0 1 "" 0 "" 0</Bp0>
         <Bp1>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\..\HAIER\项目\HYCD-282\新版0271800138+0271800139\程序代码\显示板0271800139\0271800009_PROGRAM_V1.1.0 TEST---河南项目 冷藏温度分辨率0.1假显示\MB9BF524L_TEMPLATE\TEMPLATE\SOURCE\logicsub.c}.1753.7" 0 0 1 "" 0 "" 0</Bp1>
         <Bp2>_ 0 "EMUL_CODE" "{$PROJ_DIR$\source\Init_config.c}.1154.5" 0 0 1 "" 0 "" 0</Bp2>
-        <Bp3>_ 1 "EMUL_CODE" "{$PROJ_DIR$\source\Wifi\esp8266.c}.263.21" 0 0 1 "" 0 "" 0</Bp3>
-        <Bp4>_ 1 "EMUL_CODE" "{$PROJ_DIR$\source\Wifi\Coupler.c}.78.9" 0 0 1 "" 0 "" 0</Bp4>
-        <Count>5</Count>
+        <Count>3</Count>
     </Breakpoints2>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
     <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
@@ -242,8 +244,4 @@
         <Probe0>I0</Probe0>
         <ProbeSetup0>2 1 1 2 0 0</ProbeSetup0>
     </PowerProbe>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
 </settings>

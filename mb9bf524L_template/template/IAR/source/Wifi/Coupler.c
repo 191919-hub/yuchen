@@ -464,7 +464,7 @@ void WriteCfgData(void) //需要自行适配
         Write_Ptr++;
         
     }
-    WriteByte(0xAA);
+    WriteByte(0xAB);
     C_sda = 1;
     Stop();
 }
@@ -494,12 +494,12 @@ void ReadCfgData(void)  //需要自行适配
     Sendscl();
     Stop();
 
-	if (temp != 0xAB)
+	if (temp != 0xAE)
 	{
 		strcpy(Cfg_Data.WifiSSID, "AP");
-          //strcpy(Cfg_Data.WifiSSID, "123456789abcdefghijklmnopqrstuvwxyz");
-        strcpy(Cfg_Data.WifiPwd, "12345678");
-        strcpy(Cfg_Data.MQTTServerDomain, "msgtest.haierbiomedical.com");
+        strcpy(Cfg_Data.WifiPwd, "");
+        //strcpy(Cfg_Data.WifiPwd, "12345678");
+        strcpy(Cfg_Data.MQTTServerDomain, "msgtest2.haierbiomedical.com");
         strcpy(Cfg_Data.MQTTServerPort, "1777");
         strcpy(Cfg_Data.Username, "haierTest");
         strcpy(Cfg_Data.Password, "haier");
