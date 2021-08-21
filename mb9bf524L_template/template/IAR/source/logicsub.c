@@ -596,9 +596,9 @@ void RuleForLdDisp(void)
 	}
 	else
 	{
-		if ((r_ldgzwd > (unsigned char)(r_ldzt + 1)) || (r_ldgzwd < r_ldzt))
+		if (r_ldgzwd != r_ldzt)
 		{
-			//u8_LdRule = t_tens; @20181130 CFJ
+
 			if ((t_halfsec - t_ld_rule) >= 120) //60s HW 20190810
 			{
 				t_ld_rule = t_halfsec;
@@ -3317,7 +3317,7 @@ void KeyPutDown(void)
 			t_yj_delayx++;
 			if (t_yj_delayx > 10)
 			{
-				t_yj_delayx = 1;
+				t_yj_delayx = 0;
 			}
 			goto NotSaveKey;
 		}

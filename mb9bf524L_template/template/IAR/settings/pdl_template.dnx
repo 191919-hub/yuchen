@@ -12,7 +12,7 @@
         <ByteLimit>50</ByteLimit>
     </Stack>
     <DebugChecksum>
-        <Checksum>3389473214</Checksum>
+        <Checksum>872344868</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -195,15 +195,6 @@
         <ShowTimeSum>1</ShowTimeSum>
         <SumSortOrder>0</SumSortOrder>
     </EventLog>
-    <DisassembleMode>
-        <mode>0</mode>
-    </DisassembleMode>
-    <Breakpoints2>
-        <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\..\HAIER\项目\HYCD-282\新版0271800138+0271800139\程序代码\显示板0271800139\0271800009_PROGRAM_V1.1.0 TEST---河南项目 冷藏温度分辨率0.1假显示\MB9BF524L_TEMPLATE\TEMPLATE\SOURCE\logicsub.c}.786.17" 0 0 1 "" 0 "" 0</Bp0>
-        <Bp1>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\..\HAIER\项目\HYCD-282\新版0271800138+0271800139\程序代码\显示板0271800139\0271800009_PROGRAM_V1.1.0 TEST---河南项目 冷藏温度分辨率0.1假显示\MB9BF524L_TEMPLATE\TEMPLATE\SOURCE\logicsub.c}.1753.7" 0 0 1 "" 0 "" 0</Bp1>
-        <Bp2>_ 0 "EMUL_CODE" "{$PROJ_DIR$\source\Init_config.c}.1154.5" 0 0 1 "" 0 "" 0</Bp2>
-        <Count>3</Count>
-    </Breakpoints2>
     <TermIOLog>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
@@ -213,19 +204,6 @@
         <LogFile>_ ""</LogFile>
         <Category>_ 0</Category>
     </LogFile>
-    <Aliases>
-        <A0>_ "D:\FM3\Promote update524L\common\system_fm3.c" ""</A0>
-        <A1>_ "D:\cfj\mydata1\Out-Document\008-Display-Board\0271800009-YXP-20181026\0271800009-20181026\0271800009-YXP-20181026\mb9bf524L_template\template\source\logicsub.c" ""</A1>
-        <A2>_ "D:\cfj\mydata1\Out-Document\008-Display-Board\0271800009-YXP-20181026\0271800009-20181026\0271800009-YXP-20181026\mb9bf524L_template\template\source\main.c" ""</A2>
-        <A3>_ "E:\Project\Haier_update\haier\Hairota_0708\Promote update524L\template\IAR\startup_fm.s" ""</A3>
-        <A4>_ "F:\003_PROJECT_PROGRAM\002_HYCD_282\001_PROGRAM\002_DISPLAY_PROGRAM\0271800009-YXP-20190814_1\MB9BF524L_TEMPLATE\template\source\main.c" ""</A4>
-        <A5>_ "F:\003_Project_Program\002_HYCD_282\001_Program\002_DisPlay_Program\0271800009-YXP-20190814_1\mb9bf524L_template\template\source\logicsub.c" ""</A5>
-        <A6>_ "G:\Haier\Project\HYCD-282\Ver New\Code\Disp Board\0271800139A_Program_V1.2.3\mb9bf524L_template\template\IAR\source\Init_config.c" ""</A6>
-        <A7>_ "G:\Haier\Project\HYCD-282\Ver New\Code\Disp Board\0271800139A_Program_V1.2.3\mb9bf524L_template\template\IAR\startup_fm.s" ""</A7>
-        <A8>_ "H:\Haier\项目\HYCD-282\新版0271800138+0271800139\程序代码\显示板0271800139\0271800009_PROGRAM_V1.0.1 TEST---冷藏温度分辨率0.1假显示\MB9BF524L_TEMPLATE\template\source\main.c" ""</A8>
-        <Count>9</Count>
-        <SuppressDialog>1</SuppressDialog>
-    </Aliases>
     <DriverProfiling>
         <Enabled>0</Enabled>
         <Mode>3</Mode>
@@ -244,4 +222,26 @@
         <Probe0>I0</Probe0>
         <ProbeSetup0>2 1 1 2 0 0</ProbeSetup0>
     </PowerProbe>
+    <DisassembleMode>
+        <mode>0</mode>
+    </DisassembleMode>
+    <Breakpoints2>
+        <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\..\HAIER\项目\HYCD-282\新版0271800138+0271800139\程序代码\显示板0271800139\0271800009_PROGRAM_V1.1.0 TEST---河南项目 冷藏温度分辨率0.1假显示\MB9BF524L_TEMPLATE\TEMPLATE\SOURCE\logicsub.c}.786.17" 0 0 1 "" 0 "" 0</Bp0>
+        <Bp1>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\..\HAIER\项目\HYCD-282\新版0271800138+0271800139\程序代码\显示板0271800139\0271800009_PROGRAM_V1.1.0 TEST---河南项目 冷藏温度分辨率0.1假显示\MB9BF524L_TEMPLATE\TEMPLATE\SOURCE\logicsub.c}.1753.7" 0 0 1 "" 0 "" 0</Bp1>
+        <Bp2>_ 0 "EMUL_CODE" "{$PROJ_DIR$\source\Init_config.c}.1154.5" 0 0 1 "" 0 "" 0</Bp2>
+        <Count>3</Count>
+    </Breakpoints2>
+    <Aliases>
+        <A0>_ "D:\FM3\Promote update524L\common\system_fm3.c" ""</A0>
+        <A1>_ "D:\cfj\mydata1\Out-Document\008-Display-Board\0271800009-YXP-20181026\0271800009-20181026\0271800009-YXP-20181026\mb9bf524L_template\template\source\logicsub.c" ""</A1>
+        <A2>_ "D:\cfj\mydata1\Out-Document\008-Display-Board\0271800009-YXP-20181026\0271800009-20181026\0271800009-YXP-20181026\mb9bf524L_template\template\source\main.c" ""</A2>
+        <A3>_ "E:\Project\Haier_update\haier\Hairota_0708\Promote update524L\template\IAR\startup_fm.s" ""</A3>
+        <A4>_ "F:\003_PROJECT_PROGRAM\002_HYCD_282\001_PROGRAM\002_DISPLAY_PROGRAM\0271800009-YXP-20190814_1\MB9BF524L_TEMPLATE\template\source\main.c" ""</A4>
+        <A5>_ "F:\003_Project_Program\002_HYCD_282\001_Program\002_DisPlay_Program\0271800009-YXP-20190814_1\mb9bf524L_template\template\source\logicsub.c" ""</A5>
+        <A6>_ "G:\Haier\Project\HYCD-282\Ver New\Code\Disp Board\0271800139A_Program_V1.2.3\mb9bf524L_template\template\IAR\source\Init_config.c" ""</A6>
+        <A7>_ "G:\Haier\Project\HYCD-282\Ver New\Code\Disp Board\0271800139A_Program_V1.2.3\mb9bf524L_template\template\IAR\startup_fm.s" ""</A7>
+        <A8>_ "H:\Haier\项目\HYCD-282\新版0271800138+0271800139\程序代码\显示板0271800139\0271800009_PROGRAM_V1.0.1 TEST---冷藏温度分辨率0.1假显示\MB9BF524L_TEMPLATE\template\source\main.c" ""</A8>
+        <Count>9</Count>
+        <SuppressDialog>1</SuppressDialog>
+    </Aliases>
 </settings>
