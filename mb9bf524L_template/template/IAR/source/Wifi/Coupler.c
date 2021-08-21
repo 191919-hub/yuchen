@@ -17,7 +17,7 @@
 
 #define TEMP_BASE 510
 
-extern unsigned int t_halfsec;
+extern uint32_t t_halfsec;
 extern unsigned char r_lcxswd;
 extern unsigned char r_hwsjwd;//环境温度显示值,上偏38
 extern unsigned char r_ldzt;//冷冻设定温度,上偏200
@@ -166,7 +166,7 @@ void CopyDataToIOTStructure(void)  //需要自行适配
 	para_base.Reserve_4 = 0xff;
 	para_base.Reserve_5 = 0xff;
 	para_base.Reserve_6 = 0xff;
-	para_base.LC_Disp_Temp = (sint16_t)((r_lcxswd_float - 38.0) * 10 + 0.5);  //冷藏显示温度
+	para_base.LC_Disp_Temp = (sint16_t)((r_lcxswd_float - 38.0) * 10);  //冷藏显示温度
 	para_base.LD_Disp_Temp = (sint16_t)((r_ldxswd - 200) * 10);  //冷冻显示温度 
 	para_base.LC_Humi = 0xff;        //冷藏区相对湿度
 	para_base.Up_Sens_Temp = 0xffff;  //上传感器温度
@@ -196,7 +196,7 @@ void CopyDataToIOTStructure(void)  //需要自行适配
 	para_state.Up_Sens_Adjust = 0xFF;      //上传感器校正值
 	para_state.Down_Sens_Adjust = 0xFF;      //下传感器校正值
 	para_state.LC_Alarm_HTemp = (sint16_t)(((int)r_lczt - 38 + r_lc_high_alarm) * 10);        //冷藏高温报警值
-	para_state.LC_Alarm_LTemp = (sint16_t)(((int)r_lczt - 38 - r_lc_high_alarm) * 10);        //冷藏低温报警值
+	para_state.LC_Alarm_LTemp = (sint16_t)(((int)r_lczt - 38 - r_lc_low_alarm) * 10);        //冷藏低温报警值
 	para_state.LD_Alarm_HTemp = (sint16_t)(((int)r_ldzt - 200) * 10 + (int)r_ld_high_alarm * 10);        //冷冻高温报警值
 	para_state.LD_Alarm_LTemp = (sint16_t)(((int)r_ldzt - 200) * 10 - (int)r_ld_low_alarm * 10);        //冷冻低温报警值
     para_state.Ambient_Temp_Adjust = 0xff;    //环境温度校准值
@@ -494,10 +494,10 @@ void ReadCfgData(void)  //需要自行适配
     Sendscl();
     Stop();
 
-	if (temp != 0xAE)
+	if (temp != 0xAB)
 	{
 		strcpy(Cfg_Data.WifiSSID, "AP");
-        strcpy(Cfg_Data.WifiPwd, "");
+        strcpy(Cfg_Data.WifiPwd, "12345678");
         //strcpy(Cfg_Data.WifiPwd, "12345678");
         strcpy(Cfg_Data.MQTTServerDomain, "msgtest2.haierbiomedical.com");
         strcpy(Cfg_Data.MQTTServerPort, "1777");

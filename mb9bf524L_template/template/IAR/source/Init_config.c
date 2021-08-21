@@ -848,8 +848,8 @@ void Beep_Init(void)
     //  stcPwmConfig.bTouchNvic = TRUE;
     Bt_Pwm_Init(&BT7, &stcPwmConfig);
     // Set cycle and duty value
-    Bt_Pwm_WriteCycleVal(&BT7, 999); // Cycle = (1+m)*PWM clock cycle = 200us
-    Bt_Pwm_WriteDutyVal(&BT7, 49);   // Duty = (1+m)*PWM clock cycle = 100us
+    Bt_Pwm_WriteCycleVal(&BT7, 16999); // Cycle = (1+m)*PWM clock cycle = 200us
+    Bt_Pwm_WriteDutyVal(&BT7, 799);   // Duty = (1+m)*PWM clock cycle = 100us
 
     // Enable count operatoin
     // Bt_Pwm_EnableCount(&USER_BT);
