@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\settings\pdl_template.Release.general.xcl" --backend -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\settings\pdl_template.Release.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_Git\mb9bf524L_template\template\IAR\settings\pdl_template.Release.general.xcl" --backend -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_Git\mb9bf524L_template\template\IAR\settings\pdl_template.Release.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\settings\pdl_template.Release.general.xcl" "--debug_file=%~1" --backend -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program\trunk\mb9bf524L_template\template\IAR\settings\pdl_template.Release.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_Git\mb9bf524L_template\template\IAR\settings\pdl_template.Release.general.xcl" "--debug_file=%~1" --backend -f "G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_Git\mb9bf524L_template\template\IAR\settings\pdl_template.Release.driver.xcl" 
 
 @echo off 
 :end

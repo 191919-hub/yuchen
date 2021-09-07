@@ -218,11 +218,11 @@ void CopyDataToIOTStructure(void)  //需要自行适配
         para_state.LD_Comp_Running = (uint8_t)(f_compressor);    //冷冻压机正在运行
     }
     
-    if(f_power_off)
-    {
-        para_state.Light_is_On = 0;
-    }
-    else
+    // if(f_power_off)
+    // {
+    //     para_state.Light_is_On = 0;
+    // }
+    // else
     {
         para_state.Light_is_On = (uint8_t)(f_LightStatusPin);
     }
