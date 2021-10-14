@@ -4333,7 +4333,7 @@ void WriteE2(void)
 		WriteByte(r_lcwdjz);			 //byte10
 		WriteByte(u8_ld_bjycsj);		 //byte11
 		WriteByte(u8_lc_bjycsj);		 //byte12
-		WriteByte(0xAA);				 //byte13
+		WriteByte(0xBB);				 //byte13
 
 		C_sda = 1;
 		Stop();
@@ -4404,7 +4404,7 @@ void ReadE2(void)
 	ld_low_alarm_report = r_ld_low_alarm;
 	lc_high_alarm_report = r_lc_high_alarm;
 	lc_low_alarm_report = r_lc_low_alarm;
-	if (temp != 0xAA)
+	if (temp != 0xBB)
 	{
 		r_ldzt = 160; //-40
 		r_lczt = 43;  //5°„C
