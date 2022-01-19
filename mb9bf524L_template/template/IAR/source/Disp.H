@@ -426,8 +426,8 @@ extern BitType mylc_flag;
 #define f_lc_on_off_dly         mylc_flag.Bits.b0
 #define f_compressor_on_dly     mylc_flag.Bits.b1 //冷藏压缩机延迟开机时间
 #define delay_10sec             mylc_flag.Bits.b2
-#define f_lcCompressorProtect   mylc_flag.Bits.b3 //冷藏压缩机10小时保护
-#define f_lcComp1HourProtect    mylc_flag.Bits.b4//冷藏压缩机1小时保护
+#define f_lcCompressorProtect   mylc_flag.Bits.b3 //累计x小时，停机化霜
+#define f_lcComp1HourProtect    mylc_flag.Bits.b4//冷藏压缩机连续运行保护
 #define f_door_switch           mylc_flag.Bits.b5
 #define f_2Ms_Flag              mylc_flag.Bits.b6
 #define f_First_PowerOnFlag     mylc_flag.Bits.b7  //首次上电标志 @20181120 CFJ
@@ -552,7 +552,7 @@ extern unsigned char t_yj_delay_10sec;
 
 extern unsigned char u8_lcCompMin;
 extern unsigned char u8_lcCompHour;
-extern unsigned char u8_lcCompRunMin;
+extern unsigned int u8_lcCompRunMin;
 extern unsigned char u8_lcCompStopTime;
 extern unsigned char u8_lcCompStop5min;
 

@@ -3954,9 +3954,9 @@ void lcCompressorAddup6Hour(void); // 140819
 								   /****************冷藏压机控制程序****************/
 void Lc_CompressorJudge(void)
 {
-	lcCompressorRun10Hour();
+	lcCompressorRun10Hour();  //累计x小时，停机化霜
 #if LC_COMP_RUN_MAX_1_HOUR
-	lcCompRunOneHour(); //按照系统人员要求屏蔽一小时的，HW2019/7/29 9:50
+	lcCompRunOneHour();   //连续运行x小时，停机保护
 #elif LC_COMP_RUN_MAX_6_HOUR
 	lcCompressorAddup6Hour();
 #endif
@@ -3983,15 +3983,15 @@ void Lc_CompressorJudge(void)
 	{
 		goto Lc_CompressorOff;
 	}
-	if (f8_lcCompAddUp6HourProtect != 0) // 压机累计6小时保护
+	if (f8_lcCompAddUp6HourProtect != 0) // 累计运行y小时，停机化霜
 	{									 // 140819
 		goto Lc_CompressorOff;
 	}
-	if (f_lcCompressorProtect) //压机10小时保护
+	if (f_lcCompressorProtect) //累计运行x小时，停机化霜
 	{
 		goto Lc_CompressorOff;
 	}
-	if (f_lcComp1HourProtect) //压机1小时保护
+	if (f_lcComp1HourProtect) //压机连续运行x小时，停机保护
 	{
 		goto Lc_CompressorOff;
 	}
@@ -4136,21 +4136,20 @@ void lcCompressorRun10Hour(void)
 		}
 	}
 }
-/************冷藏压机连续运行1小时程序**************/
-//当温度达到设定温度,冷藏压缩机的连续运行1小时,强制停机5min
+/************冷藏压机连续运行x小时程序,强制停机y分钟**************/
 /***************************************************/
 void lcCompRunOneHour(void)
 {
 	if (!f_lcComp1HourProtect)
 	{
-		if (!f_lc_compressor || (r_lcgzwd != r_lczt))
+		if (!f_lc_compressor)
 		{
 			u8_lcCompRunMin = 0;
 			return;
 		}
 		if (f_onemin)
 		{
-			if (++u8_lcCompRunMin >= 60)
+			if (++u8_lcCompRunMin >= 60 * 2)  //连续运行x小时，强制停机y分钟
 			{
 				u8_lcCompRunMin = 0;
 				f_lcComp1HourProtect = 1;
@@ -4161,7 +4160,7 @@ void lcCompRunOneHour(void)
 	}
 	else
 	{
-		if ((uchar)(t_tens - u8_lcCompStop5min) >= 30) //5min
+		if ((uchar)(t_tens - u8_lcCompStop5min) >= 42) //7min
 		{
 			f_lcComp1HourProtect = 0;
 		}

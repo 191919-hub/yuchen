@@ -2109,7 +2109,7 @@ unsigned char t_yj_delay_10sec;
 
 unsigned char u8_lcCompMin;
 unsigned char u8_lcCompHour;
-unsigned char u8_lcCompRunMin;
+unsigned int u8_lcCompRunMin;
 unsigned char u8_lcCompStopTime;
 unsigned char u8_lcCompStop5min;
 
@@ -2165,7 +2165,7 @@ uint  R_HomeNetResponseCheckTime;
 uchar t_door;/////wys11.03.19开门计时
 
 uchar    ACKok;
-uchar f8_lcCompAddUp6HourProtect;               // 140819 6小时标志 
+uchar f8_lcCompAddUp6HourProtect;               // 累计运行y小时，停机化霜
 uint  u16_lcComp_Addup_Minute;                  // 累计时间
 uchar u8_lcCompAddUp6HourProtectTimer;          // 保护时间 
 uchar f8_lcCompAddUp6HourTimer;                 // 141017 冷藏6小时时间到 
