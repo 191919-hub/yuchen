@@ -707,55 +707,28 @@ void RuleForLcDisp_0D1(void)
 		t_lc_rule = t_halfsec;		   //记下显示刷新时间点
 		u8_LcRule = t_tens;
 	}
-	else if ((r_lcwd_float > (r_lczt_float + 2)) || (r_lcwd_float < (r_lczt_float - 1))) //实际温度高于设置温度超过2度  或者  低于设置温度超过1度
+	else   //渐变到实际温度
 	{
-		{
-			//u8_LcRule = t_tens; @20181130 CFJ
-			if ((t_halfsec - t_lc_rule) >= 12) //6秒
-			{
-				t_lc_rule = t_halfsec;
+        if ((t_halfsec - t_lc_rule) >= 12) //6秒
+        {
+            t_lc_rule = t_halfsec;
 
-				if (fabs(r_lcwd_float - r_lcgzwd_float) < 0.1)
-					r_lcgzwd_float = r_lcwd_float;
-				else
-				{
-					if (r_lcwd_float > r_lcgzwd_float) //显示温度<实际温度
-					{
-						r_lcgzwd_float += 0.1; //显示温度++
-					}
-					else if (r_lcwd_float < r_lcgzwd_float)
-					{
-						r_lcgzwd_float -= 0.1;
-					}
-				}
-			}
-		}
+            if (fabs(r_lcwd_float - r_lcgzwd_float) < 0.1)
+                r_lcgzwd_float = r_lcwd_float;
+            else
+            {
+                if (r_lcwd_float > r_lcgzwd_float) //显示温度<实际温度
+                {
+                    r_lcgzwd_float += 0.1; //显示温度++
+                }
+                else if (r_lcwd_float < r_lcgzwd_float)
+                {
+                    r_lcgzwd_float -= 0.1;
+                }
+            }
+        }
 	}
-	else
-	{
-		if (r_lcgzwd_float != r_lczt_float) //拟显示温度 不等于 设置温度
-		{
-			// t_lc_rule = t_halfsec;
-			if ((t_halfsec - t_lc_rule) >= 12) //6S
-			{
-				t_lc_rule = t_halfsec;
-				float xxx = fabs(r_lcgzwd_float - r_lczt_float);
-				if (xxx < 0.1)
-					r_lcgzwd_float = r_lczt_float;
-				else
-				{
-					if (r_lcgzwd_float > r_lczt_float) //显示温度>实际温度
-					{
-						r_lcgzwd_float -= 0.1; //显示温度--
-					}
-					else if (r_lcgzwd_float < r_lczt_float)
-					{
-						r_lcgzwd_float += 0.1;
-					}
-				}
-			}
-		}
-	}
+	
 	r_lcxswd_float = r_lcgzwd_float;
 	r_lcgzwd = (unsigned char)floor(r_lcgzwd_float); //有些地方还需要用到r_lcgzwd,比如压缩机连续运行保护的功能需要判断r_lcgzwd是否等于设置温度，所以取r_lcgzwd_float得整数部分给r_lcgzwd
 }
