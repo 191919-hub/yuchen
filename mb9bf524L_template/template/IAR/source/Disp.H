@@ -3,6 +3,7 @@
 #include "Typedefine.h"
 #include "Coupler.h"
 extern const unsigned char table_lc[];
+extern const float table_lc_12b[19][2];
 
 /************************************************************/
 extern const unsigned char table_led[];

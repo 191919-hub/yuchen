@@ -161,7 +161,7 @@ int32_t main(void)
         l_Pannel_DataTx();
         DealDispData(); //温度人为干预、数码管显示
 
-        EheatConTrolP();       //HW_2019/4/24 10:35:28
+
         DataToLed();           //数据显示到LED
         Compressor_on_delay(); //上电设定延迟时间
         Compressor_delay_10sec();

@@ -481,6 +481,7 @@ void BuzzBiBiBi(void)
 /****************************************************/
 unsigned char SingleAd(unsigned char channel);
 unsigned char CheckLcTable(unsigned char r_lcad);
+float CheckLcTable_12b(unsigned int ad_12b);
 /****************************************************/
 void ad_convert(void)
 {
@@ -538,6 +539,35 @@ unsigned char CheckLcTable(unsigned char r_lcad)
 	{
 		return (table_lc[(unsigned char)(r_lcad - 24)]);
 	}
+}
+
+/**
+ * @brief ad转换为温度
+ *
+ * 
+ *
+ * @param  Ad   12位ad
+ * @retval 实际温度+38
+ */
+float CheckLcTable_12b(unsigned int Ad)
+{
+    unsigned int i = 0;
+    float Temp;
+    if ((float)Ad >= table_lc_12b[0][0])
+    {
+        return table_lc_12b[0][1] + 38; //-30度
+    }
+    else if ((float)Ad <= table_lc_12b[18][0])
+    {
+        return table_lc_12b[18][1] + 38; //60度
+    }
+    else
+    {
+        while ((float)Ad < table_lc_12b[i][0])
+            i++;
+        Temp = 38 + table_lc_12b[i - 1][1] + 5 * (Ad - table_lc_12b[i - 1][0]) / (table_lc_12b[i][0] - table_lc_12b[i - 1][0]); //浮点型温度
+    }
+    return Temp;
 }
 /****************************************************/
 /********************显示处理************************/
@@ -635,61 +665,7 @@ void RuleForLdDisp(void)
   }*/
 }
 
-/****************************************************/
-/********************冷藏显示规则********************/
-/****************************************************/
-void RuleForLcDisp(void)
-{
-	if (!f_first_ad) //还未采样温度
-	{
-		return;
-	}
-	if (!f_lc_first_disp) //首次显示
-	{
-		f_lc_first_disp = 1;
-		r_lcgzwd = r_lcwd;	 //显示实际温度
-		t_lc_rule = t_halfsec; //记下显示刷新时间点
-		u8_LcRule = t_tens;
-	}
-	else if ((r_lcwd > (uchar)(r_lczt + 2)) || (r_lcwd < (uchar)(r_lczt - 1))) //实际温度高于设置温度超过2度  或者  低于设置温度超过1度
-	{
-		{
-			//u8_LcRule = t_tens; @20181130 CFJ
-			if ((t_halfsec - t_lc_rule) >= 120) //60秒 @20181130 CFJ
-			{
-				t_lc_rule = t_halfsec;
-				if (r_lcwd > r_lcgzwd) //显示温度<实际温度
-				{
-					r_lcgzwd++; //显示温度++
-				}
-				else if (r_lcwd < r_lcgzwd)
-				{
-					r_lcgzwd--;
-				}
-			}
-		}
-	}
-	else
-	{
-		if (r_lcgzwd != r_lczt)
-		{
-			// t_lc_rule = t_halfsec;
-			if ((t_halfsec - t_lc_rule) >= 120) //60S钟 @20181120
-			{
-				t_lc_rule = t_halfsec;
-				if (r_lcgzwd > r_lczt) //显示温度>实际温度
-				{
-					r_lcgzwd--; //显示温度--
-				}
-				else if (r_lcgzwd < r_lczt)
-				{
-					r_lcgzwd++;
-				}
-			}
-		}
-	}
-	r_lcxswd = r_lcgzwd;
-}
+
 
 /****************************************************/
 /********************冷藏显示规则（分辨率0.1度）********************/
@@ -1701,9 +1677,9 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 
 			if (r_lcxswd_float >= 38.0) //温度为正  分辨率为0.1
 			{
-				r_bw = (unsigned int)((r_lcxswd_float - 38.0) * 10 + 0.5) / 100;		//+0.5是为了float强制转换整数时，四舍五入
-				r_sw = ((unsigned int)((r_lcxswd_float - 38.0) * 10 + 0.5) % 100) / 10; //+0.5是为了float强制转换整数时，四舍五入
-				r_gw = (unsigned int)((r_lcxswd_float - 38.0) * 10 + 0.5) % 10;
+				r_bw = (unsigned int)((r_lcxswd_float - 38.0) * 10) / 100;		
+				r_sw = ((unsigned int)((r_lcxswd_float - 38.0) * 10) % 100) / 10; 
+				r_gw = (unsigned int)((r_lcxswd_float - 38.0) * 10) % 10;
 				flag_Disp_LCWD_D = 1;
 				if (r_bw == 0)
 				{
@@ -1720,10 +1696,10 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 			else //   0  ~ -9.9度   显示1位小数
 			{
 				r_bw = DISP_FH; //-
-				uchar temp_lc_x10 = (uchar)((38.0 - r_lcxswd_float) * 10 + 0.5);
+				uchar temp_lc_x10 = (uchar)((38.0 - r_lcxswd_float) * 10);
 				if (temp_lc_x10 >= 100)
 					temp_lc_x10 = 99;
-				r_sw = temp_lc_x10 / 10; //+0.5是为了float强制转换整数时，四舍五入
+				r_sw = temp_lc_x10 / 10; 
 				r_gw = temp_lc_x10 % 10;
 				flag_Disp_LCWD_D = 1;
 			}
@@ -1860,79 +1836,7 @@ void LongRangeAlarm(void) //远程报警规格书没有远程报警的说明
 		f_long_range_alarm = 0;
 	}
 }
-/****************************************************/
-/*******************接收完成数据处理*****************/
-/****************************************************/
-void DealRecData(void)
-{
-	/*
-	if(!f_com_ok)
-	return;
-	f_com_ok = 0;
-	//冷冻的温度处理
-	r16_ldad = rec[3];
-	r16_ldad = r16_ldad<<8;
-	r16_ldad = (r16_ldad&0xff00)|rec[2];
-	if ((r16_ldad <= 1010)&&(r16_ldad >= 15))
-	{//这个括号内程序没有全部对区间处理,但不影响程序正确性
-		if((r_ldwdjz>=10)&& (r16_ldad > 35))//温度校正是正数&&温度小于等于50
-		{
-			r16_ldad = r16_ldad-(r_ldwdjz-10)*4;//校准上偏10.温度对应4个AD
-		}
-		else if ((r_ldwdjz < 10)&& (r16_ldad < 990))
-		{
-			r16_ldad = r16_ldad+(10-r_ldwdjz)*4;
-		}
-	}
-  	if(r16_ldad>470)     
-  	{
-		r_ldsjwd = 140;//-60度
-	} 
-	else if(r16_ldad<36)
-	{
-		r_ldsjwd = 250;//50度
-	} 
-	else													
-	{
-		r_ldsjwd = (tab_temperature[r16_ldad-36]);
-	}
-	//冷藏温度的处理,没有温度显示在50~-60度的限制 
-	r_lcad = rec[1]; 
-	if ((r_lcad < 250) && (r_lcad > 5))
-	{
-		if((r_lcwdjz>=10) && (r_lcad > 20))                  //温度校正
-		{
-			r_lcad = r_lcad-(r_lcwdjz-10)*3;
-		}
-		else if ((r_lcwdjz < 10) && (r_lcad < 235))
-		{
-			r_lcad = r_lcad+(10-r_lcwdjz)*3;
-		} 
-	}
-	r_lcwd = CheckLcTable(r_lcad);
-	//电压
-	r_voltage_ad = rec[4];
-	if((r_voltage_ad >= 13)&&(r_voltage_ad<= 254))
-	{
-		if(r_voltage_ad>=30)
-		{
-			r_voltage = tab_voltage[r_voltage_ad-13];    //VoltageDisplayValue1
-		}
-		else
-		{
-			r_voltage = 0;
-		}
-	}
-	//电池
-	r_battery_ad = rec[5];
-	flag_rec1 = rec[6];//无效
-	if (!f_first_ad)
-	{ 
-		r_voltage_report =r_voltage;//r_voltage_report变量无效
-	}  
-	f_first_ad = 1;
-	*/
-}
+
 /****************************************************/
 /*****************Judge Errs*************************/
 /****************************************************/
@@ -3921,20 +3825,13 @@ void ldCompRunOneHour(void)
 	}
 }
 /************************************************/
-void lcCompressorRun10Hour(void);
 void lcCompRunOneHour(void);
-void lcCompressorAddup6Hour(void); // 140819
-								   /****************冷藏压机控制程序****************/
+/****************冷藏压机控制程序****************/
 void Lc_CompressorJudge(void)
 {
-	lcCompressorRun10Hour();  //累计x小时，停机化霜
 #if LC_COMP_RUN_MAX_1_HOUR
 	lcCompRunOneHour();   //连续运行x小时，停机保护
-#elif LC_COMP_RUN_MAX_6_HOUR
-	lcCompressorAddup6Hour();
 #endif
-	///lcCompRunOneHour();               按照系统人员要求屏蔽一小时的，HW2019/7/29 9:50
-	//lcCompressorAddup6Hour();                       // 140819
 	if (!f_first_ad)
 		return;
 
@@ -3943,24 +3840,12 @@ void Lc_CompressorJudge(void)
 		f_lc_on_off_dly = 0;
 	}
 	if (f_power_off)
-	{ // 140819
-		f8_lcCompAddUp6HourProtect = 0;
-		u16_lcComp_Addup_Minute = 0;
-		f8_lcCompAddUp6HourTimer = 0;
-
+	{
 		f_compressor_on_dly = 0;
 		t_yj_dly_time = 0;
 		goto Lc_CompressorOff;
 	}
 	if (!lcyj)
-	{
-		goto Lc_CompressorOff;
-	}
-	if (f8_lcCompAddUp6HourProtect != 0) // 累计运行y小时，停机化霜
-	{									 // 140819
-		goto Lc_CompressorOff;
-	}
-	if (f_lcCompressorProtect) //累计运行x小时，停机化霜
 	{
 		goto Lc_CompressorOff;
 	}
@@ -4019,15 +3904,6 @@ Lc_CompressorOff:
 	{
 		if (f_lc_compressor)
 		{
-			if (1 == f8_lcCompAddUp6HourTimer)
-			{
-				f8_lcCompAddUp6HourTimer = 0;
-				//
-				f8_lcCompAddUp6HourProtect = 1;
-				u8_lcCompAddUp6HourProtectTimer = t_tens;
-				//f_lc_on_off_dly = 0;                          // 不计算5分钟
-			}
-			// 141017
 			f_lc_compressor = OFF;
 			f_lc_fan = OFF;
 			f_lc_on_off_dly = 1;
@@ -4036,79 +3912,7 @@ Lc_CompressorOff:
 	}
 	return;
 }
-///////////////////////////////////////////////////
 
-void lcCompressorAddup6Hour(void)
-{
-	if (0 == f8_lcCompAddUp6HourProtect)
-	{
-		if (1 == f8_lcCompAddUp6HourTimer)
-		{
-		}
-		else if (f_lc_compressor)
-		{
-			if (f_onemin)
-			{ // 140819
-				u16_lcComp_Addup_Minute++;
-				if (u16_lcComp_Addup_Minute >= 30 * 60) //按照系统30H小时
-				{
-					f8_lcCompAddUp6HourTimer = 1;
-					/*  141017        
-             f8_lcCompAddUp6HourProtect = 1;
-             u8_lcCompAddUp6HourProtectTimer = t_tens;            	
-             f_lc_on_off_dly = 0;                          // 不计算5分钟 
-             */
-				}
-			}
-		}
-	}
-	else
-	{
-		if ((unsigned char)(t_tens - u8_lcCompAddUp6HourProtectTimer) >= 180) //180*10/60=30min  HW
-		{
-			f8_lcCompAddUp6HourProtect = 0;
-			u16_lcComp_Addup_Minute = 0;
-		}
-	}
-}
-/***************/
-/************************************************/
-// 压机累计运行30小时 20190729
-void lcCompressorRun10Hour(void)
-{
-	if (!f_lcCompressorProtect)
-	{
-		if (f_lc_compressor)
-		{
-			if (f_onemin)
-			{
-				if (++u8_lcCompMin >= 60)
-				{
-					u8_lcCompMin = 0;
-					if (++u8_lcCompHour >= 30)
-					{
-						u8_lcCompHour = 0;
-						f_lcCompressorProtect = 1;
-						u8_lcCompStopTime = t_tens;
-						// f_on_off_dly = 0;
-					}
-				}
-			}
-		}
-	}
-	else
-	{
-		if ((unsigned char)(t_tens - u8_lcCompStopTime) >= 180)
-		{
-			f_lcCompressorProtect = 0;
-		}
-
-		if (r_lcad_12b >= LCCOMPRTSTOREAD) //冷藏压缩机开机点  HW
-		{
-			f_lcCompressorProtect = 0;
-		}
-	}
-}
 /************冷藏压机连续运行x小时程序,强制停机y分钟**************/
 /***************************************************/
 void lcCompRunOneHour(void)
@@ -4532,6 +4336,7 @@ void ReturnPrintFrame(void)
 {
 
 	uchar data;
+    unsigned char  data1;
 	// if (u8_Send2_data_State == 1)
 	// {
 	// 	return;
@@ -4552,60 +4357,35 @@ void ReturnPrintFrame(void)
 	u8_Send2data[7] = 0x4D;
 	u8_Send2data[8] = 0x05;
 
-	/*
-  if(r_lcxswd>=38)
-   {
-	 r_bw = DISP_NO;
-	 r_sw = (uchar)((r_lcxswd-38)/10);
-	 r_gw = (uchar)((r_lcxswd-38)%10);
-   } 
-   else
-   {
-	 r_bw = DISP_FH;//-
-	 r_sw = (uchar)((38-r_lcxswd)/10);
-	 r_gw = (uchar)((38-r_lcxswd)%10);
-   }
-*/
-#if (LC_DISP_RESOLUTION_0D1 || LC_RESOLUTION_0D1) //显示分辨率0.1度
-	r_lcxswd = (unsigned char)floor(r_lcxswd_float);
-#else
-	;
-#endif
-	if (r_lcxswd >= 38)
+    if (r_lcxswd_float >= 38.0)  //正温度
+    {
+        data = (unsigned int)((r_lcxswd_float - 38) * 10) / 10;  //整数部分
+		data1 = (unsigned int)((r_lcxswd_float - 38) * 10) % 10;  //小数部分
+        u8_Send2data[9] = (data >> 4) & 0x0F;
+        u8_Send2data[10] = (data << 4) & 0xF0;
+    }
+    else  //负温度
+    {
+        data = (unsigned int)((38.0 - r_lcxswd_float) * 10) / 10;  //整数部分
+		data1 = (unsigned int)((38.0 - r_lcxswd_float) * 10) % 10;  //小数部分
+        u8_Send2data[9] = (data >> 4) & 0x0F;
+        u8_Send2data[9] = u8_Send2data[9] | 0x80;
+        u8_Send2data[10] = (data << 4) & 0xF0;
+    }
+	switch(data1)  	//显示温度小数部分
 	{
-		data = (r_lcxswd - 38);
-
-		u8_Send2data[9] = (data >> 4) & 0x0F;
-
-		u8_Send2data[10] = (data << 4) & 0xF0;
+		case 0: u8_Send2data[10] |= 0x00; break;
+		case 1: u8_Send2data[10] |= 0x01; break;
+		case 2: u8_Send2data[10] |= 0x03; break;
+		case 3: u8_Send2data[10] |= 0x04; break;
+		case 4: u8_Send2data[10] |= 0x06; break;
+		case 5: u8_Send2data[10] |= 0x08; break;
+		case 6: u8_Send2data[10] |= 0x09; break;
+		case 7: u8_Send2data[10] |= 0x0b; break;
+		case 8: u8_Send2data[10] |= 0x0c; break;
+		case 9: u8_Send2data[10] |= 0x0e; break;
+		default:break;
 	}
-	else
-	{
-		data = (38 - r_lcxswd);
-
-		u8_Send2data[9] = (data >> 4) & 0x0F;
-		u8_Send2data[9] = u8_Send2data[9] | 0x80;
-
-		u8_Send2data[10] = (data << 4) & 0xF0;
-	}
-
-	//u8_Send2data[9] = 0x02;//leng c
-	//u8_Send2data[10] = 0x03;
-
-	/*
-  if(r_ldxswd>=200)
-  {
-	r_bw = DISP_NO;
-	r_sw = (uchar)((r_ldxswd-200)/10);
-	r_gw = (uchar)((r_ldxswd-200)%10);
-  } 
-  else
-  {
-	r_bw = DISP_FH;//-
-	r_sw = (uchar)((200-r_ldxswd)/10);
-	r_gw = (uchar)((200-r_ldxswd)%10);
-  }
-*/
 
 	if (r_ldxswd >= 200)
 	{
@@ -4947,6 +4727,8 @@ void RecOkAction(void)
 /************************************************/
 void ReturnStateFrame(void)
 {
+    static short temp;
+
 	if (f_send_1ff || f_send_2ff || f_send_data)
 	{
 		return;
@@ -4966,25 +4748,31 @@ void ReturnStateFrame(void)
 	send_net[9] = 0x00;
 	send_net[10] = 0x00;
 
-	send_net[11] = 0x00;
+	send_net[11] = 0x00;  //电压
 	send_net[12] = r_voltage; //电压
 
 	send_net[13] = 0x00;
 	send_net[14] = 0x00;
 
-	send_net[15] = 0x00;
-	send_net[16] = 0x00;
+    /*协议标志 V2*/
+	send_net[15] = 0xFF;      
+	send_net[16] = 0xF2; 
 
-	send_net[17] = 0x00;
-	send_net[18] = 0x00;
-	send_net[19] = 0x00;
-	send_net[20] = 0x00;
+    /*冷藏显示温度（0.1精度）*/
+    temp = (short)((r_lcxswd_float - 38.0) * 10);
+    if(temp < 0)
+        temp = 0x8000 | abs(temp);
+	send_net[17] = temp >> 8;
+	send_net[18] = temp & 0x00ff;
 
-#if (LC_DISP_RESOLUTION_0D1 || LC_RESOLUTION_0D1) //显示分辨率0.1度
+    /*冷冻显示温度（0.1精度）*/
+	temp = (short)((r_ldxswd - 200) * 10);
+    if(temp < 0)
+        temp = 0x8000 | abs(temp);
+	send_net[19] = temp >> 8;
+	send_net[20] = temp & 0x00ff;
+
 	r_lcxswd = (unsigned char)floor(r_lcxswd_float);
-#else
-	;
-#endif
 	send_net[21] = r_lcxswd; //冷藏显示温度
 	send_net[22] = r_ldxswd;
 	send_net[23] = r_lczt; //冷藏档位
@@ -5408,30 +5196,7 @@ void ReceiveInitial(void)
 		}
 	}
 }
-/*********************************************
-函数名称：void EheatConTrolP(void)
-输入参数：r_lcad  冷藏温度传感器的AD值
-输出参数：
-函数功能：
-编写日期：2019/4/24 10:16:32
-编者：   HW
-***************************************************/
 
-void EheatConTrolP(void)
-{
-	if (f_lc_sensor_err)
-	{
-		Eheatcontrolpin = 0;
-	}
-	else if (r_lcad_12b >= HEATONAD)
-	{
-		Eheatcontrolpin = 1;
-	}
-	else if (r_lcad_12b <= HEATOFFAD)
-	{
-		Eheatcontrolpin = 0;
-	}
-}
 /************************************************/
 void Pannel_Comm_Deal(void) //@CFJ 面板通讯处理
 {
@@ -5536,16 +5301,10 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 		Lc_Temp_2 = Pannel_Uart1Data[7] << 4;
 		Lc_Temp_2 |= Pannel_Uart1Data[8] >> 4; // 20190410  HYC-386项目修改为NTC2作为冷藏传感器HW
 
-		if (Lc_Temp >= 250 || Lc_Temp <= 10) //温度大于60 小于-20认为错误,兼容NTC1与NTC2
-		{
-			r_lcad = Lc_Temp_2;
-		}
-		else
-		{
-			r_lcad = Lc_Temp;
-		}
+		r_lcad = Lc_Temp;
+		r_lcad_12b = Pannel_Uart1Data[5] * 256 + Pannel_Uart1Data[6];
 
-		r_lcad_12b = Pannel_Uart1Data[7] * 256 + Pannel_Uart1Data[8];
+        /*8位ad偏移处理*/
 		if ((r_lcad < 250) && (r_lcad > 5))
 		{
 			if (SelfCheckFlag == 0)
@@ -5560,9 +5319,25 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 				}
 			}
 		}
-		//r_lcad = 210; // TEST 测试 @20181025 CFJ
+
+        /*12位ad偏移处理*/
+        // if ((r_lcad_12b < 250 * 16) && (r_lcad_12b > 5 * 16))
+		// {
+		// 	if (SelfCheckFlag == 0)
+		// 	{
+		// 		if ((r_lcwdjz >= 10) && (r_lcad_12b > 20 * 16)) //温度校正
+		// 		{
+		// 			r_lcad_12b = r_lcad_12b - (r_lcwdjz - 10) * 3 * 16;
+		// 		}
+		// 		else if ((r_lcwdjz < 10) && (r_lcad_12b < 235 * 16))
+		// 		{
+		// 			r_lcad_12b = r_lcad_12b + (10 - r_lcwdjz) * 3 * 16;
+		// 		}
+		// 	}
+		// }
+
 		r_lcwd = CheckLcTable(r_lcad);
-		r_lcwd_float = (float)CheckLcTable(r_lcad);
+		r_lcwd_float = (float)CheckLcTable_12b(r_lcad_12b) + (r_lcwdjz - 10);
 	}
 	f_first_ad = 1;
 }
@@ -5875,45 +5650,6 @@ void l_Self_Detect(void)
 
 	while (SelfCheckFlag != 0) //进入自检
 	{
-		/*
-		    	 if((!f_first_ad)||(!f_Self_first_ad))
-           {
-		            t_Self_Times = t_20ms;
-temp:		        Clear_Watchdog();
-				        l_Pannel_Self_DataTx();//自检时面板发送数据
-				        Pannel_Comm_Deal();//这里需要判断PT100和NTC1的数据。
-				        if((unsigned char)(t_20ms-t_Self_Times)>=25)//每2秒主动发一次数据给底板。
-				        {
-				        	 bSelfUartSendStartFlag=1;
-				        	 t_Self_Times = t_20ms;		        	
-				        }
-				        if((!f_first_ad)||(!f_Self_first_ad)) //当电池的电电压和PT100数据都收到，再往下判断
-				        {
-				        	 goto temp;
-				        }
-				    }
-				    */
-		/*
-		        if(r16_ldad>1010||r16_ldad<15) //冷冻传感器故障
-						{
-							if(!f_ld_sensor_err)//如果出现冷冻传感器故障,进入一次,以后不再进入
-							{
-							  f_ld_sensor_err = 1;
-							  f_stop_alarm = 0;
-							}
-						}
-						//还需判断冷藏传感器故障，		
-						//当传感器有故障时，则不再进入自检，显示故障代码或者温度。
-		        if(r_lcad>250||r_lcad<5)
-						{
-							if(!f_lc_sensor_err)
-							{
-							   f_lc_sensor_err = 1;
-							   f_stop_alarm = 0;
-							}
-						}
-		        */
-
 		switch (SelfCheckStep)
 		{
 		case 0:
