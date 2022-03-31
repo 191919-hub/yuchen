@@ -480,7 +480,7 @@ void BuzzBiBiBi(void)
 /*********************AD转换程序*********************/
 /****************************************************/
 unsigned char SingleAd(unsigned char channel);
-unsigned char CheckLcTable(unsigned char r_lcad);
+unsigned char CheckLcTable(unsigned char ad_8b);
 float CheckLcTable_12b(unsigned int ad_12b);
 /****************************************************/
 void ad_convert(void)
@@ -525,19 +525,19 @@ unsigned char SingleAd(unsigned char channel)
 }
 */
 //^^^^^^^^^^^^^^^^^^
-unsigned char CheckLcTable(unsigned char r_lcad)
+unsigned char CheckLcTable(unsigned char ad_8b)
 {
-	if (r_lcad > 223)
+	if (ad_8b > 223)
 	{
 		return (8);
 	}
-	else if (r_lcad <= 23)
+	else if (ad_8b <= 23)
 	{
 		return (98);
 	}
 	else
 	{
-		return (table_lc[(unsigned char)(r_lcad - 24)]);
+		return (table_lc[(unsigned char)(ad_8b - 24)]);
 	}
 }
 
@@ -1900,7 +1900,7 @@ void JudgeLdErr(void) //冷冻传感器故障
 /**********************************/
 void JudgeLcErr(void) //冷藏传感器故障
 {
-	if (r_lcad > 250 || r_lcad < 5)
+	if (r_lcad_12b > 250 * 16 || r_lcad_12b < 5 * 16)
 	{
 		if (!f_lc_sensor_err)
 		{
@@ -3876,12 +3876,12 @@ void Lc_CompressorJudge(void)
 	t_lc_compressor = 0;
 	if (f_lc_compressor == ON)
 	{
-		if (r_lcad >= table_lc_off[r_lczt - 38])
+        if(r_lcwd_float < (r_lczt_float - 0.7))
 			goto Lc_CompressorOff;
 	}
 	else
 	{
-		if (r_lcad <= table_lc_on[r_lczt - 38])
+        if(r_lcwd_float > (r_lczt_float + 0.7))
 			goto Lc_CompressorOn;
 	}
 	return;
@@ -5301,21 +5301,21 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 		Lc_Temp_2 = Pannel_Uart1Data[7] << 4;
 		Lc_Temp_2 |= Pannel_Uart1Data[8] >> 4; // 20190410  HYC-386项目修改为NTC2作为冷藏传感器HW
 
-		r_lcad = Lc_Temp;
+		r_lcad_8b = Lc_Temp;
 		r_lcad_12b = Pannel_Uart1Data[5] * 256 + Pannel_Uart1Data[6];
 
         /*8位ad偏移处理*/
-		if ((r_lcad < 250) && (r_lcad > 5))
+		if ((r_lcad_8b < 250) && (r_lcad_8b > 5))
 		{
 			if (SelfCheckFlag == 0)
 			{
-				if ((r_lcwdjz >= 10) && (r_lcad > 20)) //温度校正
+				if ((r_lcwdjz >= 10) && (r_lcad_8b > 20)) //温度校正
 				{
-					r_lcad = r_lcad - (r_lcwdjz - 10) * 3;
+					r_lcad_8b = r_lcad_8b - (r_lcwdjz - 10) * 3;
 				}
-				else if ((r_lcwdjz < 10) && (r_lcad < 235))
+				else if ((r_lcwdjz < 10) && (r_lcad_8b < 235))
 				{
-					r_lcad = r_lcad + (10 - r_lcwdjz) * 3;
+					r_lcad_8b = r_lcad_8b + (10 - r_lcwdjz) * 3;
 				}
 			}
 		}
@@ -5336,7 +5336,7 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 		// 	}
 		// }
 
-		r_lcwd = CheckLcTable(r_lcad);
+		r_lcwd = CheckLcTable(r_lcad_8b);   //整数温度现在只用于测试模式
 		r_lcwd_float = (float)CheckLcTable_12b(r_lcad_12b) + (r_lcwdjz - 10);
 	}
 	f_first_ad = 1;
@@ -5508,7 +5508,7 @@ void l_Send_Data_Build(void)
 	{
 		g_IDM_TX_ODM_Data[19] = 0x01; //蜂鸣报警
 	}
-	g_IDM_TX_ODM_Data[22] = r_lcad;
+	g_IDM_TX_ODM_Data[22] = r_lcad_8b;
 	g_IDM_TX_ODM_Data[23] = r16_ldad / 256;
 	g_IDM_TX_ODM_Data[24] = r16_ldad % 256;
 	g_IDM_TX_ODM_Data[25] = 0xFF; //压缩机1

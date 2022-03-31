@@ -17,8 +17,6 @@ extern const unsigned char tab_voltage[];
 /************************************************************/
 extern  const	unsigned char tab_temperature[];
 
-extern const unsigned short table_lc_off[17];
-extern const unsigned short table_lc_on[17];
 /************************************************************/
 /************************************************************/
 //#define nop __NOP //asm nop __NOP  @20181008 CFJ
@@ -186,7 +184,7 @@ extern unsigned char r_key;//扫描的时候调整到一个字节的按键值
 extern unsigned char r_keyz;//有按键按下的时候的记录的按键值
 extern unsigned char r_sfkeyz;//存储按键的值
 extern uint32_t t_write_e2;//上次写E2时间
-extern unsigned char r_lcad;
+extern unsigned char r_lcad_8b;
 extern unsigned char r_set_state;//调节时显示的屏编码
 extern unsigned char r_flash_bit;//数码管位数
 
