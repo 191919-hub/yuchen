@@ -1540,7 +1540,7 @@
                     <item>Cfg_Data</item>
                     <item>Uart_WF</item>
                     <item>r_lc_low_alarm</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>

@@ -527,7 +527,7 @@ extern uint32_t t_power_buzz;
 extern uint32_t t_power_Off; //@20181226 CFJ 掉电的时间
 extern unsigned char t_stop_alarm;
 extern unsigned char r_battery_ad;
-extern unsigned char r_lcwdjz;//冷藏温度校准值
+extern unsigned char r_lcwdjz;//冷藏温度校准值,乘以10 再偏移100
 extern unsigned char r_lcwdjzx;
 
 extern unsigned char flag_err1_copy;

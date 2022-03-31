@@ -2045,7 +2045,7 @@ uint32_t t_voltage_buzz;
 uint32_t t_power_Off; //@20181226 CFJ 掉电的时间
 unsigned char t_stop_alarm;
 unsigned char r_battery_ad;
-unsigned char r_lcwdjz;//冷藏温度校准值
+unsigned char r_lcwdjz;//冷藏温度校准值,乘以10 再偏移100
 unsigned char r_lcwdjzx;
 
 unsigned char flag_err1_copy;

@@ -1239,6 +1239,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	unsigned char r_bw, r_sw, r_gw;
 
 	flag_Now_Disp_LCWD = 0; //
+    flag_Disp_LCWD_D = 0;
 
 	if (f_test_alarm || f_First_PowerOnFlag) //@20181120 CFJ    首次上电  或者  摁了“报警测试”按键
 	{
@@ -1469,17 +1470,19 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	}
 	else if (r_set_state == SET_LC_WDJZ)
 	{
-		if (r_lcwdjzx >= 10)
+        flag_Now_Disp_LCWD = 1;
+        flag_Disp_LCWD_D = 1;
+		if (r_lcwdjzx >= 100)
 		{
 			r_bw = DISP_NO;
-			r_sw = DISP_NO;
-			r_gw = r_lcwdjzx - 10;
+			r_sw = (r_lcwdjzx - 100) / 10;
+			r_gw = (r_lcwdjzx - 100) % 10;
 		}
 		else
 		{
-			r_bw = DISP_NO;
-			r_sw = DISP_FH;
-			r_gw = 10 - r_lcwdjzx;
+			r_bw = DISP_FH;
+			r_sw = (100 - r_lcwdjzx) / 10;
+			r_gw = (100 - r_lcwdjzx) % 10;
 		}
 	}
 	else if (r_set_state == SET_LC_BJYCSJ)
@@ -3183,9 +3186,9 @@ void KeyPutDown(void)
 		else if (r_set_state == SET_LC_WDJZ)
 		{
 			r_lcwdjzx++;
-			if (r_lcwdjzx > 15)
+			if (r_lcwdjzx > 150)
 			{
-				r_lcwdjzx = 5;
+				r_lcwdjzx = 50;
 			}
 			goto NotSaveKey;
 		}
@@ -4109,7 +4112,7 @@ void WriteE2(void)
 		WriteByte(r_lcwdjz);			 //byte10
 		WriteByte(u8_ld_bjycsj);		 //byte11
 		WriteByte(u8_lc_bjycsj);		 //byte12
-		WriteByte(0xBB);				 //byte13
+		WriteByte(0xBC);				 //byte13
 
 		C_sda = 1;
 		Stop();
@@ -4180,7 +4183,7 @@ void ReadE2(void)
 	ld_low_alarm_report = r_ld_low_alarm;
 	lc_high_alarm_report = r_lc_high_alarm;
 	lc_low_alarm_report = r_lc_low_alarm;
-	if (temp != 0xBB)
+	if (temp != 0xBC)
 	{
 		r_ldzt = 160; //-40
 		r_lczt = 43;  //5°C
@@ -4193,8 +4196,8 @@ void ReadE2(void)
 		r_ld_low_alarm = 5;
 		r_lc_high_alarm = 3;
 		r_lc_low_alarm = 3;
-		r_lcwdjzx = 10;
-		r_lcwdjz = 10;
+		r_lcwdjzx = 100;
+		r_lcwdjz = 100;
 		u8_ld_bjycsjx = 2; //冷冻报警延迟时间,小时
 		u8_ld_bjycsj = 2;
 		u8_lc_bjycsjx = 2;
@@ -4605,8 +4608,6 @@ void RecOkAction(void)
 			{
 				if (rec_net[10] <= 15 && rec_net[10] >= 5)
 				{
-					r_lcwdjz = rec_net[10];
-					r_lcwdjzx = r_lcwdjz;
 					f_need_write_e2 = ON;
 					t_write_e2 = t_halfsec;
 					BuzzBi();
@@ -4792,8 +4793,8 @@ void ReturnStateFrame(void)
 
 	send_net[35] = r_hwsjwd; //环温
 
-	send_net[36] = r_lcwdjz;
-	send_net[37] = r_ldwdjz;
+	send_net[36] = 10;
+	send_net[37] = 10;
 
 	send_net[38] = flag_err2;
 	send_net[39] = flag_err1;
@@ -4999,8 +5000,8 @@ void ReturnReportFrame(void)
 
 	send_net[35] = r_hwsjwd; //环温
 
-	send_net[36] = r_lcwdjz;
-	send_net[37] = r_ldwdjz;
+	send_net[36] = 10;
+	send_net[37] = 10;
 
 	send_net[38] = flag_err2;
 	send_net[39] = flag_err1;
@@ -5309,35 +5310,23 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 		{
 			if (SelfCheckFlag == 0)
 			{
-				if ((r_lcwdjz >= 10) && (r_lcad_8b > 20)) //温度校正
+				if ((r_lcwdjz >= 100) && (r_lcad_8b > 20)) //温度校正
 				{
-					r_lcad_8b = r_lcad_8b - (r_lcwdjz - 10) * 3;
+					r_lcad_8b = r_lcad_8b - ((r_lcwdjz - 100) / 10.0) * 3;
 				}
 				else if ((r_lcwdjz < 10) && (r_lcad_8b < 235))
 				{
-					r_lcad_8b = r_lcad_8b + (10 - r_lcwdjz) * 3;
+					r_lcad_8b = r_lcad_8b + ((100 - r_lcwdjz) / 10.0) * 3;
 				}
 			}
 		}
 
-        /*12位ad偏移处理*/
-        // if ((r_lcad_12b < 250 * 16) && (r_lcad_12b > 5 * 16))
-		// {
-		// 	if (SelfCheckFlag == 0)
-		// 	{
-		// 		if ((r_lcwdjz >= 10) && (r_lcad_12b > 20 * 16)) //温度校正
-		// 		{
-		// 			r_lcad_12b = r_lcad_12b - (r_lcwdjz - 10) * 3 * 16;
-		// 		}
-		// 		else if ((r_lcwdjz < 10) && (r_lcad_12b < 235 * 16))
-		// 		{
-		// 			r_lcad_12b = r_lcad_12b + (10 - r_lcwdjz) * 3 * 16;
-		// 		}
-		// 	}
-		// }
-
 		r_lcwd = CheckLcTable(r_lcad_8b);   //整数温度现在只用于测试模式
-		r_lcwd_float = (float)CheckLcTable_12b(r_lcad_12b) + (r_lcwdjz - 10);
+		r_lcwd_float = (float)CheckLcTable_12b(r_lcad_12b) + (r_lcwdjz - 100) / 10.0;
+        if(r_lcwd_float < 8.0)
+            r_lcwd_float = 8.0;
+        if(r_lcwd_float > 98.0)
+            r_lcwd_float = 98.0;
 	}
 	f_first_ad = 1;
 }
