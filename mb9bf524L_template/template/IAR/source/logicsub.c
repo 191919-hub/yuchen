@@ -5302,8 +5302,16 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 		Lc_Temp_2 = Pannel_Uart1Data[7] << 4;
 		Lc_Temp_2 |= Pannel_Uart1Data[8] >> 4; // 20190410  HYC-386项目修改为NTC2作为冷藏传感器HW
 
-		r_lcad_8b = Lc_Temp;
-		r_lcad_12b = Pannel_Uart1Data[5] * 256 + Pannel_Uart1Data[6];
+        if (Lc_Temp >= 250 || Lc_Temp <= 10) //温度大于60 小于-20认为错误,兼容NTC1与NTC2
+		{
+			r_lcad_8b = Lc_Temp_2;
+            r_lcad_12b = Pannel_Uart1Data[7] * 256 + Pannel_Uart1Data[8];
+		}
+		else
+		{
+			r_lcad_8b = Lc_Temp;
+            r_lcad_12b = Pannel_Uart1Data[5] * 256 + Pannel_Uart1Data[6];
+		}
 
         /*8位ad偏移处理*/
 		if ((r_lcad_8b < 250) && (r_lcad_8b > 5))
