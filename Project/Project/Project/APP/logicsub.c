@@ -36,6 +36,8 @@ unsigned char flag_Now_Disp_LCWD = 0, flag_Disp_LCWD_D = 0;
 unsigned char Cnt_SetTime_Sended = 0;
 unsigned char f_Set_Time = 0;  //设置时间标志
 unsigned char f_door_state = 0;  //门状态，0：关，1：开
+unsigned char LC_Enable,LD_Enable;   //L5：制冷功能使能
+unsigned char LC_Enable_Temp,LD_Enable_Temp;   //L5临时值
 
 
 /***********************************************************
@@ -854,10 +856,7 @@ void LdDisp(void)
 		r_sw = DISP_NO;
 		if (t_halfsec & 0x01) //0b00000001)  @20181008 CFJ
 		{
-			if ((flag_ajszyjkt & 0x01) == 0x01)
-				r_gw = 1;
-			else
-				r_gw = 0;
+            r_gw = LD_Enable_Temp % 10;
 		}
 		else
 		{
@@ -1331,12 +1330,9 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	{
 		r_bw = DISP_NO;
 		r_sw = DISP_NO;
-		if (t_halfsec & 0x01) //if(t_halfsec&0b00000001)
+		if (t_halfsec & 0x01) 
 		{
-			if ((flag_ajszyjkt & 0x02) == 0x02)
-				r_gw = 1;
-			else
-				r_gw = 0;
+			r_gw = LC_Enable_Temp % 10;
 		}
 		else
 		{
@@ -1769,7 +1765,7 @@ void JudgeHwHigh(void) //环温超38
 void JudgeLdHigh(void)
 {
 	//冷冻传感器错误
-	if (f_ld_sensor_err || (!ldyj))
+	if (f_ld_sensor_err || (!LD_Enable))
 	{
 		f_ld_high = 0;
 		f_ld_high_buzz = 0;
@@ -1807,7 +1803,7 @@ void JudgeLdHigh(void)
 void JudgeLcHigh(void)
 {
 	//冷藏传感器错误
-	if (f_lc_sensor_err || (!lcyj))
+	if (f_lc_sensor_err || (!LC_Enable))
 	{
 		f_lc_high = 0;
 		f_lc_high_buzz = 0;
@@ -1850,7 +1846,7 @@ void JudgeLcHigh(void)
 /******************************/
 void JudgeLdLow(void)
 {
-	if (f_ld_sensor_err || (!ldyj))
+	if (f_ld_sensor_err || (!LD_Enable))
 	{
 		f_ld_low = 0;
 		f_ld_low_buzz = 0;
@@ -1886,7 +1882,7 @@ void JudgeLdLow(void)
 void JudgeLcLow(void)
 {
 
-	if (f_lc_sensor_err || (!lcyj))
+	if (f_lc_sensor_err || (!LC_Enable))
 	{
 		f_lc_low = 0;
 		f_lc_low_buzz = 0;
@@ -2332,6 +2328,7 @@ void KeyPutUp(void) //按键抬起有效
 			}
 			else if (r_set_state == SET_LD_L5) //LD压缩机停机设置
 			{
+                LD_Enable_Temp = LD_Enable;
 				r_set_state = SET_LDYJ;
 				r_flash_bit = BIT3;
 				goto NotSaveKey2;
@@ -2356,6 +2353,7 @@ void KeyPutUp(void) //按键抬起有效
 			}
 			else if (r_set_state == SET_LC_L5)
 			{
+                LC_Enable_Temp = LC_Enable;
 				r_set_state = SET_LCYJ;
 				r_flash_bit = BIT3;
 				goto NotSaveKey2;
@@ -2586,11 +2584,13 @@ void KeyPutUp(void) //按键抬起有效
 			}
 			else if (r_set_state == SET_LDYJ) //冷冻压机
 			{
+                LD_Enable = LD_Enable_Temp;
 				r_set_state = SET_NC_LD;
 				goto SaveKey2;
 			}
 			else if (r_set_state == SET_LCYJ)
 			{
+                LC_Enable = LC_Enable_Temp;
 				r_set_state = SET_NC_LC;
 				goto SaveKey2;
 			}
@@ -2702,11 +2702,13 @@ void KeyPutUp(void) //按键抬起有效
 		}
 		else if (r_set_state == SET_LDYJ)
 		{
+            LD_Enable = LD_Enable_Temp;
 			r_set_state = SET_LCYJ;
 			goto SaveKey2;
 		}
 		else if (r_set_state == SET_LCYJ)
 		{
+            LC_Enable = LC_Enable_Temp;
 			r_set_state = SET_LDYJ;
 			goto SaveKey2;
 		}
@@ -2951,19 +2953,11 @@ void KeyPutDown(void)
 		}
 		else if (r_set_state == SET_LDYJ)
 		{
-			if ((flag_ajszyjkt & 0x01) == 0x01)
-				flag_ajszyjkt = flag_ajszyjkt & 0xfe;
-			else
-				flag_ajszyjkt = flag_ajszyjkt | 0x01;
-			goto NotSaveKey;
+			//短按改成长按
 		}
 		else if (r_set_state == SET_LCYJ)
 		{
-			if ((flag_ajszyjkt & 0x02) == 0x02)
-				flag_ajszyjkt = flag_ajszyjkt & 0xfd;
-			else
-				flag_ajszyjkt = flag_ajszyjkt | 0x02;
-			goto NotSaveKey;
+			//短按改成长按
 		}
 		else if (r_set_state == SET_LD_WDJZ)
 		{
@@ -3193,6 +3187,28 @@ void KeyPut5s(void)
 			goto NotSaveKey2;
 		}
 	}
+    else if(r_keyz == KEY_ADJUST)
+    {
+        if (!f_lock)
+		{
+            if (r_set_state == SET_LDYJ)
+            {
+                if(LD_Enable_Temp < 9)
+                    LD_Enable_Temp ++;
+                else
+                    LD_Enable_Temp = 0;
+                goto NotSaveKey2;
+            }
+            else if (r_set_state == SET_LCYJ)
+            {
+                if(LC_Enable_Temp < 9)
+                    LC_Enable_Temp ++;
+                else
+                    LC_Enable_Temp = 0;
+                goto NotSaveKey2;
+            }
+		}
+    }
 	return;
 NotSaveKey2:
 	BuzzBi();
@@ -3383,11 +3399,13 @@ void AutoLock(void)
 		}
 		else if (r_set_state == SET_LDYJ)
 		{
+            LD_Enable = LD_Enable_Temp;
 			f_need_write_e2 = ON;
 			t_write_e2 = t_halfsec;
 		}
 		else if (r_set_state == SET_LCYJ)
 		{
+            LC_Enable = LC_Enable_Temp;
 			f_need_write_e2 = ON;
 			t_write_e2 = t_halfsec;
 		}
@@ -3439,7 +3457,7 @@ void LdCompressorJudge(void) //冷冻压机判断
 		t_yj_dly_time = 0;
 		goto CompressorOff;
 	}
-	if (!ldyj)
+	if (!LD_Enable)
 	{
 		goto CompressorOff;
 	}
@@ -3636,7 +3654,7 @@ void Lc_CompressorJudge(void)
 		t_yj_dly_time = 0;
 		goto Lc_CompressorOff;
 	}
-	if (!lcyj)
+	if (!LC_Enable)
 	{
 		goto Lc_CompressorOff;
 	}
@@ -3793,7 +3811,7 @@ void Nd_fan_Prog(void)
 	if (DOOR_ONFLAG) //if(PTBD_PTBD7)    @20180920 cfj
 	{
 		f_door_switch = 0; // 100526  zyj
-		if (lcyj)
+		if (LC_Enable)
 		{
 			if ((uchar)(t_onems - t_nd_fan) >= 60)
 			{
@@ -3896,11 +3914,13 @@ void WriteE2(void)
 		WriteByte(r_lc_high_alarm); //byte7
 		WriteByte(r_lc_low_alarm);  //byte8
 
-		WriteByte(flag_ajszyjkt & 0x03); //write data  //byte9
+		//WriteByte(flag_ajszyjkt & 0x03); //write data  //byte9
+        WriteByte(LC_Enable);
+        WriteByte(LD_Enable);
 		WriteByte(r_lcwdjz);			 //byte10
 		WriteByte(u8_ld_bjycsj);		 //byte11
 		WriteByte(u8_lc_bjycsj);		 //byte12
-		WriteByte(0xBC);				 //byte13
+		WriteByte(0xBD);				 //byte13
 
 		C_SDA_SET_HIGH;
 		Stop();
@@ -3945,7 +3965,15 @@ void ReadE2(void)
 	r_lc_low_alarm = ReadByte(); //byte8 //冷藏低温报警设定的差值
 	Sendscl();
 
-	flag_ajszyjkt = ReadByte() & 0x03; //byte9按键设置压机开停
+	//flag_ajszyjkt = ReadByte() & 0x03; //byte9按键设置压机开停
+	//Sendscl();
+
+    LC_Enable = ReadByte(); //L5
+    LC_Enable_Temp = LC_Enable;
+	Sendscl();
+
+    LD_Enable = ReadByte(); //L5
+    LD_Enable_Temp = LD_Enable;
 	Sendscl();
 
 	r_lcwdjz = ReadByte(); //byte10冷藏温度校准值
@@ -3971,7 +3999,7 @@ void ReadE2(void)
 	ld_low_alarm_report = r_ld_low_alarm;
 	lc_high_alarm_report = r_lc_high_alarm;
 	lc_low_alarm_report = r_lc_low_alarm;
-	if (temp != 0xBC)
+	if (temp != 0xBD)
 	{
 		r_ldzt = 160; //-40
 		r_lczt = 43;  //5°C
@@ -3990,7 +4018,11 @@ void ReadE2(void)
 		u8_ld_bjycsj = 2;
 		u8_lc_bjycsjx = 2;
 		u8_lc_bjycsj = 2;
-		flag_ajszyjkt = 0x03; //按键设置压机开停用
+		//flag_ajszyjkt = 0x03; //按键设置压机开停用
+        LC_Enable = 1;
+        LC_Enable_Temp = 1;
+        LD_Enable = 1;
+        LD_Enable_Temp = 1;
 		f_e2prom = 1;
 
 		r_ldzt_report = 160;
