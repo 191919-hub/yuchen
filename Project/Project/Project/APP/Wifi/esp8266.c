@@ -39,7 +39,7 @@ uint8_t First_State_Frame = 1,First_Fault_Frame = 1; //上电首先发送一帧�
 Wifi_Cfg_t Cfg_Data;
 
 unsigned char f_RecStr_Err = 0;  //接收到的字符串不合法
-enum MQTT_DATA_TYPE PubType = MQTT_HEART_DATA;   //将要发布的数据类型
+enum MQTT_DATA_TYPE gPubType = MQTT_HEART_DATA;   //将要发布的数据类型
 
 
 unsigned char Parse_CfgData(void);
@@ -493,12 +493,12 @@ void Send_To_Wifi_Module(void)
             {   
                 //1.判断事件、状态、故障数据是否有变化，有变化立即发送
                 //2.判断是否到了发送两种心跳的时间
-                PubType = Judge_PubType();
-                if(PubType != MQTT_NULL_DATA)
+                gPubType = Judge_PubType();
+                if(gPubType != MQTT_NULL_DATA)
                 {
-                    MQTT_Send_Data(PubType,SIGN_FIRST_PUBLISH);
+                    MQTT_Send_Data(gPubType,SIGN_FIRST_PUBLISH);
 
-                    Published_Type = PubType;
+                    Published_Type = gPubType;
                     Wifi_Module_Uart_State = WAIT_MQTT_PUBLISH_Resp;  //等待响应
                 }
             }
@@ -583,7 +583,7 @@ void WiFi_SendCmd(char *cmd, int timeout)
     sprintf(Temp_Buf, "%s", cmd);
     WiFi_RxCounter = 0;						  //WiFi接收数据量变量清零
 	memset(WiFi_RX_BUF, 0, WiFi_RXBUFF_SIZE); //清空WiFi接收缓冲区				  
-    SendStr(Temp_Buf);     //发送指令
+    SendStr((unsigned char *)Temp_Buf);     //发送指令
     f_Wait_Wifi_Module_Resp = 1;
     Timeout_Wifi_Module = timeout;
 

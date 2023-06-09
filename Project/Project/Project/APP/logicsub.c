@@ -529,7 +529,7 @@ void RuleForLcDisp_0D1(void)
 /****************************************************/
 void LdDisp(void)
 {
-	unsigned char r_bw, r_sw, r_gw;
+	unsigned char r_bw = 0, r_sw = 0, r_gw = 0;
 
 	if (!f_first_ad)
 	{
@@ -1051,7 +1051,7 @@ void LdDisp(void)
 /****************************************************/
 void LcDisp(void) //把每个数码管显示内容确定下来
 {
-	unsigned char r_bw, r_sw, r_gw;
+	unsigned char r_bw = 0, r_sw = 0, r_gw = 0;
 	uchar temp_lc_x10;
 
 	flag_Now_Disp_LCWD = 0; //
@@ -4035,7 +4035,7 @@ void WriteByte(unsigned char tem_dat)
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 unsigned char ReadByte(void)
 {
-	unsigned char r_dat, r_clk;
+	unsigned char r_dat = 0, r_clk;
 	C_SDA_SET_HIGH;
 	C_SDA_IN;
 
@@ -4233,6 +4233,12 @@ void NetRecOver(void)
 	uchar r_cheksum = 0;
 	if (f_rec_over)
 	{
+        if(r_recsum == 0)
+        {
+            f_rec_over = 0;
+            return;
+        }
+            
 		for (r_receiver = 0; r_receiver < (unsigned char)(r_recsum - 1); r_receiver++)
 		{
 			r_cheksum = r_cheksum + rec_net[r_receiver];
@@ -5327,7 +5333,7 @@ void l_Self_Detect(void)
 	//unsigned char SelfCheckFlag;
 	unsigned char SelfCheckStep;
 	unsigned char r_bw, r_sw, r_gw;
-	l_ucTemp = 0;
+
 	l_uci = 5;
 	SelfCheckFlag = 0;
 	SelfCheckStep = 0;
@@ -5489,18 +5495,9 @@ void l_Self_Detect(void)
 			}
 			else
 			{
-				if (r_lcwd >= 38)
-				{
-					r_bw = DISP_NO;
-					r_sw = (uchar)((r_lcwd - 38) / 10);
-					r_gw = (uchar)((r_lcwd - 38) % 10);
-				}
-				else
-				{
-					r_bw = DISP_FH; //-
-					r_sw = (uchar)((38 - r_lcwd) / 10);
-					r_gw = (uchar)((38 - r_lcwd) % 10);
-				}
+                r_bw = DISP_NO;
+                r_sw = (uchar)((r_lcwd - 38) / 10);
+                r_gw = (uchar)((r_lcwd - 38) % 10);
 			}
 			r_led21 = table_led[r_bw];
 			r_led22 = table_led[r_sw];
