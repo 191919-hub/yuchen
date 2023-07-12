@@ -59,6 +59,16 @@ void User_GPIO_Init(void)
 
     GPIO_Init(GPIOB, GPIO_Pin_6, &x);  //门开关
     GPIO_Init(GPIOB, GPIO_Pin_7, &x);  //LED_ONLY
+
+    /*浮空输入*/
+    x.GPIO_Signal = GPIO_Pin_Signal_Digital;
+    x.GPIO_Func = GPIO_Func_0;
+    x.GPIO_Direction = GPIO_Dir_In;
+    x.GPIO_PUEN = GPIO_PUE_Input_Disable;
+    x.GPIO_PDEN = GPIO_PDE_Input_Disable;
+    x.GPIO_OD = GPIO_ODE_Output_Disable;
+    x.GPIO_DS = GPIO_DS_Output_Normal;
+
     GPIO_Init(GPIOA, GPIO_Pin_1, &x);  //sw1
     GPIO_Init(GPIOA, GPIO_Pin_0, &x);  //sw2
     GPIO_Init(GPIOB, GPIO_Pin_13, &x);  //sw3
