@@ -465,6 +465,9 @@ void RuleForLdDisp(void)
 	{
 		r_ldxswd = r_ldxswd - 1; //œ‘ æ÷µ-1
 	}
+
+    if(r_ldxswd < 140)
+        r_ldxswd = 140;
 }
 
 
