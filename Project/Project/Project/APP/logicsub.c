@@ -55,21 +55,6 @@ void InitialUserRegister(void)
 /**********************************************************/
 void Time(void)
 {
-
-	if (f_2Ms_Flag) //2ms标志  //CFJ
-	{
-		f_2Ms_Flag = 0;
-
-		if (g_Bus_Error_Time >= 30000) //转为接受状态，1min内未收到数据，则报故障
-		{
-			g_Sys_Erflag0_Comm = 1; //通讯错误 @20181025 CFJ
-		}
-		else
-		{
-			g_Bus_Error_Time++;
-		}
-	}
-
 	if (f_05s)
 	{
 		if (!f_halfsec)

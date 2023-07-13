@@ -607,7 +607,7 @@ extern uchar u8_lcCompAddUp6HourProtectTimer;          // 保护时间
 extern uchar f8_lcCompAddUp6HourTimer;                 // 141017 冷藏6小时时间到 
 
 extern unsigned int  g_Txd_Time;
-extern unsigned int  g_Bus_Error_Time;
+extern volatile unsigned int  g_Bus_Error_Time;
 extern unsigned char  g_UART1_RCV_Cyc;
 extern unsigned char  g_UART1_RCV_Counter ;
 extern unsigned char  g_IDM_TX_ODM_Data[30];

@@ -1971,7 +1971,7 @@ uint  u16_lcComp_Addup_Minute;                  // 累计时间
 uchar u8_lcCompAddUp6HourProtectTimer;          // 保护时间 
 uchar f8_lcCompAddUp6HourTimer;                 // 141017 冷藏6小时时间到 
 unsigned int g_Txd_Time;    //CFJ
-unsigned int g_Bus_Error_Time;
+volatile unsigned int g_Bus_Error_Time;
 unsigned char g_UART1_RCV_Cyc;
 unsigned char g_UART1_RCV_Counter ;
 unsigned char  g_IDM_TX_ODM_Data[30];

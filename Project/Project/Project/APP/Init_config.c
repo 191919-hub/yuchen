@@ -247,10 +247,18 @@ void T16N0_IRQHandler(void) //1ms进一次
     }
     if (t_1ms >= 2) //2ms
     {
-        f_2Ms_Flag = 1;
         t_2ms++;
         t_twoms++;
         t_1ms = 0;
+
+        if (g_Bus_Error_Time >= 30000) //转为接受状态，1min内未收到数据，则报故障
+		{
+			g_Sys_Erflag0_Comm = 1; //通讯错误 @20181025 CFJ
+		}
+		else
+		{
+			g_Bus_Error_Time++;
+		}
 
         if (t_2ms >= 250)
         {
