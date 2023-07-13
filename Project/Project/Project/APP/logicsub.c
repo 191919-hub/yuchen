@@ -521,7 +521,7 @@ void LdDisp(void)
 {
 	unsigned char r_bw = 0, r_sw = 0, r_gw = 0;
 
-	if (!f_first_ad)
+	if (!f_first_ad && g_Sys_Erflag0_Comm == 0)
 	{
 		return;
 	}
@@ -2041,7 +2041,7 @@ void LedStop(void);
 /****************************************************/
 void DataToLed(void)
 {
-	if ((!f_first_ad) && SelfCheckFlag == 0) //if(!f_first_ad) //@20190221 CFJ
+	if ((!f_first_ad) && SelfCheckFlag == 0  && g_Sys_Erflag0_Comm == 0) //if(!f_first_ad) //@20190221 CFJ
 		return;
 	if ((unsigned char)(t_onems - t_data_to_led) >= 125) //125ms
 	{
