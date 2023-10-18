@@ -1,11 +1,341 @@
 //#pragma CODE_SEG DEFAULT @20180920 cfj
 #include "includes.h"
-#include "Program_Cfg.h"  //程序功能配置，比如禁止蜂鸣器、控制冷藏温度分辨率
+#include "Program_Cfg.h"  //???????????????????????????????????????
+#include "Disp.H"
 #include "Coupler.h"
-//#include "Disp.H"
-const unsigned char table_lc[]= //环温表,上偏38度,表头偏移24 
+const unsigned short  table_ld_3840[] =                //3840?????????????
 {
-    98,97,95,94,93,92,91,90,89,//24           ad=24时，温度 = 98 - 38 = 60度；ad=25时，温度 = 97-38 = 59 度
+    3817,   //-40
+    3800,   //-39
+    3782,   //-38
+    3763,   //-37
+    3743,   //-36
+    3722,   //-35
+    3701,   //-34
+    3678,   //-33
+    3654,   //-32
+    3630,   //-31
+    3604,   //-30
+    3577,   //-29
+    3549,   //-28
+    3520,   //-27
+    3490,   //-26
+    3459,   //-25
+    3427,   //-24
+    3394,   //-23
+    3359,   //-22
+    3324,   //-21
+    3287,   //-20
+    3249,   //-19
+    3211,   //-18
+    3171,   //-17
+    3131,   //-16
+    3089,   //-15
+    3046,   //-14
+    3002,   //-13
+    2958,   //-12
+    2913,   //-11
+    2867,   //-10
+    2820,   //-9
+    2773,   //-8
+    2725,   //-7
+    2676,   //-6
+    2627,   //-5
+    2578,   //-4
+    2528,   //-3
+    2477,   //-2
+    2427,   //-1
+    2376,   //0
+    2326,   //1
+    2275,   //2
+    2224,   //3
+    2173,   //4
+    2123,   //5
+    2073,   //6
+    2023,   //7
+    1973,   //8
+    1923,   //9
+    1875,   //10
+    1826,   //11
+    1779,   //12
+    1731,   //13
+    1684,   //14
+    1639,   //15
+    1593,   //16
+    1549,   //17
+    1505,   //18
+    1462,   //19
+    1420,   //20
+    1378,   //21
+    1338,   //22
+    1298,   //23
+    1260,   //24
+    1221,   //25
+    1184,   //26
+    1148,   //27
+    1113,   //28
+    1079,   //29
+    1045,   //30
+    1013,   //31
+    981 ,   //32
+    950 ,   //33
+    920 ,   //34
+    891 ,   //35
+    863 ,   //36
+    835 ,   //37
+    809 ,   //38
+    783 ,   //39
+    758 ,   //40
+    734 ,   //41
+    710 ,   //42
+    688 ,   //43
+    666 ,   //44
+    644 ,   //45
+    624 ,   //46
+    603 ,   //47
+    584 ,   //48
+    566 ,   //49
+    547 ,   //50
+    530 ,   //51
+    513 ,   //52
+    496 ,   //53
+    481 ,   //54
+    466 ,   //55
+    451 ,   //56
+    436 ,   //57
+    423 ,   //58
+    409 ,   //59
+    397 ,   //60
+    384 ,   //61
+    372 ,   //62
+    360 ,   //63
+    349 ,   //64
+    338 ,   //65
+    328 ,   //66
+    318 ,   //67
+    308 ,   //68
+    298 ,   //69
+    289 ,   //70
+    281 ,   //71
+    272 ,   //72
+    264 ,   //73
+    256 ,   //74
+    248 ,   //75
+    241 ,   //76
+    233 ,   //77
+    226 ,   //78
+    220 ,   //79
+    214 ,   //80
+    208 ,   //81
+    201 ,   //82
+    195 ,   //83
+    190 ,   //84
+    184 ,   //85
+    179 ,   //86
+    174 ,   //87
+    169 ,   //88
+    164 ,   //89
+    160 ,   //90
+    155 ,   //91
+    151 ,   //92
+    146 ,   //93
+    142 ,   //94
+    139 ,   //95
+    135 ,   //96
+    131 ,   //97
+    127 ,   //98
+    124 ,   //99
+    121 ,   //100
+    118 ,   //101
+    114 ,   //102
+    111 ,   //103
+    109 ,   //104
+    105 ,   //105
+    103 ,   //106
+    100 ,   //107
+    98  ,   //108
+    95  ,   //109
+    93  ,   //110
+    90  ,   //111
+    88  ,   //112
+    85  ,   //113
+    84  ,   //114
+    81  ,   //115
+    79  ,   //116
+    77  ,   //117
+    75  ,   //118
+    74  ,   //119
+    72     //120
+};
+const unsigned short table_ld_3840_s[] =                //3840?????????????
+{
+    17 ,   //-40
+    18 ,   //-39
+    19 ,   //-38
+    20 ,   //-37
+    21 ,   //-36
+    21 ,   //-35
+    23 ,   //-34
+    24 ,   //-33
+    24 ,   //-32
+    26 ,   //-31
+    27 ,   //-30
+    28 ,   //-29
+    29 ,   //-28
+    30 ,   //-27
+    31 ,   //-26
+    32 ,   //-25
+    33 ,   //-24
+    35 ,   //-23
+    35 ,   //-22
+    37 ,   //-21
+    38 ,   //-20
+    38 ,   //-19
+    40 ,   //-18
+    40 ,   //-17
+    42 ,   //-16
+    43 ,   //-15
+    44 ,   //-14
+    44 ,   //-13
+    45 ,   //-12
+    46 ,   //-11
+    47 ,   //-10
+    47 ,   //-9
+    48 ,   //-8
+    49 ,   //-7
+    49 ,   //-6
+    49 ,   //-5
+    50 ,   //-4
+    51 ,   //-3
+    50 ,   //-2
+    51 ,   //-1
+    50 ,   //0
+    51 ,   //1
+    51 ,   //2
+    51 ,   //3
+    50 ,   //4
+    50 ,   //5
+    50 ,   //6
+    50 ,   //7
+    50 ,   //8
+    48 ,   //9
+    49 ,   //10
+    47 ,   //11
+    48 ,   //12
+    47 ,   //13
+    45 ,   //14
+    46 ,   //15
+    44 ,   //16
+    44 ,   //17
+    43 ,   //18
+    42 ,   //19
+    42 ,   //20
+    40 ,   //21
+    40 ,   //22
+    38 ,   //23
+    39 ,   //24
+    37 ,   //25
+    36 ,   //26
+    35 ,   //27
+    34 ,   //28
+    34 ,   //29
+    32 ,   //30
+    32 ,   //31
+    31 ,   //32
+    30 ,   //33
+    29 ,   //34
+    28 ,   //35
+    28 ,   //36
+    26 ,   //37
+    26 ,   //38
+    25 ,   //39
+    24 ,   //40
+    24 ,   //41
+    22 ,   //42
+    22 ,   //43
+    22 ,   //44
+    20 ,   //45
+    21 ,   //46
+    19 ,   //47
+    18 ,   //48
+    19 ,   //49
+    17 ,   //50
+    17 ,   //51
+    17 ,   //52
+    15 ,   //53
+    15 ,   //54
+    15 ,   //55
+    15 ,   //56
+    13 ,   //57
+    14 ,   //58
+    12 ,   //59
+    13 ,   //60
+    12 ,   //61
+    12 ,   //62
+    11 ,   //63
+    11 ,   //64
+    10 ,   //65
+    10 ,   //66
+    10 ,   //67
+    10 ,   //68
+    9  ,   //69
+    8  ,   //70
+    9  ,   //71
+    8  ,   //72
+    8  ,   //73
+    8  ,   //74
+    7  ,   //75
+    8  ,   //76
+    7  ,   //77
+    6  ,   //78
+    6  ,   //79
+    6  ,   //80
+    7  ,   //81
+    6  ,   //82
+    5  ,   //83
+    6  ,   //84
+    5  ,   //85
+    5  ,   //86
+    5  ,   //87
+    5  ,   //88
+    4  ,   //89
+    5  ,   //90
+    4  ,   //91
+    5  ,   //92
+    4  ,   //93
+    3  ,   //94
+    4  ,   //95
+    4  ,   //96
+    4  ,   //97
+    3  ,   //98
+    3  ,   //99
+    3  ,   //100
+    4  ,   //101
+    3  ,   //102
+    2  ,   //103
+    4  ,   //104
+    2  ,   //105
+    3  ,   //106
+    2  ,   //107
+    3  ,   //108
+    2  ,   //109
+    3  ,   //110
+    2  ,   //111
+    3  ,   //112
+    1  ,   //113
+    3  ,   //114
+    2  ,   //115
+    2  ,   //116
+    2  ,   //117
+    1  ,   //118
+    2  ,   //119
+    72    //120
+};
+
+
+const unsigned char table_lc[]= //???±?,???38??,??????24 
+{
+    98,97,95,94,93,92,91,90,89,//24           ad=24?????? = 98 - 38 = 60???ad=25?????? = 97-38 = 59 ??
  88,87,87,86,85,84,83,82,82,81,//33,34,35
  80,80,79,78,77,77,76,76,75,74,//43
  74,73,73,72,71,71,70,70,69,69,//53
@@ -26,29 +356,6 @@ const unsigned char table_lc[]= //环温表,上偏38度,表头偏移24
  18,17,17,17,16,16,15,15,14,14,//203
  13,13,12,12,11,11,10,10,9,9,8,//213
  };
-
- const float table_lc_12b[19][2]= 
-{  //AD  温度
-    3568	,	-30	,
-    3424	,	-25	,
-    3248	,	-20	,
-    3056	,	-15	,
-    2832	,	-10	,
-    2592	,	-5	,
-    2352	,	0	,
-    2096	,	5	,
-    1840	,	10	,
-    1616	,	15	,
-    1392	,	20	,
-    1200	,	25	,
-    1024	,	30	,
-    880	,	35	,
-    736	,	40	,
-    624	,	45	,
-    528	,	50	,
-    448	,	55	,
-    384	,	60	,
-};
 
 /************************************************************/
 const unsigned char table_led[]= 
@@ -229,68 +536,68 @@ const unsigned short tab_on[]=
 418	,	//	152
 414	,	//	153
 410	,	//	154
-406	,	//	155 ,-45℃  ******************************************************************
-402	,	//	156 ,-44℃
-398	,	//	157 ,-43℃
-394	,	//	158 ,-42℃
-390	,	//	159 ,-41℃
-386	,	//	160 ,-40℃
-383	,	//	161 ,-39℃
-379	,	//	162 ,-38℃
-375	,	//	163 ,-37℃
-371	,	//	164 ,-36℃
-367	,	//	165 ,-35℃
-363	,	//	166 ,-34℃
-359	,	//	167 ,-33℃
-356	,	//	168 ,-32℃
-352	,	//	169 ,-31℃
-348	,	//	170 ,-30℃
-344	,	//	171 ,-29℃
-340	,	//	172 ,-28℃
-336	,	//	173 ,-27℃
-332	,	//	174 ,-26℃
-328	,	//	175 ,-25℃
-324	,	//	176 ,-24℃
-320	,	//	177 ,-23℃
-316	,	//	178 ,-22℃
-313	,	//	179 ,-21℃
-309	,	//	180 ,-20℃
-305	,	//	181 ,-19℃
-301	,	//	182 ,-18℃
-297	,	//	183 ,-17℃
-293	,	//	184 ,-16℃
-289	,	//	185 ,-15℃
-285	,	//	186 ,-14℃
-281	,	//	187 ,-13℃
-277	,	//	188 ,-12℃
-273	,	//	189 ,-11℃
-270	,	//	190 ,-10℃  ***********************************************************************
-266	,	//	191 ,-9℃
-262	,	//	192 ,-8℃
-258	,	//	193 ,-7℃
-254	,	//	194 ,-6℃
-250	,	//	195 ,-5℃
-246	,	//	196 ,-4℃
-242	,	//	197 ,-3℃
-238	,	//	198 ,-2℃ 
-234	,	//	199 ,-1℃
-228	,	//	200 ,0℃
-224	,	//	201 ,1℃
-220	,	//	202 ,2℃
-216	,	//	203 ,3℃
-212	,	//	204 ,4℃
-209	,	//	205 ,5℃
-205	,	//	206 ,6℃
-201	,	//	207 ,7℃
-197	,	//	208 ,8℃
-193	,	//	209 ,9℃
-189	,	//	210 ,10℃
-185	,	//	211 ,11℃
-181	,	//	212 ,12℃
-177	,	//	213 ,13℃
-173	,	//	214 ,14℃
-169	,	//	215 ,15℃
-166	,	//	216 ,16℃
+406	,	//	155 ,-45??  ******************************************************************
+402	,	//	156 ,-44??
+398	,	//	157 ,-43??
+394	,	//	158 ,-42??
+390	,	//	159 ,-41??
+386	,	//	160 ,-40??
+383	,	//	161 ,-39??
+379	,	//	162 ,-38??
+375	,	//	163 ,-37??
+371	,	//	164 ,-36??
+367	,	//	165 ,-35??
+363	,	//	166 ,-34??
+359	,	//	167 ,-33??
+356	,	//	168 ,-32??
+352	,	//	169 ,-31??
+348	,	//	170 ,-30??
+344	,	//	171 ,-29??
+340	,	//	172 ,-28??
+336	,	//	173 ,-27??
+332	,	//	174 ,-26??
+328	,	//	175 ,-25??
+324	,	//	176 ,-24??
+320	,	//	177 ,-23??
+316	,	//	178 ,-22??
+313	,	//	179 ,-21??
+309	,	//	180 ,-20??
+305	,	//	181 ,-19??
+301	,	//	182 ,-18??
+297	,	//	183 ,-17??
+293	,	//	184 ,-16??
+289	,	//	185 ,-15??
+285	,	//	186 ,-14??
+281	,	//	187 ,-13??
+277	,	//	188 ,-12??
+273	,	//	189 ,-11??
+270	,	//	190 ,-10??  ***********************************************************************
+266	,	//	191 ,-9??
+262	,	//	192 ,-8??
+258	,	//	193 ,-7??
+254	,	//	194 ,-6??
+250	,	//	195 ,-5??
+246	,	//	196 ,-4??
+242	,	//	197 ,-3??
+238	,	//	198 ,-2?? 
+234	,	//	199 ,-1??
+228	,	//	200 ,0??
+224	,	//	201 ,1??
+220	,	//	202 ,2??
+216	,	//	203 ,3??
+212	,	//	204 ,4??
+209	,	//	205 ,5??
+205	,	//	206 ,6??
+201	,	//	207 ,7??
+197	,	//	208 ,8??
+193	,	//	209 ,9??
+189	,	//	210 ,10??
+185	,	//	211 ,11??
+181	,	//	212 ,12??
+177	,	//	213 ,13??
+173	,	//	214 ,14??
+169	,	//	215 ,15??
+166	,	//	216 ,16??
 160	,	//	217
 154	,	//	218
 150	,	//	219
@@ -474,68 +781,68 @@ const unsigned short tab_off[]=
 422	,	//	152
 418	,	//	153
 414	,	//	154
-410 , //408	,	//	155 ，-45℃  ******************************************************************************
-406 , //404	,	//	156 ，-44℃
-403 , //400	,	//	157 ，-43℃
-399 , //396	,	//	158 ，-42℃
-395 , //392	,	//	159 ，-41℃
-391 , //388	,	//	160 ，-40℃
-387 , //384	,	//	161 ，-39℃
-383 , //380	,	//	162 ，-38℃
-379 , //376	,	//	163 ，-37℃
-375 , //372	,	//	164 ，-36℃
-371 , //368	,	//	165 ，-35℃
-367 , //364	,	//	166 ，-34℃
-363 , //360	,	//	167 ，-33℃
-359 , //356	,	//	168 ，-32℃
-355 , //352	,	//	169 ，-31℃
-351 , //348	,	//	170 ，-30℃
-347 , //344	,	//	171 ，-29℃
-342 , //340	,	//	172 ，-28℃
-338 , //336	,	//	173 ，-27℃
-334 , //333	,	//	174 ，-26℃
-330 , //329	,	//	175 ，-25℃
-326 , //325	,	//	176 ，-24℃
-323 , //321	,	//	177 ，-23℃
-319 , //317	,	//	178 ，-22℃
-316 , //313	,	//	179 ，-21℃
-312 , //309	,	//	180 ，-20℃
-308 , //305	,	//	181 ，-19℃
-304 , //301	,	//	182 ，-18℃
-300 , //297	,	//	183 ，-17℃
-296 , //293	,	//	184 ，-16℃
-292 , //289	,	//	185 ，-15℃
-288 , //285	,	//	186 ，-14℃
-284 , //281	,	//	187 ，-13℃
-280 , //277	,	//	188 ，-12℃
-276 , //273	,	//	189 ，-11℃
-273 , //269	,	//	190 ，-10℃ ****************************************************************************
-269	,	//	191 ，-9℃
-265	,	//	192 ，-8℃
-261	,	//	193 ，-7℃
-257	,	//	194 ，-6℃
-253	,	//	195 ，-5℃
-249	,	//	196 ，-4℃
-245	,	//	197 ，-3℃
-241	,	//	198 ，-2℃
-237	,	//	199 ，-1℃
-233	,	//	200 ，0℃
-230	,	//	201 ，1℃
-226	,	//	202 ，2℃
-222	,	//	203 ，3℃
-218	,	//	204 ，4℃
-214	,	//	205 ，5℃
-210	,	//	206 ，6℃
-206	,	//	207 ，7℃
-202	,	//	208 ，8℃
-198	,	//	209 ，9℃
-194	,	//	210 ，10℃
-190,	//	211 ，11℃
-187	,	//	212 ，12℃
-183	,	//	213 ，13℃
-179	,	//	214 ，14℃
-175	,	//	215 ，15℃
-171	,	//	216 ，16℃
+410 , //408	,	//	155 ??-45??  ******************************************************************************
+406 , //404	,	//	156 ??-44??
+403 , //400	,	//	157 ??-43??
+399 , //396	,	//	158 ??-42??
+395 , //392	,	//	159 ??-41??
+391 , //388	,	//	160 ??-40??
+387 , //384	,	//	161 ??-39??
+383 , //380	,	//	162 ??-38??
+379 , //376	,	//	163 ??-37??
+375 , //372	,	//	164 ??-36??
+371 , //368	,	//	165 ??-35??
+367 , //364	,	//	166 ??-34??
+363 , //360	,	//	167 ??-33??
+359 , //356	,	//	168 ??-32??
+355 , //352	,	//	169 ??-31??
+351 , //348	,	//	170 ??-30??
+347 , //344	,	//	171 ??-29??
+342 , //340	,	//	172 ??-28??
+338 , //336	,	//	173 ??-27??
+334 , //333	,	//	174 ??-26??
+330 , //329	,	//	175 ??-25??
+326 , //325	,	//	176 ??-24??
+323 , //321	,	//	177 ??-23??
+319 , //317	,	//	178 ??-22??
+316 , //313	,	//	179 ??-21??
+312 , //309	,	//	180 ??-20??
+308 , //305	,	//	181 ??-19??
+304 , //301	,	//	182 ??-18??
+300 , //297	,	//	183 ??-17??
+296 , //293	,	//	184 ??-16??
+292 , //289	,	//	185 ??-15??
+288 , //285	,	//	186 ??-14??
+284 , //281	,	//	187 ??-13??
+280 , //277	,	//	188 ??-12??
+276 , //273	,	//	189 ??-11??
+273 , //269	,	//	190 ??-10?? ****************************************************************************
+269	,	//	191 ??-9??
+265	,	//	192 ??-8??
+261	,	//	193 ??-7??
+257	,	//	194 ??-6??
+253	,	//	195 ??-5??
+249	,	//	196 ??-4??
+245	,	//	197 ??-3??
+241	,	//	198 ??-2??
+237	,	//	199 ??-1??
+233	,	//	200 ??0??
+230	,	//	201 ??1??
+226	,	//	202 ??2??
+222	,	//	203 ??3??
+218	,	//	204 ??4??
+214	,	//	205 ??5??
+210	,	//	206 ??6??
+206	,	//	207 ??7??
+202	,	//	208 ??8??
+198	,	//	209 ??9??
+194	,	//	210 ??10??
+190,	//	211 ??11??
+187	,	//	212 ??12??
+183	,	//	213 ??13??
+179	,	//	214 ??14??
+175	,	//	215 ??15??
+171	,	//	216 ??16??
 167	,	//	217
 163	,	//	218
 159	,	//	219
@@ -780,9 +1087,9 @@ const unsigned char tab_voltage[]=
           255,    // 215
 };
 /************************************************************/
-const	unsigned char tab_temperature[]=//温度值+200   冷冻 
+const	unsigned char tab_temperature[]=//????+200   ?? 
 {
-250	,	//	36   ad=36时，温度= 250 - 200 = 50℃ 
+250	,	//	36   ad=36??????= 250 - 200 = 50?? 
 250	,	//	37
 250	,	//	38
 250	,	//	39
@@ -1759,40 +2066,293 @@ const	unsigned char tab_temperature[]=//温度值+200   冷冻
 
 };
 
+/*****??????????趨???0.5????????****/
+/*
+const unsigned short table_lc_on[17]=
+{
+143,	//	0	
+140,	//	1
+137,	//	2	
+134,	//	3
+130,	//	4
+128,	//	5
+125,	//	6
+122,	//	7
+118,	//	8
+115,	//	9
+112,	//	10
+109,	//	11
+107,	//	12
+104,	//	13
+101,	  //	14
+98,	  //	15
+95,   //  16
+};
+*/
+
+/*****??????????趨???1????????****/   //????? 2019.8.20
+const unsigned short table_lc_on[17]=
+{
+142,	//	?趨???0??
+139,	//	1
+136,    //	2
+132,    //	3 
+129,    //	4
+126,    //	5
+123,    //	6
+120,    //	7
+117,    //	8
+114,    //	9
+111,    //	10
+108,    //	11
+105,    //	12
+102,    //	13
+99,    //	14
+96,    //	15
+93    //	16
+};
+
+
+const unsigned short table_lc_off[17]=
+{
+147,  //  0
+144,  //  1
+141,	//	2	
+138,	//	3
+134,	//	4	
+131,	//	5
+128,	//	6
+125,	//	7
+122,	//	8
+118,	//	9
+115,	//	10
+112,	//	11
+109,	//	12
+107,	//	13
+104,	//	14
+101,	//	15
+98	  //	16
+};
+
+const float Humi_Tab[21][2]=   //???????????? AD--????
+{
+		//AD??????
+		757.575	,	0	,
+		884.52	,	5	,
+		1011.465	,	10	,
+		1138.41	,	15	,
+		1261.26	,	20	,
+		1380.015	,	25	,
+		1494.675	,	30	,
+		1605.24	,	35	,
+		1711.71	,	40	,
+		1818.18	,	45	,
+		1924.65	,	50	,
+		2031.12	,	55	,
+		2133.495	,	60	,
+		2235.87	,	65	,
+		2342.34	,	70	,
+		2448.81	,	75	,
+		2559.375	,	80	,
+		2669.94	,	85	,
+		2784.6	,	90	,
+		2891.07	,	95	,
+		2997.54	,	100	
+};
+
+
+#if 0
+#define AD_CH10  22 //0b00001010           //????A/D???  @20180920 cfj
+/***********I/O define***************************/
+//#define io_ds1302clk  PTCD_PTCD2  
+//#define io_ds1302rst  PTCD_PTCD5      
+//#define io_ds1302dat  PTCD_PTCD3   
+
+//#define LED_DIO   bFM_GPIO_PDOR6_P0   //PTFD_PTFD6   @20180920 cfj
+//#define LED_CLK   bFM_GPIO_PDOR6_P1  //PTFD_PTFD5    @20180920 cfj
+//#define LED_STB   bFM_GPIO_PDOR6_P2  //PTFD_PTFD7    @20180920 cfj
+
+//#define KEY_SW1   bFM_GPIO_PDIR4_P7    //PTGD_PTGD3     @20180920 cfj
+//#define KEY_SW2   bFM_GPIO_PDIR4_P6    //PTGD_PTGD2     @20180920 cfj
+//#define KEY_SW3   bFM_GPIO_PDIR3_PF   //PTDD_PTDD7
+//#define KEY_SW4   bFM_GPIO_PDIR3_PE    //PTDD_PTDD6
+//#define KEY_SW5   bFM_GPIO_PDIR3_PD  //PTDD_PTDD5
+//#define KEY_SW6   bFM_GPIO_PDIR3_PC   //PTDD_PTDD4
+//#define KEY_SW7   bFM_GPIO_PDIR3_PA   //PTDD_PTDD1
+
+//#define C_sda     bFM_GPIO_PDOR3_P2 //PTGD_PTGD1
+//#define C_scl     bFM_GPIO_PDOR3_P1 //PTGD_PTGD0
+//#define C_sdaddr  bFM_GPIO_DDR3_P2  //PTGDD_PTGDD1
+
+//#define LED_ONFLAG     bFM_GPIO_PDIR3_P9 //?????????
+//#define DOOR_ONFLAG    bFM_GPIO_PDIR3_P3 //??????
+//#define LED_OUT        bFM_GPIO_PDOR3_PB //??????????
+
+/////* δ??? @20180920 cfj
+//#define C_sdaA     PTBD_PTBD4
+//#define C_sclA     PTBD_PTBD3
+//#define C_sdaddrA  PTBDD_PTBDD4
+
+//#define C_sdaB     PTBD_PTBD6
+//#define C_sclB     PTBD_PTBD5
+//#define C_sdaddrB  PTBDD_PTBDD6
+//*/
+
+
+#define in 0
+#define out 1
+
+#define C_send  PTCD_PTCD0
+#define C_rec   PTCD_PTCD1
+#define C_bit 8      //????????λ??
+#define C_byte 5     //???????????
+#define C_bp_byte 1  //?????????????????????
+#define C_rbit 8     //????????λ??
+#define C_rbyte 9   //???????????
+///****************Constant define*****************/
+#define KEY_UNLOCK       0x02//0b00000010             // key2 ?????? 
+#define KEY_SET          0x01//0b00000001             // key1 ???ü?  
+#define KEY_DISABLE_BUZZ  0x20//0b00100000             // ??????
+#define KEY_ADJUST       0x04//0b00000100             // ??????
+#define KEY_TEST_ALARM   0x10//0b00010000             // ?????????
+#define KEY_DEFROST      0x40//0b01000000             // ?????
+#define KEY_SWITCH       0x08//0b00001000             // ?л???
+#define KEY_DELAY        0x05//0b00000101             // ????????
+#define KEY_WDJZ         0x03//0b00000011             // ????????
+#define KEY_BJYCSJ       0x21//0b00100001             // ??????????
+#define KEY_DATE         0x07//0b00000111             // ???????ü?
+#define KEY_UsbCheck     0x09//0b00001001             // usb?????
+
+#define SET_NC_LD       0//????????????????
+#define SET_LD_L0       1
+#define SET_LD          2
+#define SET_LD_WDJZ     3
+#define SET_LD_HIGH     4
+#define SET_LD_LOW      5
+#define SET_LD_L1       6
+#define SET_LD_L2       7
+#define SET_LD_L3       8
+#define SET_LD_L4       9
+#define SET_LD_L5       10
+#define SET_LDYJ        11
+#define LD_CHK_VOL      12                   //??????????
+#define LD_CHK_HW       13                   //???????????
+#define SET_LD_BJYCSJ   14
+
+#define SET_NC_LC       15
+#define SET_LC_L0       16
+#define SET_LC          17			//??????????
+#define SET_LC_WDJZ     18
+#define SET_LC_HIGH     19
+#define SET_LC_LOW      20
+#define SET_LC_L1       21
+#define SET_LC_L2       22
+#define SET_LC_L3       23
+#define SET_LC_L4       24
+#define SET_LC_L5       25
+#define SET_LCYJ        26
+#define LC_CHK_VOL      27                    //???????????
+#define LC_CHK_HW       28                    //????????????
+#define SET_LC_BJYCSJ   29
+#define SET_LCYJ_DELAY  30                    //???????? ????????????
+
+#define SET_NC          0
+#define SET_F0          1
+#define SET_F1          2 
+#define USB_Insert_Or_PullOut  31
+
+#define SET_YEAR        32
+#define SET_MONTH       33  
+#define SET_DAY         34
+#define SET_HOUR        35
+#define SET_MINUTE      36
+
+
+#define BIT1  1
+#define BIT2  2
+#define BIT3  3
+#define BIT4  4
+#define BIT5  5
+#define BIT6  6
+
+#define DISP_NO 10//?????
+#define DISP_FH 11//????
+#define DISP_F  12
+#define DISP_L  13
+#define DISP_H  14
+#define DISP_U  15
+#define DISP_E  16
+#define DISP_C  17
+#define DISP_P  18
+#define DISP_D  19
+#define DISP_ZH 20//????
+
+//#define DISP_U  21     //zyj  100621
+#define DISP_b  22     
+#define DISP_o  23
+#define DISP_k  24     
+#define DISP_Dot  25 //zyj  100621
+#define DISP_N  26 //zyj  100621
+
+
+#define LOCK_LED_ON    0x80//0b10000000//???????????
+#define LOCK_LED_OFF   0x7F//0b01111111
+#define ALARM_LED_ON   0x04//0b00000100//???????????
+#define ALARM_LED_OFF  0xFB//0b11111011
+
+#define V220 0
+#define V110 1
+
+#define TXIE SCC2_TCIE
+#define ON 1
+#define OFF 0
+#define ZHENG_SIGN 0
+#define FU_SIGN 1
+#define LEFT 1
+#define RIGHT 0
+#endif
+/*************************************************/
+//#pragma DATA_SEG _DATA_ZEROPAGE @20180920 cfj
+
+
 
 unsigned char t_key_dly;
-uint32_t t_key3s;
-unsigned char r_key;//扫描的时候调整到一个字节的按键值
-unsigned char r_keyz;//有按键按下的时候的记录的按键值
-unsigned char r_sfkeyz;//存储按键的值
-uint32_t t_write_e2;//上次写E2时间
-unsigned char r_lcad_8b;
-unsigned char r_set_state;//调节时显示的屏编码
-unsigned char r_flash_bit;//数码管位数
-unsigned int  r_lcad_12b;
+unsigned char t_key3s;
+unsigned char r_key;//???????????????????????
+unsigned char r_keyz;//?а????????????????????
+unsigned char r_sfkeyz;//?洢???????
+unsigned char t_write_e2;//???дE2???
+unsigned char r_lcad;
+unsigned char r_lcXsad;//????????????ad?
+unsigned char r_set_state;//????????????????
+unsigned char r_flash_bit;//?????λ??
+//unsigned int  r_lcad_12b;//???????????
 unsigned char Eheatcontrolpin;
-unsigned char t_rec;   //通讯
+unsigned char t_rec;   //??
 unsigned char r_rbit;
 unsigned char r_rbyte;
 unsigned char t_send;
 unsigned char r_bit;
 unsigned char r_byte;
-unsigned char r_send_byte;  //要发送的字节总数
+unsigned char r_send_byte;  //?????????????
 unsigned char send[12];
 unsigned char rec[18];
 
-unsigned char r_buzz;//蜂鸣器连续叫的步骤,共计5个步骤;0,2,4叫100ms;1,3停50ms
-unsigned char t_buzz;//蜂鸣器叫时计时
+unsigned char r_buzz;//???????????е????,????5??????;0,2,4??100ms;1,3?50ms
+unsigned char t_buzz;//????????????
 unsigned char u8_test_alarm_count;
 unsigned char u8_test_alarm_time;
 
-unsigned char r_lczt;//冷藏设定温度
+unsigned char r_lczt;//????趨???
 unsigned char r_lcztCopy;
 unsigned char r_lcztx;
-unsigned char r_ldzt;//冷冻设定温度,上偏200
+unsigned char r_ldzt;//???趨???,???200 ????????????е???????
 unsigned char r_ldztCopy;
-unsigned char r_swtj;//设定时的高位数
-unsigned char r_gwtj;//设定时的低位数
+
+unsigned char r_bwtj;//?趨??????λ
+unsigned char r_swtj;//?趨????λ??
+unsigned char r_gwtj;//?趨????λ??
+
 unsigned char r_poise_valve_set;
 unsigned char t_fan2min;
 
@@ -1808,21 +2368,23 @@ unsigned char r_led34;
 /*************************************************/
 
 unsigned char t_1ms;
-unsigned int t_1ms_2;
 unsigned char t_2ms;
 uint32_t t_halfsec;
 unsigned char t_1min;
-unsigned char t_onems;//1ms加1
+unsigned char t_onems;//1ms??1
 unsigned char t_twoms;
-unsigned char t_20ms;//20ms加1
+unsigned char t_20ms;//20ms??1
 unsigned char t_j20ms;
 unsigned char t_10s;
 unsigned char t_tens;//10s+1
-uint32_t t_auto_lock;
+unsigned char t_auto_lock;
 unsigned char t_data_to_led;
 
 unsigned char r_hwxswd;
-unsigned char r_hwsjwd;//环境温度显示值,上偏38
+unsigned char r_hwsjwd;//???????????,???38
+signed char r_lclnsjwd;//?????????????????
+signed char r_lcHuaShuangsjwd;//??????????????????
+
 unsigned char r_lcwd;
 unsigned char u8_CompMin;
 unsigned char u8_CompHour;
@@ -1833,61 +2395,71 @@ unsigned char r_lcxswd;
 unsigned char r_ldxs;
 unsigned char r_hwad;
 unsigned char t_ad;
-unsigned char r_hwadtemp;//环温上次的温度
+unsigned char r_hwadtemp;//??????ε????
 unsigned char t_hwdisp;
 unsigned char t_on_off_dly;
 unsigned char t_valve_dly;
 unsigned char r_hwhc;
-uint32_t t_lc_err_disp;
+unsigned char t_lc_err_disp;
 unsigned char t_lc_high_buzz;
 unsigned char t_lc_low_buzz;
+unsigned char t_lc_low_Protect;
+
 unsigned char u8_LdRule;
 unsigned char u8_LcRule;
 unsigned char u8_CompStop5min;
 unsigned char u8_CompRunMin;
 
-unsigned char u8_ld_bjycsj;//冷冻报警延迟时间,小时
+unsigned char u8_ld_bjycsj;//????????????,С?
 unsigned char u8_ld_bjycsjx;
-unsigned char u8_lc_bjycsj;//冷藏报警延迟时间,小时
+unsigned char u8_lc_bjycsj;//????????????,С?
 unsigned char u8_lc_bjycsjx;
 unsigned char u8_BuzzDlyMinld;
 unsigned char u8_BuzzDlyHourld;
 unsigned char u8_BuzzDlyMinlc;
-unsigned char u8_BuzzDlyHourlc;//冷藏上电延迟报警时间计数单元
-unsigned char r_ldgzwd;//冷冻修正温度,实际也是现实温度
-unsigned char r_ldxswd;//冷冻显示温度,上偏200
+unsigned char u8_BuzzDlyHourlc;//?????????????????????
+unsigned char r_ldgzwd;//?????????,????????????
+unsigned char r_ldxswd;//????????,???200
 unsigned int  r16_ldad;
-unsigned char r_ldsjwd;//AD转换的实际温度
+unsigned int r16_lcHuaShuangad;//???????????AD?
+unsigned int r16_lcLengNingad;//?????????????AD?
+unsigned char r_ldsjwd;//AD???????????
 unsigned char r_voltage_ad;
 unsigned char r_voltage;
 unsigned char r_voltageCopy;
 unsigned char r_lcgzwd;
- uint32_t t_lc_rule;
-unsigned char t_yj_delay;	//压缩机延迟时间
+unsigned char t_lc_rule;
+unsigned char t_yj_delay;	//???????????
 unsigned char t_yj_delayx;
 unsigned char t_yj_dly_time;
- uint32_t t_ld_rule;//用于冷冻显示规则的一个计时单元
-unsigned char r_ldwdjz;	//冷冻温度校准,上偏10
-unsigned char r_ldwdjzx;//冷冻校准差值,上偏10
-unsigned char r_ld_high_alarm;//冷冻高温报警设定的差值
+unsigned char t_ld_rule;//???????????????????????
+unsigned char r_ldwdjz;	//?????У?,???10
+unsigned char r_ldwdjzx;//??У????,???10
+unsigned char r_ld_high_alarm;//?????±????趨????
 unsigned char r_ld_high_alarmCopy;
-unsigned char r_ld_low_alarm;//冷冻低温报警设定的差值
+unsigned char r_ld_low_alarm;//?????±????趨????
 unsigned char r_ld_low_alarmCopy;
-unsigned char r_lc_high_alarm;//冷藏高温报警设定的差值
+unsigned char r_lc_high_alarm;//?????±????趨????
 unsigned char r_lc_high_alarmCopy;
-unsigned char r_lc_low_alarm; //冷藏低温报警设定的差值
+unsigned char r_lc_low_alarm; //?????±????趨????
 unsigned char r_lc_low_alarmCopy;
 unsigned char t_compressor;
-uint32_t t_ld_err_disp;
+unsigned char t_ld_err_disp;
 unsigned char t_ld_high_buzz;
 unsigned char t_ld_low_buzz;
-uint32_t t_voltage_buzz;
- uint32_t t_power_buzz;
-uint32_t t_power_Off; //@20181226 CFJ 掉电的时间
+unsigned char t_voltage_buzz;
+unsigned char t_power_buzz;
+unsigned char t_power_Off; //@20181226 CFJ ????????
 unsigned char t_stop_alarm;
 unsigned char r_battery_ad;
-unsigned char r_lcwdjz;//冷藏温度校准值,乘以10 再偏移100
+unsigned char r_lcwdjz;//?????????У??
 unsigned char r_lcwdjzx;
+unsigned char r_lcxswdjz;//?????????У??
+unsigned char r_lcxswdjzx;
+unsigned char  t_WriteE2;
+unsigned char  WriteE2_num;
+
+
 
 unsigned char flag_err1_copy;
 unsigned char flag_err2_copy;
@@ -1895,22 +2467,43 @@ unsigned char r_sendr;
 unsigned char r_sendsum;
 unsigned char send_net[50];
 unsigned char t_net_rec;
+unsigned char t_net_rec1;
 unsigned char rec_net[25];
+unsigned char rec_net1[25];
+unsigned char rec_net1_ok[25];
+
+
 unsigned char r_receiver;
+unsigned char r_receiver1;
+
 unsigned char r_recsum;
+unsigned char r_recsum1;
+
 unsigned char r_rec55sum;
 unsigned char t_err200ms;
-uint32_t t_ack5s;
+unsigned char t_ack5s;
 unsigned char t_lightms;
 unsigned char t_lc_on_off_dly;
-unsigned char t_lc_compressor;
+unsigned char t_lc_compressor;//
+unsigned short  t_lc_ChuShi_Compressor;//???????? ???????
+unsigned char f_deHum_and_lcTemp;//??????????0???????????1???????????4???? 2????С??4????
 unsigned char t_nd_fan;
-unsigned char r_set_state1;
+unsigned char r_set_state1;//??????????????????????????????????(2)????????
 unsigned char t_yj_delay_10sec;
 
 unsigned char u8_lcCompMin;
 unsigned char u8_lcCompHour;
-unsigned int u8_lcCompRunMin;
+unsigned char u8_lcCompRunMin;
+unsigned char u8_lcChuShuangTime;//????????
+unsigned char u8_lcChuShuangTime1=0;//?????????>6????
+//unsigned char u8_lcChuShuangTime2=0;//??????????????????????????????λ
+unsigned int u32_t_lcChuShuangTime1=0;//??????????????????????3???????
+unsigned int u32_t_lcChuShuangTime2=0;//???????????????????????1???????
+unsigned int u32_t_lcChuShuangTime3=0;//????????????????俪???
+
+
+
+unsigned short u16_lcCompRunMinForHuaShuang;
 unsigned char u8_lcCompStopTime;
 unsigned char u8_lcCompStop5min;
 
@@ -1943,7 +2536,7 @@ unsigned int u16_random_time;
 uchar R_VoidFrameCode;  //zyj 100504
 uchar R_HomeNetCounter;
 
-uchar    r_voltage_report;//无效
+uchar    r_voltage_report;//??Ч
 uchar    r_lczt_report;
 uchar    r_ldzt_report;
 uchar    lc_high_alarm_report;
@@ -1963,24 +2556,24 @@ uint  R_HomeNetResponseCheckTime100ms;    //100504  zyj
 uchar R_HomeNetResponseCheckTime_H8;
 uchar R_HomeNetResponseCheckTime_L8;
 uint  R_HomeNetResponseCheckTime;
-uchar t_door;/////wys11.03.19开门计时
+uchar t_door;/////wys11.03.19??????
 
 uchar    ACKok;
-uchar f8_lcCompAddUp6HourProtect;               // 累计运行y小时，停机化霜
-uint  u16_lcComp_Addup_Minute;                  // 累计时间
-uchar u8_lcCompAddUp6HourProtectTimer;          // 保护时间 
-uchar f8_lcCompAddUp6HourTimer;                 // 141017 冷藏6小时时间到 
+uchar f8_lcCompAddUp6HourProtect;               // 140819 6С???? 
+uint  u16_lcComp_Addup_Minute;                  // ??????
+uchar u8_lcCompAddUp6HourProtectTimer;          // ??????? 
+uchar f8_lcCompAddUp6HourTimer;                 // 141017 ???6С???? 
 unsigned int g_Txd_Time;    //CFJ
-volatile unsigned int g_Bus_Error_Time;
+unsigned int g_Bus_Error_Time;
 unsigned char g_UART1_RCV_Cyc;
 unsigned char g_UART1_RCV_Counter ;
 unsigned char  g_IDM_TX_ODM_Data[30];
 unsigned char  g_IDM_RX_ODM_Data[30];
-unsigned int  g_Bus_Rec_Time; //转为接受状态2s的时间标志
+unsigned int  g_Bus_Rec_Time; //????????2s???????
 unsigned char  Uart1RxCnt;
 unsigned char  Uart1RxSum;
-unsigned char  Pannel_Uart1Buf[27];		// 串口缓存区
-unsigned char  Pannel_Uart1Data[27];		// 串口缓存区
+unsigned char  Pannel_Uart1Buf[27];		// ?????????
+unsigned char  Pannel_Uart1Data[27];		// ?????????
 unsigned char  g_UART1_TXD_Counter;
 //unsigned char  g_UART1_TXD_Step;
 unsigned char SelfCheckFlag;
@@ -1988,3 +2581,4 @@ unsigned char  t_Self_Times; //@20190215 CFJ
 unsigned char  SelfCheckNoErrFlag; //@20190221 CFJ
 /************************************************************/
 
+unsigned int t_1ms_2;

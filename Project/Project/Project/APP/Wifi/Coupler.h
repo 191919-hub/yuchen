@@ -145,14 +145,14 @@ extern void UART_Wifi_SEND_IRQHandler(void);
 extern void UART_Wifi_RECV_IRQHandler(void);
 extern void WIFI_UART_IdleTimer(unsigned int Cycle);
 extern void BuzzBp(void);
-extern void CopyDataToIOTStructure(void);
+//extern void CopyDataToIOTStructure(void);
 extern void WriteCfgData(void);
 extern void ReadCfgData(void);
-extern void Event_Log(void);
+//extern void Event_Log(void);
 extern void SendData(unsigned char *str,unsigned char len);
 extern void SendStr(unsigned char *str);
-
-
-
+void WIFI_RX_Data_Deal(void);
+void WIFI_TX_Data(void);
+void WIFI_UART_TimeOut_CntDown(unsigned int Cycle);
 
 #endif

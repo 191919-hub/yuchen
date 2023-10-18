@@ -1,3 +1,4 @@
+
 #include "Coupler.h"
 #include "esp8266.h"
 //#include "uart.h"
@@ -11,7 +12,7 @@
 #include "Program_Cfg.h" //程序功能配置，比如禁止蜂鸣器、控制冷藏温度分辨率
 #include "lib_uart.h"
 #include "lib_wdt.h"
-
+#include "string.h"
 
 #define CFG_DATA_START_ADDR 0x0000F400       //0x0000F400 为ES8P5086的APP Flash倒数第3页首地址  页尾地址为0x0000F7FF
 #define CFG_DATA_CHECK_VALUE_ADDR 0x0000F7FC //页尾最后一个字存储校验值 sizeof(Cfg_Data)
@@ -145,228 +146,228 @@ void SendStr(unsigned char *str)
 
     UART_ITConfig(UART5, UART_IT_TB, ENABLE); //使能发送中断，在中断判断并结束发送数据帧 
 }
-/*********************************************************
-函数名: void CopyDataToIOTStructure(void)
-描  述: 为IOT结构体赋值,根据各自需求进行更改
-输入值: 无
-输出值: 无
-返回值: 无 
-日  期：
-**********************************************************/
-void CopyDataToIOTStructure(void)  //需要自行适配
-{
-	
-    /**************基础数据结构体的赋值*********************/
-    para_base.Reserve_1 = 0xff;
-	para_base.Reserve_2 = 0xff;
-	para_base.Reserve_3 = 0xff;
-	para_base.Reserve_4 = 0xff;
-	para_base.Reserve_5 = 0xff;
-	para_base.Reserve_6 = 0xff;
-	para_base.LC_Disp_Temp = (sint16_t)((r_lcxswd_float - 38.0) * 10);  //冷藏显示温度
-	para_base.LD_Disp_Temp = (sint16_t)((r_ldxswd - 200) * 10);  //冷冻显示温度 
-	para_base.LC_Humi = 0xff;        //冷藏区相对湿度
-	para_base.Up_Sens_Temp = 0xffff;  //上传感器温度
-	para_base.Down_Sens_Temp = 0xffff;  //下传感器温度
-	para_base.Comp_Current = 0xFF;    //压缩机电流
-	para_base.EvapFan_Current = 0xFF;  //蒸发风机电流
-	para_base.CdsFan_Current = 0xFF;   //冷凝风机电流
-	para_base.Defr_Sens_Temp = 0xFFFF;  //化霜传感器温度
-	para_base.Cds_Outlet_Temp = 0xFFFF;  //冷凝器出口温度
-	para_base.Ambient_Temp = (sint16_t)(((int)r_hwsjwd - 38) * 10);    //环境温度
-	para_base.OutGas_Temp = 0xFFFF;    //排气温度
-	para_base.BackGas_Temp = 0xFFFF;    //回气温度
-	para_base.High_Pressure = 0xFF;  //高压压力值
-	para_base.Low_Pressure = 0xFF;  //低压压力值
-	
+///*********************************************************
+//函数名: void CopyDataToIOTStructure(void)
+//描  述: 为IOT结构体赋值,根据各自需求进行更改
+//输入值: 无
+//输出值: 无
+//返回值: 无 
+//日  期：
+//**********************************************************/
+//void CopyDataToIOTStructure(void)  //需要自行适配
+//{
+//	
+//    /**************基础数据结构体的赋值*********************/
+//  para_base.Reserve_1 = 0xff;
+//	para_base.Reserve_2 = 0xff;
+//	para_base.Reserve_3 = 0xff;
+//	para_base.Reserve_4 = 0xff;
+//	para_base.Reserve_5 = 0xff;
+//	para_base.Reserve_6 = 0xff;
+//	para_base.LC_Disp_Temp = (sint16_t)((r_lcxswd_float - 38.0) * 10);  //冷藏显示温度
+//	para_base.LD_Disp_Temp = (sint16_t)((r_ldxswd - 200) * 10);  //冷冻显示温度 
+//	para_base.LC_Humi = 0xff;        //冷藏区相对湿度
+//	para_base.Up_Sens_Temp = 0xffff;  //上传感器温度
+//	para_base.Down_Sens_Temp = 0xffff;  //下传感器温度
+//	para_base.Comp_Current = 0xFF;    //压缩机电流
+//	para_base.EvapFan_Current = 0xFF;  //蒸发风机电流
+//	para_base.CdsFan_Current = 0xFF;   //冷凝风机电流
+//	para_base.Defr_Sens_Temp = 0xFFFF;  //化霜传感器温度
+//	para_base.Cds_Outlet_Temp = 0xFFFF;  //冷凝器出口温度
+//	para_base.Ambient_Temp = (sint16_t)(((int)r_hwsjwd - 38) * 10);    //环境温度
+//	para_base.OutGas_Temp = 0xFFFF;    //排气温度
+//	para_base.BackGas_Temp = 0xFFFF;    //回气温度
+//	para_base.High_Pressure = 0xFF;  //高压压力值
+//	para_base.Low_Pressure = 0xFF;  //低压压力值
+//	
 
-    /**************状态数据结构体的赋值*********************/
-    para_state.Reserve_1 = 0xff;
-	para_state.Reserve_2 = 0xff;
-	para_state.Reserve_3 = 0xff;
-	para_state.LC_Temp_Set = (sint16_t)(((int)r_lczt - 38) * 10);  //冷藏设置温度
-	para_state.LD_Temp_Set = (sint16_t)(((int)r_ldzt - 200) * 10);  //冷冻设置温度
-	para_state.LC_Humi_Set = 0xFF;        //冷藏区相对湿度设定值
-	para_state.LC_Temp_Adjust = 0xff;      //冷藏温度校正值
-	para_state.LD_Temp_Adjust = 0xFF;      //冷冻温度校正值
-	para_state.LC_Humi_Adjust = 0xFF;        //冷藏区相对湿度校正值
-	para_state.Up_Sens_Adjust = 0xFF;      //上传感器校正值
-	para_state.Down_Sens_Adjust = 0xFF;      //下传感器校正值
-	para_state.LC_Alarm_HTemp = (sint16_t)(((int)r_lczt - 38 + r_lc_high_alarm) * 10);        //冷藏高温报警值
-	para_state.LC_Alarm_LTemp = (sint16_t)(((int)r_lczt - 38 - r_lc_low_alarm) * 10);        //冷藏低温报警值
-	para_state.LD_Alarm_HTemp = (sint16_t)(((int)r_ldzt - 200) * 10 + (int)r_ld_high_alarm * 10);        //冷冻高温报警值
-	para_state.LD_Alarm_LTemp = (sint16_t)(((int)r_ldzt - 200) * 10 - (int)r_ld_low_alarm * 10);        //冷冻低温报警值
-    para_state.Ambient_Temp_Adjust = 0xff;    //环境温度校准值
-	para_state.in_Defrost_State = (uint8_t)(f_defrost);    //化霜状态
-    if(f_power_off)
-    {
-        para_state.LC_Comp_Running = 0;   
-    }
-    else
-    {
-        para_state.LC_Comp_Running = (uint8_t)(f_lc_compressor);    //冷藏压机正在运行
-    }
-    if(f_power_off)
-    {
-        para_state.LD_Comp_Running = 0;    
-    }
-    else
-    {
-        para_state.LD_Comp_Running = (uint8_t)(f_compressor);    //冷冻压机正在运行
-    }
-    
-    // if(f_power_off)
-    // {
-    //     para_state.Light_is_On = 0;
-    // }
-    // else
-    {
-        para_state.Light_is_On = (uint8_t)(f_LightStatusPin);
-    }
-	para_state.Door_is_Open = (uint8_t)(f_door_state);    //门开着
-	para_state.RefrigValve_is_Open = 0xFF;    //制冷电磁阀开着
-    
+//    /**************状态数据结构体的赋值*********************/
+//    para_state.Reserve_1 = 0xff;
+//	para_state.Reserve_2 = 0xff;
+//	para_state.Reserve_3 = 0xff;
+//	para_state.LC_Temp_Set = (sint16_t)(((int)r_lczt - 38) * 10);  //冷藏设置温度
+//	para_state.LD_Temp_Set = (sint16_t)(((int)r_ldzt - 200) * 10);  //冷冻设置温度
+//	para_state.LC_Humi_Set = 0xFF;        //冷藏区相对湿度设定值
+//	para_state.LC_Temp_Adjust = 0xff;      //冷藏温度校正值
+//	para_state.LD_Temp_Adjust = 0xFF;      //冷冻温度校正值
+//	para_state.LC_Humi_Adjust = 0xFF;        //冷藏区相对湿度校正值
+//	para_state.Up_Sens_Adjust = 0xFF;      //上传感器校正值
+//	para_state.Down_Sens_Adjust = 0xFF;      //下传感器校正值
+//	para_state.LC_Alarm_HTemp = (sint16_t)(((int)r_lczt - 38 + r_lc_high_alarm) * 10);        //冷藏高温报警值
+//	para_state.LC_Alarm_LTemp = (sint16_t)(((int)r_lczt - 38 - r_lc_low_alarm) * 10);        //冷藏低温报警值
+//	para_state.LD_Alarm_HTemp = (sint16_t)(((int)r_ldzt - 200) * 10 + (int)r_ld_high_alarm * 10);        //冷冻高温报警值
+//	para_state.LD_Alarm_LTemp = (sint16_t)(((int)r_ldzt - 200) * 10 - (int)r_ld_low_alarm * 10);        //冷冻低温报警值
+//    para_state.Ambient_Temp_Adjust = 0xff;    //环境温度校准值
+//	para_state.in_Defrost_State = (uint8_t)(f_defrost);    //化霜状态
+//    if(f_power_off)
+//    {
+//        para_state.LC_Comp_Running = 0;   
+//    }
+//    else
+//    {
+//        para_state.LC_Comp_Running = (uint8_t)(f_lc_compressor);    //冷藏压机正在运行
+//    }
+//    if(f_power_off)
+//    {
+//        para_state.LD_Comp_Running = 0;    
+//    }
+//    else
+//    {
+//        para_state.LD_Comp_Running = (uint8_t)(f_compressor);    //冷冻压机正在运行
+//    }
+//    
+//    // if(f_power_off)
+//    // {
+//    //     para_state.Light_is_On = 0;
+//    // }
+//    // else
+//    {
+//        para_state.Light_is_On = (uint8_t)(f_LightStatusPin);
+//    }
+//	para_state.Door_is_Open = (uint8_t)(f_door_state);    //门开着
+//	para_state.RefrigValve_is_Open = 0xFF;    //制冷电磁阀开着
+//    
 
-    /**************故障数据结构体的赋值*********************/
-    
-	para_fault.Reserve_1 = 0xff;
-	para_fault.Reserve_2 = 0xff;
-	para_fault.Reserve_3 = 0xff;
-    if(f_hw_high38)
-        para_fault.flag_fault[0] |= BIT0_MASK;
-	else
-		para_fault.flag_fault[0] &= ~BIT0_MASK;
-	
-    if(f_ld_low)
-        para_fault.flag_fault[0] |= BIT1_MASK;
-	else
-		para_fault.flag_fault[0] &= ~BIT1_MASK;
-	
-    if(f_ld_high)
-        para_fault.flag_fault[0] |= BIT2_MASK;
-	else
-		para_fault.flag_fault[0] &= ~BIT2_MASK;
-	
-    if(f_lc_low)
-        para_fault.flag_fault[0] |= BIT3_MASK;
-	else
-		para_fault.flag_fault[0] &= ~BIT3_MASK;
-	
-    if(f_lc_high)
-        para_fault.flag_fault[0] |= BIT4_MASK;
-	else
-		para_fault.flag_fault[0] &= ~BIT4_MASK;
-		
-    // if()
-    //     para_fault.flag_fault[0] |= BIT5_MASK;
-	
-    if(f_ld_sensor_err)
-        para_fault.flag_fault[0] |= BIT6_MASK;
-	else
-		para_fault.flag_fault[0] &= ~BIT6_MASK;
-	
-    if(f_lc_sensor_err)
-        para_fault.flag_fault[0] |= BIT7_MASK;
-	else
-		para_fault.flag_fault[0] &= ~BIT7_MASK;
-	
-    if(f_hw_sensor_err)
-        para_fault.flag_fault[1] |= BIT0_MASK;
-	else
-		para_fault.flag_fault[1] &= ~BIT0_MASK;
-	
-	// if()
-    //     para_fault.flag_fault[1] |= BIT1_MASK;
-	
-    if(f_battery)
-        para_fault.flag_fault[1] |= BIT2_MASK;
-	else
-		para_fault.flag_fault[1] &= ~BIT2_MASK;
-	
-//     if(f_disp_sensor_err)
-//         para_fault.flag_fault[1] |= BIT3_MASK;
-// 	else
-// 		para_fault.flag_fault[1] &= ~BIT3_MASK;
-	
-    // if(f_disp_sensor_err)
-    //     para_fault.flag_fault[1] |= BIT4_MASK;
-	// else
-	// 	para_fault.flag_fault[1] &= ~BIT4_MASK;
-	
-    if(g_Sys_Erflag0_Comm)
-        para_fault.flag_fault[1] |= BIT5_MASK;
-	else
-		para_fault.flag_fault[1] &= ~BIT5_MASK;
-	
-    if(f_power_off)
-        para_fault.flag_fault[1] |= BIT6_MASK;
-	else
-		para_fault.flag_fault[1] &= ~BIT6_MASK;
-	
-    // if(f_ambient_low_err)
-    //     para_fault.flag_fault[1] |= BIT7_MASK;
-	// else
-	// 	para_fault.flag_fault[1] &= ~BIT7_MASK;
-	
-    // if(f_dooropen_buzz)   //或者使用f_door_open，开门后f_door_open立即置位，而f_dooropen_buzz在延时x分钟后置位
-    //     para_fault.flag_fault[2] |= BIT7_MASK;
-	// else
-	// 	para_fault.flag_fault[2] &= ~BIT7_MASK;
-	
-    // if()
-    //     para_fault.flag_fault[2] |= BIT1_MASK;
-    // if()
-    //     para_fault.flag_fault[2] |= BIT2_MASK;
-    // if()
-    //     para_fault.flag_fault[2] |= BIT3_MASK;
-    // if()
-    //     para_fault.flag_fault[2] |= BIT4_MASK;
-    // if()
-    //     para_fault.flag_fault[2] |= BIT5_MASK;
-    // if()
-    //     para_fault.flag_fault[2] |= BIT6_MASK;
-    // if()
-    //     para_fault.flag_fault[2] |= BIT7_MASK;
-    
-    
-    /**************事件数据结构体的赋值*********************/
+//    /**************故障数据结构体的赋值*********************/
+//    
+//	para_fault.Reserve_1 = 0xff;
+//	para_fault.Reserve_2 = 0xff;
+//	para_fault.Reserve_3 = 0xff;
+//    if(f_hw_high38)
+//        para_fault.flag_fault[0] |= BIT0_MASK;
+//	else
+//		para_fault.flag_fault[0] &= ~BIT0_MASK;
+//	
+//    if(f_ld_low)
+//        para_fault.flag_fault[0] |= BIT1_MASK;
+//	else
+//		para_fault.flag_fault[0] &= ~BIT1_MASK;
+//	
+//    if(f_ld_high)
+//        para_fault.flag_fault[0] |= BIT2_MASK;
+//	else
+//		para_fault.flag_fault[0] &= ~BIT2_MASK;
+//	
+//    if(f_lc_low)
+//        para_fault.flag_fault[0] |= BIT3_MASK;
+//	else
+//		para_fault.flag_fault[0] &= ~BIT3_MASK;
+//	
+//    if(f_lc_high)
+//        para_fault.flag_fault[0] |= BIT4_MASK;
+//	else
+//		para_fault.flag_fault[0] &= ~BIT4_MASK;
+//		
+//    // if()
+//    //     para_fault.flag_fault[0] |= BIT5_MASK;
+//	
+//    if(f_ld_sensor_err)
+//        para_fault.flag_fault[0] |= BIT6_MASK;
+//	else
+//		para_fault.flag_fault[0] &= ~BIT6_MASK;
+//	
+//    if(f_lc_sensor_err)
+//        para_fault.flag_fault[0] |= BIT7_MASK;
+//	else
+//		para_fault.flag_fault[0] &= ~BIT7_MASK;
+//	
+//    if(f_hw_sensor_err)
+//        para_fault.flag_fault[1] |= BIT0_MASK;
+//	else
+//		para_fault.flag_fault[1] &= ~BIT0_MASK;
+//	
+//	// if()
+//    //     para_fault.flag_fault[1] |= BIT1_MASK;
+//	
+//    if(f_battery)
+//        para_fault.flag_fault[1] |= BIT2_MASK;
+//	else
+//		para_fault.flag_fault[1] &= ~BIT2_MASK;
+//	
+////     if(f_disp_sensor_err)
+////         para_fault.flag_fault[1] |= BIT3_MASK;
+//// 	else
+//// 		para_fault.flag_fault[1] &= ~BIT3_MASK;
+//	
+//    // if(f_disp_sensor_err)
+//    //     para_fault.flag_fault[1] |= BIT4_MASK;
+//	// else
+//	// 	para_fault.flag_fault[1] &= ~BIT4_MASK;
+//	
+//    if(g_Sys_Erflag0_Comm)
+//        para_fault.flag_fault[1] |= BIT5_MASK;
+//	else
+//		para_fault.flag_fault[1] &= ~BIT5_MASK;
+//	
+//    if(f_power_off)
+//        para_fault.flag_fault[1] |= BIT6_MASK;
+//	else
+//		para_fault.flag_fault[1] &= ~BIT6_MASK;
+//	
+//    // if(f_ambient_low_err)
+//    //     para_fault.flag_fault[1] |= BIT7_MASK;
+//	// else
+//	// 	para_fault.flag_fault[1] &= ~BIT7_MASK;
+//	
+//    // if(f_dooropen_buzz)   //或者使用f_door_open，开门后f_door_open立即置位，而f_dooropen_buzz在延时x分钟后置位
+//    //     para_fault.flag_fault[2] |= BIT7_MASK;
+//	// else
+//	// 	para_fault.flag_fault[2] &= ~BIT7_MASK;
+//	
+//    // if()
+//    //     para_fault.flag_fault[2] |= BIT1_MASK;
+//    // if()
+//    //     para_fault.flag_fault[2] |= BIT2_MASK;
+//    // if()
+//    //     para_fault.flag_fault[2] |= BIT3_MASK;
+//    // if()
+//    //     para_fault.flag_fault[2] |= BIT4_MASK;
+//    // if()
+//    //     para_fault.flag_fault[2] |= BIT5_MASK;
+//    // if()
+//    //     para_fault.flag_fault[2] |= BIT6_MASK;
+//    // if()
+//    //     para_fault.flag_fault[2] |= BIT7_MASK;
+//    
+//    
+//    /**************事件数据结构体的赋值*********************/
 
-    /**************心跳数据结构体的赋值*********************/
-	para_heart.Sec_From_PwrOn = t_halfsec / 2;  
-	//para_heart.Day_CPU_TotalRun = Flash_Data.CPU_TotalRun_Minute / 1440;  
-}
+//    /**************心跳数据结构体的赋值*********************/
+//	para_heart.Sec_From_PwrOn = t_halfsec / 2;  
+//	//para_heart.Day_CPU_TotalRun = Flash_Data.CPU_TotalRun_Minute / 1440;  
+//}
 
-//事件记录
-void Event_Log(void)   //需要自行适配
-{
-    static unsigned char f_door_last = 0xff; //上次门状态
+////事件记录
+//void Event_Log(void)   //需要自行适配
+//{
+//    static unsigned char f_door_last = 0xff; //上次门状态
 
-    //开关门事件
-    if (f_door_state != f_door_last && f_door_last != 0xff)
-    {
-        //只有在线状态才记录开关门事件
-        //if(Wifi_Module_Uart_State == WAIT_MQTT_PUBLISH || Wifi_Module_Uart_State == WAIT_MQTT_PUBLISH_Resp)
-        {
-            //要先判断队列是否已满
-            if ((EVT_Queue_tail + 1) % EVT_QUEUE_SIZE == EVT_Queue_head)
-            {
-                ;//printf("队列已满，无法从队尾插入元素\n");
-            }
-            else
-            {
-                if (f_door_open == 1)
-                    EVT_Queue[EVT_Queue_tail] = 1;  //事件码：1代表开门事件，2代表关门事件
-                else
-                    EVT_Queue[EVT_Queue_tail] = 2;
-                EVT_Queue_tail = (EVT_Queue_tail + 1) % EVT_QUEUE_SIZE;
-            }
+//    //开关门事件
+//    if (f_door_state != f_door_last && f_door_last != 0xff)
+//    {
+//        //只有在线状态才记录开关门事件
+//        //if(Wifi_Module_Uart_State == WAIT_MQTT_PUBLISH || Wifi_Module_Uart_State == WAIT_MQTT_PUBLISH_Resp)
+//        {
+//            //要先判断队列是否已满
+//            if ((EVT_Queue_tail + 1) % EVT_QUEUE_SIZE == EVT_Queue_head)
+//            {
+//                ;//printf("队列已满，无法从队尾插入元素\n");
+//            }
+//            else
+//            {
+//                if (f_door_open == 1)
+//                    EVT_Queue[EVT_Queue_tail] = 1;  //事件码：1代表开门事件，2代表关门事件
+//                else
+//                    EVT_Queue[EVT_Queue_tail] = 2;
+//                EVT_Queue_tail = (EVT_Queue_tail + 1) % EVT_QUEUE_SIZE;
+//            }
 
-        }
-        
-    }
-    if (f_first_ad)
-        f_door_last = f_door_state;
-}
+//        }
+//        
+//    }
+//    if (f_first_ad)
+//        f_door_last = f_door_state;
+//}
 
 //uart接收空闲计时，用于判断一帧是否结束
 //每隔Cycle个ms调用一次，Cycle <= (10/2),建议Cycle = 2
@@ -423,7 +424,7 @@ void WriteCfgData(void) //需要自行适配
     int i;
     char *Write_Ptr = (char *)(&Cfg_Data);
     unsigned int E2_Addr;  //要存储数据的E2的byte地址
-    unsigned char E2_Addr_High,E2_Addr_Low;
+    unsigned char E2_Addr_Low;
     unsigned char Chip_Addr = 0xA0;
 
     Begin();

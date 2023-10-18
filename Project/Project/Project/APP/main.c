@@ -32,6 +32,7 @@
 #include "lib_scu.h"
 #include "lib_uart.h"
 #include "lib_scs.h"
+#include "systick.h"
 
 BitType myflag1;
 BitType myflag2;
@@ -49,6 +50,8 @@ BitType myflag13;
 BitType myflag14;
 BitType myflag15;
 BitType myflag16;
+BitType myflag17;
+BitType myflag18;
 BitType mylc_flag;
 BitType g_PannelCommflag1;
 BitType g_CommErrflag1;
@@ -100,67 +103,72 @@ int32_t main(void)
     }
     g_Txd_Time = 250; //面板周期500ms发送数据  CFJ @20190121 CFJ
 
-    for (;;)
-    {
-        Clock_Test ++;
-        IWDT_Clear(); 
-        BuzzPrg();
-        PowerUpBuzzDelaylc();
-        PowerUpBuzzDelayld();
-        ad_convert(); 
-        WriteToE2();
-        IWDT_Clear(); 
-        WriteE2();
+    /*--TEST CFJ
+    f_test_alarm=ON;
+    f_first_ad=1;
+    r_voltage=80;
+    r_lcad=98;
+    r16_ldad=53; 
+    r_lcwd = CheckLcTable(r_lcad);
+    r_ldsjwd = (tab_temperature[r16_ldad-36]);
+    //RS_485_STATUS=1; //发送有效
+    */
+     //-----
+        for(;;)  
+        {        
+		
+            IWDT_Clear(); ///// __RESET_WATCHDOG();                           /* feeds the dog */
+            BuzzPrg();//检测凤鸣的状态，例如是叫一声还是连续叫
+            PowerUpBuzzDelaylc();//判断系统上电后的时间是否大于了报警延时设定值，一旦大于以后，这个函数失效 f_Powerupdelaylc(冷藏)一直有效
+#ifdef  Need_Ld
+			 PowerUpBuzzDelayld();//判断系统上电后的时间是否大于了报警延时设定值，一旦大于以后，这个函数失效 f_Powerupdelayld(冷冻)一直有效
+#endif
+			ad_convert(); //需检查下，是否正确 CFJ  ？？ 得到环温实际温度r_hwsjwd
+            WriteToE2();//根据f_need_write_e2判断是不是需要写E2
+            IWDT_Clear();////  __RESET_WATCHDOG(); 
+            WriteE2();//根据函数WriteToE2中的f_e2prom判断需不需要写，如果函数WriteToE2中将f_e2prom置位则需要写，包括一些报警上下限等
 
-        Pannel_Comm_Deal(); //接收完成数据处理  计算温度
-        JudgeErrs();
-        AlarmControl();
-        KeyPress();
-        IWDT_Clear(); 
-        l_Pannel_DataTx();
-        DealDispData(); //温度人为干预、数码管显示
-        DataToLed();           //数据显示到LED
-        Compressor_on_delay(); //上电设定延迟时间
-        Compressor_delay_10sec();
-        Lc_CompressorJudge();
-        LdCompressorJudge();
-        LnFan();
-        Lc_lightProg(); //冷藏照明灯控制程序
-        Nd_fan_Prog();
-        Defrost_Prog();
-        Door_Open(); ////wys11.03.19
-        IWDT_Clear();
-        SetTimeFrame();
-        NetRecOver();
-        ReceiveInitial();
-        Time();
-        Event_Log();         //记录开关门事件
-        if (f_No_WifiModule) //wifi模块不存在，认为接的是打印机
-        {
-            if (f_No_WifiModule == 1)
-            {
-                f_No_WifiModule = 2;
-                UART5_Init_As_Printer(); //调整波特率为9600
-            }
-            else if (u8_Send_Print_Time >= 2)
-            {
-                ReturnPrintFrame();
-                u8_Send_Print_Time = 0;
-            }
-        }
-        else
-        {
-            /*wifi发送和接收处理*/
-            WIFI_RX_Data_Deal();
-            if (g_1s_flag_Iot)
-            {
-                g_1s_flag_Iot = 0;
-                WIFI_TX_Data();
-            }
-            /*wifi发送和接收处理*/
-        }
-    }
+			//g_Pannel_Comm_bRcv_Done=1代表收到主控板数据，无误。接收完成数据处理  计算温度，拿到ld lc温度，拿到一次AD值以后f_first_ad一直=1
+            Pannel_Comm_Deal();//DealRecData();从uart1拿485的数据
+            JudgeErrs();//判断各传感器是否故障
+            AlarmControl();//蜂鸣器报警和远程报警
+            KeyPress();
+            IWDT_Clear();//// __RESET_WATCHDOG(); 
+            l_Pannel_DataTx();//每500ms向底板发送一次数据，包含各种控制信息等
+            DealDispData();  //温度人为干预、数码管显示 冷藏 冷冻温度以及两个led灯的显示
+            
+            EheatConTrolP(); //HW_2019/4/24 10:35:28根据冷藏现在的温度控制EheatConTrolP的赋值，可能是控制压缩机
+            DataToLed();  //根据确定下来的要显示的数据，显示到LED
+            Compressor_on_delay();   //上电压机设定延迟时间 t_yj_delay分钟以后f_compressor_on_dly = 1
+            Compressor_delay_10sec();    
+            Lc_CompressorJudge();//冷藏压机控制以及各种条件判断
+ #ifdef  Need_Ld
+            LdCompressorJudge();
+
+            LnFan();//冷冻冷凝风机控制逻辑
+ #endif
+            Lc_lightProg();//冷藏照明灯控制程序 判断开门60ms后开灯，否则关灯
+//            Nd_fan_Prog();//内胆风机(蒸发风机)的开或关判断，关上门后判断是不是允许，如果允许就开起来
+ #ifdef  Need_Ld           
+            Defrost_Prog();//除霜，只有冷冻才需要除霜
+#endif	
+//            Door_Open();////wys11.03.19  判断门是不是开着，如果开着15分钟以后就报警
+            //report_judge(); 
+            IWDT_Clear();///__RESET_WATCHDOG(); 
+            NetResponseStateControl();//usb部分
+            SetTimeFrame(); //根据串口2发送过来的数据设置时间日期 usb
+            NetRecOver();//串口2接收完数据的处理程序 usb
+            NetRecOver1();//UART0接收完数据的处理程序 物联
+            NetErrAlarm();//通过串口2发送错误数据 
+            ReceiveInitial();
+						ReceiveInitial1();
+            Rec2Action();   //uart0    打印机口      
+            MachineTimeStatistics();//判断压机，内风机 冷凝风机的总运行时间
+            Time(); //各个定时变量的判断赋值(定时器1的中断BT1UnderflowIrqHandler)，系统中根据这些赋值进行状态变化及切换         
+						 
+					}
 }
+
 
 void UART5_Init_As_Printer(void) //调整波特率为9600
 {

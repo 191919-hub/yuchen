@@ -17,6 +17,5 @@
 void User_SysTickInit(void);
 void Delay_100us(__IO uint32_t nTime);
 void TimingDelay_Decrement(void);
-
 #endif
 

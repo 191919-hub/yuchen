@@ -5,7 +5,7 @@
 //#include "HYC-68.h"
 //#include "Iot_comm.h"  //使用到了Para_Base_t等定义,CopyDataToIOTStructure函数
 #include "stdio.h"
-
+#include "string.h"
 
 
 extern uint32_t t_halfsec;
@@ -812,7 +812,7 @@ static void MQTT_Send_Data(enum MQTT_DATA_TYPE Data_Type,unsigned char Sign_RePu
 unsigned char Parse_CfgData(void)
 {
     unsigned char Cnt;
-	char temp;
+	//char temp;
     //Cnt = sscanf(WiFi_RX_BUF, "%*[^']'%[^']',%*[^']'%[^']',%*[^']'%[^']',%*[^']'%[^']',%*[^']'%[^']',%*[^']'%[^']',%*[^']'%[^']'", WifiSSID,WifiPwd,MQTTServerDomain,MQTTServerPort,Username,Password,BECode);
 	//Cnt = sscanf(WiFi_RX_BUF, "%*[^']'%50[^']',%*[^']'%50[^']',%*[^']'%100[^']',%*[^']'%10[^']',%*[^']'%50[^']',%*[^']'%50[^']',%*[^']'%30[^']'%*[^}]%c", Cfg_Data.WifiSSID,Cfg_Data.WifiPwd,Cfg_Data.MQTTServerDomain,Cfg_Data.MQTTServerPort,Cfg_Data.Username,Cfg_Data.Password,Cfg_Data.BECode,temp);
     Cnt = sscanf(WiFi_RX_BUF, "%*[^']'%50[^']','%50[^']','%100[^']','%10[^']','%50[^']','%50[^']','%30[^']'", Cfg_Data.WifiSSID,Cfg_Data.WifiPwd,Cfg_Data.MQTTServerDomain,Cfg_Data.MQTTServerPort,Cfg_Data.Username,Cfg_Data.Password,Cfg_Data.BECode);
@@ -837,7 +837,7 @@ enum MQTT_DATA_TYPE Judge_PubType(void)
     static uint8_t flag_iot_state , flag_iot_fault, flag_iot_event ;  //标记->与上次发送出去的数据有变化
     static uint8_t Event_Num;  //事件码
 
-    CopyDataToIOTStructure();
+//    CopyDataToIOTStructure();
     flag_iot_state = memcmp(&para_state_last, &para_state, sizeof(Para_State_t));  //比较当前数据与上次发送的数据有没有变化，有变化就发送
 	flag_iot_fault = memcmp(&para_fault_last, &para_fault, sizeof(Para_Fault_t));
 
