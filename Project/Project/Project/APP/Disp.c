@@ -3,7 +3,30 @@
 #include "Program_Cfg.h"   //程序功能配置，比如禁止蜂鸣器、控制冷藏温度分辨率
 #include "Disp.H"
 #include "Coupler.h"
-				   
+				
+ const float table_lc_12b[19][2]= 
+{  //AD  温度
+    3568	,	-30	,
+    3424	,	-25	,
+    3248	,	-20	,
+    3056	,	-15	,
+    2832	,	-10	,
+    2592	,	-5	,
+    2352	,	0	,
+    2096	,	5	,
+    1840	,	10	,
+    1616	,	15	,
+    1392	,	20	,
+    1200	,	25	,
+    1024	,	30	,
+    880	,	35	,
+    736	,	40	,
+    624	,	45	,
+    528	,	50	,
+    448	,	55	,
+    384	,	60	,
+};
+
 const unsigned short  table_ld_3840[] =               //环温表,上偏38度,表头偏移24 
 {
     3817,   //-40
@@ -2346,11 +2369,14 @@ unsigned char r_key;//扫描的时候调整到一个字节的按键值
 unsigned char r_keyz;//有按键按下的时候的记录的按键值
 unsigned char r_sfkeyz;//存储按键的值
 unsigned char t_write_e2;//上次写E2时间
-unsigned char r_lcad;
+//unsigned char r_lcad;
 unsigned char r_lcXsad;//
 unsigned char r_set_state;//调节时显示的屏编码
 unsigned char r_flash_bit;//数码管位数
+unsigned char r_lcad_8b;
 unsigned int  r_lcad_12b;
+unsigned int  r_lcad_8b_c;
+unsigned int  r_lcad_12b_c;
 unsigned char Eheatcontrolpin;
 unsigned char t_rec;   //通讯
 unsigned char r_rbit;

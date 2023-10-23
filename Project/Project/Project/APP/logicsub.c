@@ -40,7 +40,7 @@
 #define LCCOMPRTSTOREAD 1869 //7.8℃
 
 //最后两个，冷藏化霜传感器显示温度(低于某个温度化霜)，冷藏冷凝传感器(判断压缩机脏堵)
-float r_lcwd_float = 0, r_lcgzwd_float = 0, r_lczt_float = 0, r_lcxswd_float = 0,r_lcHuaSHuangxswd_float=0,r_lcLengNingxswd_float=0;
+float r_lcwd_float = 0, r_lcgzwd_float = 0, r_lczt_float = 0, r_lcxswd_float = 0,r_lcHuaSHuangxswd_float=0,r_lcLengNingxswd_float=0,r_lcwd_float_c = 0;
 unsigned char flag_Now_Disp_LCWD = 0, flag_Disp_LCWD_D = 0;
 unsigned char Cnt_SetTime_Sended = 0;
 
@@ -48,168 +48,6 @@ unsigned int  lc_compressor_times=0;
 unsigned int  lc_fan_times=0;
 unsigned int  lc_nd_fan_times=0;
 
-/***********************************************/
-#if 0
-void Initial(void) 
-{
-  /* ### MC9S08JM60_64 "Cpu" init code ... */
-  /*  PE initialization code after reset */
-  /* Common initialization of the write once registers */
-  /* SOPT1: COPT=3,STOPE=0 */
-  SOPT1 = 0xD3;                                      
-  /* SOPT2: COPCLKS=1,COPW=0,SPI1FE=1,SPI2FE=1,ACIC=0 */
-  SOPT2 = 0x86;                                      
-  /* SPMSC1: LVWF=0,LVWACK=0,LVWIE=0,LVDRE=1,LVDSE=1,LVDE=1,BGBE=0 */
-  SPMSC1 = 0x1C;                                      
-  /* SPMSC2: LVDV=0,LVWV=0,PPDF=0,PPDACK=0,PPDC=0 */
-  SPMSC2 = 0x00;                                      
-  /*  System clock initialization */
-  MCGTRM = *(unsigned char*far)0xFFAF; /* Initialize MCGTRM register from a non volatile memory */
-  MCGSC = *(unsigned char*far)0xFFAE;  /* Initialize MCGSC register from a non volatile memory */
-  /* MCGC2: BDIV=0,RANGE=1,HGO=0,LP=0,EREFS=1,ERCLKEN=0,EREFSTEN=0 */
-  MCGC2 = 0x24;                        /* Set MCGC2 register */
-  /* MCGC1: CLKS=2,RDIV=7,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
-  MCGC1 = 0xB8;                        /* Set MCGC1 register */
-  while(!MCGSC_OSCINIT) {              /* Wait until external reference is stable */
-   SRS = 0x55;                         /* Reset watchdog counter write 55, AA */
-   SRS = 0xAA;
-  }
-  while(MCGSC_IREFST) {                /* Wait until external reference is selected */
-   SRS = 0x55;                         /* Reset watchdog counter write 55, AA */
-   SRS = 0xAA;
-  }
-  while((MCGSC & 0x0C) != 0x08) {      /* Wait until external clock is selected as a bus clock reference */
-   SRS = 0x55;                         /* Reset watchdog counter write 55, AA */
-   SRS = 0xAA;
-  }
-  /* MCGC2: BDIV=0,RANGE=1,HGO=0,LP=1,EREFS=1,ERCLKEN=0,EREFSTEN=0 */
-  MCGC2 = 0x2C;                        /* Set MCGC2 register */
-  /* MCGC1: CLKS=2,RDIV=1,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
-  MCGC1 = 0x88;                        /* Set MCGC1 register */
-  /* MCGC3: LOLIE=0,PLLS=1,CME=0,VDIV=6 */
-  MCGC3 = 0x46;                        /* Set MCGC3 register */
-  /* MCGC2: LP=0 */
-  MCGC2 &= (unsigned char)~0x08;                     
-  while(!MCGSC_PLLST) {                /* Wait until PLL is selected */
-   SRS = 0x55;                         /* Reset watchdog counter write 55, AA */
-   SRS = 0xAA;
-  }
-  while(!MCGSC_LOCK) {                 /* Wait until PLL is locked */
-   SRS = 0x55;                         /* Reset watchdog counter write 55, AA */
-   SRS = 0xAA;
-  }
-  /* MCGC1: CLKS=0,RDIV=1,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
-  MCGC1 = 0x08;                        /* Set MCGC1 register */
-  while((MCGSC & 0x0C) != 0x0C) {      /* Wait until PLL clock is selected as a bus clock reference */
-   SRS = 0x55;                         /* Reset watchdog counter write 55, AA */
-   SRS = 0xAA;
-  }
-  
-  /* Common initialization of the CPU registers */
-  /* PTASE: PTASE5=1,PTASE4=1,PTASE3=1,PTASE2=1,PTASE1=1,PTASE0=1 */
-  PTASE |= (unsigned char)0x3F;                               
-  /* PTBSE: PTBSE7=1,PTBSE6=1,PTBSE5=1,PTBSE4=1,PTBSE3=1,PTBSE2=1,PTBSE1=1,PTBSE0=1 */
-  PTBSE = 0xFF;                                      
-  /* PTCSE: PTCSE6=1,PTCSE5=1,PTCSE4=1,PTCSE3=1,PTCSE2=1,PTCSE1=1,PTCSE0=1 */
-  PTCSE |= (unsigned char)0x7F;                               
-  /* PTDSE: PTDSE7=1,PTDSE6=1,PTDSE5=1,PTDSE4=1,PTDSE3=1,PTDSE2=1,PTDSE1=1,PTDSE0=1 */
-  PTDSE = 0xFF;                                      
-  /* PTESE: PTESE7=1,PTESE6=1,PTESE5=1,PTESE4=1,PTESE3=1,PTESE2=1,PTESE1=1,PTESE0=1 */
-  PTESE = 0xFF;                                      
-  /* PTFSE: PTFSE7=1,PTFSE6=1,PTFSE5=1,PTFSE4=1,PTFSE3=1,PTFSE2=1,PTFSE1=1,PTFSE0=1 */
-  PTFSE = 0xFF;                                      
-  /* PTGSE: PTGSE5=1,PTGSE4=1,PTGSE3=1,PTGSE2=1,PTGSE1=1,PTGSE0=1 */
-  PTGSE |= (unsigned char)0x3F;                               
-  /* PTADS: PTADS5=0,PTADS4=0,PTADS3=0,PTADS2=0,PTADS1=0,PTADS0=0 */
-  PTADS = 0x00;                                      
-  /* PTBDS: PTBDS7=0,PTBDS6=0,PTBDS5=0,PTBDS4=0,PTBDS3=0,PTBDS2=0,PTBDS1=0,PTBDS0=0 */
-  PTBDS = 0x00;                                      
-  /* PTCDS: PTCDS6=0,PTCDS5=0,PTCDS4=0,PTCDS3=0,PTCDS2=0,PTCDS1=0,PTCDS0=0 */
-  PTCDS = 0x00;                                      
-  /* PTDDS: PTDDS7=0,PTDDS6=0,PTDDS5=0,PTDDS4=0,PTDDS3=0,PTDDS2=0,PTDDS1=0,PTDDS0=0 */
-  PTDDS = 0x00;                                      
-  /* PTEDS: PTEDS7=0,PTEDS6=0,PTEDS5=0,PTEDS4=0,PTEDS3=0,PTEDS2=0,PTEDS1=0,PTEDS0=0 */
-  PTEDS = 0x00;                                      
-  /* PTFDS: PTFDS7=0,PTFDS6=0,PTFDS5=0,PTFDS4=0,PTFDS3=0,PTFDS2=0,PTFDS1=0,PTFDS0=0 */
-  PTFDS = 0x00;                                      
-  /* PTGDS: PTGDS5=0,PTGDS4=0,PTGDS3=0,PTGDS2=0,PTGDS1=0,PTGDS0=0 */
-  PTGDS = 0x00;                                      
-  /* ### Init_COP init code */
-  SRS = 0x55;                          /* Clear WatchDog counter - first part */
-  SRS = 0xAA;                          /* Clear WatchDog counter - second part */
- 
-  /* ### Init_TPM init code */
-  /* TPM2SC: TOF=0,TOIE=0,CPWMS=0,CLKSB=0,CLKSA=0,PS2=0,PS1=0,PS0=0 */
-  TPM2SC = 0x00;                       /* Stop and reset counter */
-  TPM2MOD = 0x05DCU;                   /* Period value setting */
-  (void)(TPM2SC == 0);                 /* Overflow int. flag clearing (first part) */
-  /* TPM1SC: TOF=0,TOIE=1,CPWMS=0,CLKSB=0,CLKSA=1,PS2=1,PS1=0,PS0=0 */
-  TPM2SC = 0x4C;                       /* Int. flag clearing (2nd part) and timer control register setting */
-  /* ### */
-  
-  PTFD  = 0b11111111;
-  PTFDD = 0b11100000;
-  PTDD  = 0b00011001;
-  PTDDD = 0b00000100;
-  PTCD  = 0b00101111;
-  PTCDD = 0b00101101;
-  PTBD  = 0b11111000;
-  PTBDD = 0b01111000; 
-  PTGD  = 0b00000011;
-  PTGDD = 0b00000011;                          
-   
-  /* ### Init_ADC init code */
-  /* APCTL2: ADPC11=0,ADPC10=0,ADPC9=0,ADPC8=0 */
-  APCTL2 = 0x04;                                      
-  /* ADCCFG: ADLPC=0,ADIV1=1,ADIV0=1,ADLSMP=0,MODE1=0,MODE0=0,ADICLK1=0,ADICLK0=0 */
-  ADCCFG = 0x60;                                      
-  /* ADCSC2: ADACT=0,ADTRG=0,ACFE=0,ACFGT=0 */
-  ADCSC2 = 0x00;                                      
-  /* ADCCV: ADCV11=0,ADCV10=0,ADCV9=0,ADCV8=0,ADCV7=0,ADCV6=0,ADCV5=0,ADCV4=0,ADCV3=0,ADCV2=0,ADCV1=0,ADCV0=0 */
-  ADCCV =  0x00;                                      
-  /* ADCSC1: COCO=0,AIEN=0,ADCO=0,ADCH4=1,ADCH3=1,ADCH2=1,ADCH1=1,ADCH0=1 */
-  ADCSC1 = 0x0A;                                                                                     
-
-
-  SCI1C2 = 0x00;                       /* Disable the SCI1 module */
-  (void)(SCI1S1 == 0);                 /* Dummy read of the SCI1S1 registr to clear flags */
-  (void)(SCI1D == 10);                 /* Dummy read of the SCI1D registr to clear flags */
-  /* SCI1S2: LBKDIF=1,RXEDGIF=1,RXINV=0,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
-  SCI1S2 = 0xC0;                                      
-  /* SCI1BDH: LBKDIE=0,RXEDGIE=0,SBR12=0,SBR11=0,SBR10=0,SBR9=0,SBR8=0 */
-  SCI1BDH = 0x00;                                      
-  /* SCI1BDL: SBR7=1,SBR6=0,SBR5=0,SBR4=1,SBR3=1,SBR2=1,SBR1=0,SBR0=0 */
-  SCI1BDL = 0x9C;                                      
-  /* SCI1C1: LOOPS=0,SCISWAI=0,RSRC=0,M=0,WAKE=0,ILT=0,PE=0,PT=0 */
-  SCI1C1 = 0x00;                                      
-  /* SCI1C3: R8=0,T8=0,TXDIR=1,TXINV=0,ORIE=0,NEIE=0,FEIE=0,PEIE=0 */
-  SCI1C3 = 0x00;                                      
-  /* SCI1C2: TIE=0,TCIE=0,RIE=1,ILIE=0,TE=1,RE=1,RWU=0,SBK=0 */
-  SCI1C2 = 0x2c;  
-
-
-  SCI2C2 = 0x00;                       /* Disable the SCI1 module */
-  (void)(SCI2S1 == 0);                 /* Dummy read of the SCI1S1 registr to clear flags */
-  (void)(SCI2D == 10);                 /* Dummy read of the SCI1D registr to clear flags */
-  /* SCI1S2: LBKDIF=1,RXEDGIF=1,RXINV=0,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
-  SCI2S2 = 0xC0;                                      
-  /* SCI1BDH: LBKDIE=0,RXEDGIE=0,SBR12=0,SBR11=0,SBR10=0,SBR9=0,SBR8=0 */
-  SCI2BDH = 0x00;                                      
-  /* SCI1BDL: SBR7=1,SBR6=0,SBR5=0,SBR4=1,SBR3=1,SBR2=1,SBR1=0,SBR0=0 */
-  SCI2BDL = 0x9C;                                      
-  /* SCI1C1: LOOPS=0,SCISWAI=0,RSRC=0,M=0,WAKE=0,ILT=0,PE=0,PT=0 */
-  SCI2C1 = 0x00;                                      
-  /* SCI1C3: R8=0,T8=0,TXDIR=1,TXINV=0,ORIE=0,NEIE=0,FEIE=0,PEIE=0 */
-  SCI2C3 = 0x00;                                      
-  /* SCI1C2: TIE=0,TCIE=0,RIE=1,ILIE=0,TE=1,RE=1,RWU=0,SBK=0 */
-  SCI2C2 = 0x2c;  
-
-
-  
-  /* ### */
-} /*MCU_init*/
-#endif
-/****************************************************/
 /***********************************************************
 *Name         :  InitialUserRegister
 *Function     :  Initial User's Register
@@ -489,6 +327,36 @@ void BuzzBiBiBi(void)
 /****************************************************/
 /*********************AD转换程序*********************/
 /****************************************************/
+
+/**
+ * @brief ad转换为温度
+ *
+ * 
+ *
+ * @param  Ad   12位ad
+ * @retval 实际温度+38
+ */
+float CheckLcTable_12b(unsigned int Ad)
+{
+    unsigned int i = 0;
+    float Temp;
+    if ((float)Ad >= table_lc_12b[0][0])
+    {
+        return table_lc_12b[0][1] + 38; //-30度
+    }
+    else if ((float)Ad <= table_lc_12b[18][0])
+    {
+        return table_lc_12b[18][1] + 38; //60度
+    }
+    else
+    {
+        while ((float)Ad < table_lc_12b[i][0])
+            i++;
+        Temp = 38 + table_lc_12b[i - 1][1] + 5 * (Ad - table_lc_12b[i - 1][0]) / (table_lc_12b[i][0] - table_lc_12b[i - 1][0]); //浮点型温度
+    }
+    return Temp;
+}
+
 unsigned char SingleAd(unsigned char channel);
 unsigned char CheckLcTable(unsigned char ad_8b);
 float CheckLcTable_12b(unsigned int ad_12b);
@@ -734,58 +602,58 @@ void RuleForLdDisp(void)
 /****************************************************/
 /********************冷藏显示规则********************/
 /****************************************************/
-void RuleForLcDisp(void)
-{
-	if (!f_first_ad) //还未采样温度
-	{
-		return;
-	}
-	if (!f_lc_first_disp) //首次显示
-	{
-		f_lc_first_disp = 1;
-		r_lcgzwd = r_lcwd;	 //显示实际温度
-		t_lc_rule = t_halfsec; //记下显示刷新时间点
-		u8_LcRule = t_tens;
-	}
-	else if ((r_lcwd > (uchar)(r_lczt + 2)) || (r_lcwd < (uchar)(r_lczt - 1))) //实际温度高于设置温度超过2度  或者  低于设置温度超过1度
-	{
-		{
-			//u8_LcRule = t_tens; @20181130 CFJ
-			if ((uchar)(t_halfsec - t_lc_rule) >= 120) //60秒 @20181130 CFJ
-			{
-				t_lc_rule = t_halfsec;
-				if (r_lcwd > r_lcgzwd) //显示温度<实际温度
-				{
-					r_lcgzwd++; //显示温度++
-				}
-				else if (r_lcwd < r_lcgzwd)
-				{
-					r_lcgzwd--;
-				}
-			}
-		}
-	}
-	else
-	{
-		if (r_lcgzwd != r_lczt)
-		{
-			// t_lc_rule = t_halfsec;
-			if ((uchar)(t_halfsec - t_lc_rule) >= 120) //60S钟 @20181120
-			{
-				t_lc_rule = t_halfsec;
-				if (r_lcgzwd > r_lczt) //显示温度>实际温度
-				{
-					r_lcgzwd--; //显示温度--
-				}
-				else if (r_lcgzwd < r_lczt)
-				{
-					r_lcgzwd++;
-				}
-			}
-		}
-	}
-	r_lcxswd = r_lcgzwd;
-}
+//void RuleForLcDisp(void)
+//{
+//	if (!f_first_ad) //还未采样温度
+//	{
+//		return;
+//	}
+//	if (!f_lc_first_disp) //首次显示
+//	{
+//		f_lc_first_disp = 1;
+//		r_lcgzwd = r_lcwd;	 //显示实际温度
+//		t_lc_rule = t_halfsec; //记下显示刷新时间点
+//		u8_LcRule = t_tens;
+//	}
+//	else if ((r_lcwd > (uchar)(r_lczt + 2)) || (r_lcwd < (uchar)(r_lczt - 1))) //实际温度高于设置温度超过2度  或者  低于设置温度超过1度
+//	{
+//		{
+//			//u8_LcRule = t_tens; @20181130 CFJ
+//			if ((uchar)(t_halfsec - t_lc_rule) >= 120) //60秒 @20181130 CFJ
+//			{
+//				t_lc_rule = t_halfsec;
+//				if (r_lcwd > r_lcgzwd) //显示温度<实际温度
+//				{
+//					r_lcgzwd++; //显示温度++
+//				}
+//				else if (r_lcwd < r_lcgzwd)
+//				{
+//					r_lcgzwd--;
+//				}
+//			}
+//		}
+//	}
+//	else
+//	{
+//		if (r_lcgzwd != r_lczt)
+//		{
+//			// t_lc_rule = t_halfsec;
+//			if ((uchar)(t_halfsec - t_lc_rule) >= 120) //60S钟 @20181120
+//			{
+//				t_lc_rule = t_halfsec;
+//				if (r_lcgzwd > r_lczt) //显示温度>实际温度
+//				{
+//					r_lcgzwd--; //显示温度--
+//				}
+//				else if (r_lcgzwd < r_lczt)
+//				{
+//					r_lcgzwd++;
+//				}
+//			}
+//		}
+//	}
+//	r_lcxswd = r_lcgzwd;
+//}
 
 /****************************************************/
 /********************冷藏显示规则（分辨率0.1度）********************/
@@ -803,29 +671,71 @@ void RuleForLcDisp_0D1(void)
 		t_lc_rule = t_halfsec;		   //记下显示刷新时间点
 		u8_LcRule = t_tens;
 	}
+	else   //渐变到实际温度
+	{
+        if ((t_halfsec - t_lc_rule) >= 12) //6秒
+        {
+            t_lc_rule = t_halfsec;
+
+            if (fabs(r_lcwd_float - r_lcgzwd_float) < 0.1)
+                r_lcgzwd_float = r_lcwd_float;
+            else
+            {
+                if (r_lcwd_float > r_lcgzwd_float) //显示温度<实际温度
+                {
+                    r_lcgzwd_float += 0.1; //显示温度++
+                }
+                else if (r_lcwd_float < r_lcgzwd_float)
+                {
+                    r_lcgzwd_float -= 0.1;
+                }
+            }
+        }
+	}
+	
+	r_lcxswd_float = r_lcgzwd_float;
+	r_lcgzwd = (unsigned char)floor(r_lcgzwd_float); //有些地方还需要用到r_lcgzwd,比如压缩机连续运行保护的功能需要判断r_lcgzwd是否等于设置温度，所以取r_lcgzwd_float得整数部分给r_lcgzwd
+}
+
+/****************************************************/
+/********************冷藏显示规则（分辨率0.1度）********************/
+/****************************************************/
+//void RuleForLcDisp_0D2(void)
+//{
+//	if (!f_first_ad) //还未采样温度
+//	{
+//		return;
+//	}
+//	if (!f_lc_first_disp) //首次显示
+//	{
+//		f_lc_first_disp = 1;
+//		r_lcgzwd_float = r_lcwd_float; //显示实际温度
+//		t_lc_rule = t_halfsec;		   //记下显示刷新时间点
+//		u8_LcRule = t_tens;
+//	}
 //	else if ((r_lcwd_float > (r_lczt_float + 2)) || (r_lcwd_float < (r_lczt_float - 1))) //实际温度高于设置温度超过2度  或者  低于设置温度超过1度
 //	{
-		{
-			//u8_LcRule = t_tens; @20181130 CFJ
-			if ((uchar)(t_halfsec - t_lc_rule) >= 12) //6秒
-			{
-				t_lc_rule = t_halfsec;
+//		{
+//			//u8_LcRule = t_tens; @20181130 CFJ
+//			if ((uchar)(t_halfsec - t_lc_rule) >= 12) //6秒
+//			{
+//				t_lc_rule = t_halfsec;
 
-				if (fabs(r_lcwd_float - r_lcgzwd_float) < 0.1)
-					r_lcgzwd_float = r_lcwd_float;
-				else
-				{
-					if (r_lcwd_float > r_lcgzwd_float) //显示温度<实际温度
-					{
-						r_lcgzwd_float += 0.1; //显示温度++
-					}
-					else if (r_lcwd_float < r_lcgzwd_float)
-					{
-						r_lcgzwd_float -= 0.1;
-					}
-				}
-			}
-		}
+//				if (fabs(r_lcwd_float - r_lcgzwd_float) < 0.1)
+//					r_lcgzwd_float = r_lcwd_float;
+//				else
+//				{
+//					if (r_lcwd_float > r_lcgzwd_float) //显示温度<实际温度
+//					{
+//						r_lcgzwd_float += 0.1; //显示温度++
+//					}
+//					else if (r_lcwd_float < r_lcgzwd_float)
+//					{
+//						r_lcgzwd_float -= 0.1;
+//					}
+//				}
+//			}
+//		}
 //	}
 //	else
 //	{
@@ -834,8 +744,9 @@ void RuleForLcDisp_0D1(void)
 //			// t_lc_rule = t_halfsec;
 //			if ((uchar)(t_halfsec - t_lc_rule) >= 12) //6S
 //			{
+//				float xxx = 0;
 //				t_lc_rule = t_halfsec;
-//				float xxx = fabs(r_lcgzwd_float - r_lczt_float);
+//				xxx = fabs(r_lcgzwd_float - r_lczt_float);
 //				if (xxx < 0.1)
 //					r_lcgzwd_float = r_lczt_float;
 //				else
@@ -852,79 +763,9 @@ void RuleForLcDisp_0D1(void)
 //			}
 //		}
 //	}
-	r_lcxswd_float = r_lcgzwd_float;//最终显示使用的值
-	r_lcgzwd = (unsigned char)floor(r_lcgzwd_float); //有些地方还需要用到r_lcgzwd,比如压缩机连续运行保护的功能需要判断r_lcgzwd是否等于设置温度，所以取r_lcgzwd_float得整数部分给r_lcgzwd
-}
-
-/****************************************************/
-/********************冷藏显示规则（分辨率0.1度）********************/
-/****************************************************/
-void RuleForLcDisp_0D2(void)
-{
-	if (!f_first_ad) //还未采样温度
-	{
-		return;
-	}
-	if (!f_lc_first_disp) //首次显示
-	{
-		f_lc_first_disp = 1;
-		r_lcgzwd_float = r_lcwd_float; //显示实际温度
-		t_lc_rule = t_halfsec;		   //记下显示刷新时间点
-		u8_LcRule = t_tens;
-	}
-	else if ((r_lcwd_float > (r_lczt_float + 2)) || (r_lcwd_float < (r_lczt_float - 1))) //实际温度高于设置温度超过2度  或者  低于设置温度超过1度
-	{
-		{
-			//u8_LcRule = t_tens; @20181130 CFJ
-			if ((uchar)(t_halfsec - t_lc_rule) >= 12) //6秒
-			{
-				t_lc_rule = t_halfsec;
-
-				if (fabs(r_lcwd_float - r_lcgzwd_float) < 0.1)
-					r_lcgzwd_float = r_lcwd_float;
-				else
-				{
-					if (r_lcwd_float > r_lcgzwd_float) //显示温度<实际温度
-					{
-						r_lcgzwd_float += 0.1; //显示温度++
-					}
-					else if (r_lcwd_float < r_lcgzwd_float)
-					{
-						r_lcgzwd_float -= 0.1;
-					}
-				}
-			}
-		}
-	}
-	else
-	{
-		if (r_lcgzwd_float != r_lczt_float) //拟显示温度 不等于 设置温度
-		{
-			// t_lc_rule = t_halfsec;
-			if ((uchar)(t_halfsec - t_lc_rule) >= 12) //6S
-			{
-				float xxx = 0;
-				t_lc_rule = t_halfsec;
-				xxx = fabs(r_lcgzwd_float - r_lczt_float);
-				if (xxx < 0.1)
-					r_lcgzwd_float = r_lczt_float;
-				else
-				{
-					if (r_lcgzwd_float > r_lczt_float) //显示温度>实际温度
-					{
-						r_lcgzwd_float -= 0.1; //显示温度--
-					}
-					else if (r_lcgzwd_float < r_lczt_float)
-					{
-						r_lcgzwd_float += 0.1;
-					}
-				}
-			}
-		}
-	}
-	r_lcxswd_float = r_lcgzwd_float;//最终显示使用的值
-	r_lcgzwd = (unsigned char)floor(r_lcgzwd_float); //有些地方还需要用到r_lcgzwd,比如压缩机连续运行保护的功能需要判断r_lcgzwd是否等于设置温度，所以取r_lcgzwd_float得整数部分给r_lcgzwd
-}
+//	r_lcxswd_float = r_lcgzwd_float;//最终显示使用的值
+//	r_lcgzwd = (unsigned char)floor(r_lcgzwd_float); //有些地方还需要用到r_lcgzwd,比如压缩机连续运行保护的功能需要判断r_lcgzwd是否等于设置温度，所以取r_lcgzwd_float得整数部分给r_lcgzwd
+//}
 
 /****************************************************/
 /********************冷冻显示处理********************/
@@ -1779,24 +1620,50 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	}
 	else if (r_set_state == LC_CHK_LCKZ) //E3 冷藏控制传感器实际温度
 	{
+		flag_Now_Disp_LCWD = 1;
 		if (f_lc_sensor_err)
 		{//如果冷藏控制传感器有问题
 			r_bw = DISP_NO;
 			r_sw = DISP_E;
 			r_gw = 3;
 		}
-		else if (r_lcwd < 38)
-		{
-			r_bw = DISP_FH;
-			r_sw = (uchar)((38 - r_lcwd) / 10);
-			r_gw = (uchar)((38 - r_lcwd) % 10);
-		}
-		else
-		{
-			r_bw = DISP_NO;
-			r_sw = (uchar)((r_lcwd - 38) / 10);
-			r_gw = (uchar)((r_lcwd - 38) % 10);
-		}
+		if (r_lcwd_float_c >= 38.0) //温度为正  分辨率为0.1
+			{
+				r_bw = (unsigned int)((r_lcwd_float_c - 38.0) * 10 + 0.5) / 100;		//+0.5是为了float强制转换整数时，四舍五入
+				r_sw = ((unsigned int)((r_lcwd_float_c - 38.0) * 10 + 0.5) % 100) / 10; //+0.5是为了float强制转换整数时，四舍五入
+				r_gw = (unsigned int)((r_lcwd_float_c - 38.0) * 10 + 0.5) % 10;
+				flag_Disp_LCWD_D = 1;
+				if (r_bw == 0)
+				{
+					r_bw = DISP_NO; //百位的0不显示
+				}
+			}
+			else if (r_lcwd_float_c <= 28.0) //温度<= -10度  //只显示整数部分
+			{
+				r_bw = DISP_FH; //-
+				r_sw = ((unsigned int)(38 - r_lcwd_float_c) % 100) / 10;
+				r_gw = (unsigned int)(38 - r_lcwd_float_c) % 10;
+				flag_Disp_LCWD_D = 0;
+			}
+			else //   0  ~ -9.9度   显示1位小数
+			{
+				uchar temp_lc_x10 = (uchar)((38.0 - r_lcwd_float_c) * 10 + 0.5);
+				r_bw = DISP_FH; //-
+				if (temp_lc_x10 >= 100)
+					temp_lc_x10 = 99;
+				r_sw = temp_lc_x10 / 10; //+0.5是为了float强制转换整数时，四舍五入
+				r_gw = temp_lc_x10 % 10;
+				flag_Disp_LCWD_D = 1;
+			}
+			if (flag_Now_Disp_LCWD)
+			{
+				if (flag_Disp_LCWD_D)
+					r_led22 |= 0x20; //显示小数点
+				else
+					r_led22 &= ~0x20; //关闭小数点
+			}
+			else
+				r_led22 &= ~0x20; //关闭小数点
 	}
 	else if (r_set_state == LC_CHK_LCHS) //冷藏控制传感器实际温度
 	{
@@ -2276,73 +2143,7 @@ void LongRangeAlarm(void) //远程报警规格书没有远程报警的说明
 /****************************************************/
 void DealRecData(void)
 {
-	/*
-	if(!f_com_ok)
-	return;
-	f_com_ok = 0;
-	//冷冻的温度处理
-	r16_ldad = rec[3];
-	r16_ldad = r16_ldad<<8;
-	r16_ldad = (r16_ldad&0xff00)|rec[2];
-	if ((r16_ldad <= 1010)&&(r16_ldad >= 15))
-	{//这个括号内程序没有全部对区间处理,但不影响程序正确性
-		if((r_ldwdjz>=10)&& (r16_ldad > 35))//温度校正是正数&&温度小于等于50
-		{
-			r16_ldad = r16_ldad-(r_ldwdjz-10)*4;//校准上偏10.温度对应4个AD
-		}
-		else if ((r_ldwdjz < 10)&& (r16_ldad < 990))
-		{
-			r16_ldad = r16_ldad+(10-r_ldwdjz)*4;
-		}
-	}
-  	if(r16_ldad>470)     
-  	{
-		r_ldsjwd = 140;//-60度
-	} 
-	else if(r16_ldad<36)
-	{
-		r_ldsjwd = 250;//50度
-	} 
-	else													
-	{
-		r_ldsjwd = (tab_temperature[r16_ldad-36]);
-	}
-	//冷藏温度的处理,没有温度显示在50~-60度的限制 
-	r_lcad = rec[1]; 
-	if ((r_lcad < 250) && (r_lcad > 5))
-	{
-		if((r_lcwdjz>=10) && (r_lcad > 20))                  //温度校正
-		{
-			r_lcad = r_lcad-(r_lcwdjz-10)*3;
-		}
-		else if ((r_lcwdjz < 10) && (r_lcad < 235))
-		{
-			r_lcad = r_lcad+(10-r_lcwdjz)*3;
-		} 
-	}
-	r_lcwd = CheckLcTable(r_lcad);
-	//电压
-	r_voltage_ad = rec[4];
-	if((r_voltage_ad >= 13)&&(r_voltage_ad<= 254))
-	{
-		if(r_voltage_ad>=30)
-		{
-			r_voltage = tab_voltage[r_voltage_ad-13];    //VoltageDisplayValue1
-		}
-		else
-		{
-			r_voltage = 0;
-		}
-	}
-	//电池
-	r_battery_ad = rec[5];
-	flag_rec1 = rec[6];//无效
-	if (!f_first_ad)
-	{ 
-		r_voltage_report =r_voltage;//r_voltage_report变量无效
-	}  
-	f_first_ad = 1;
-	*/
+
 }
 /****************************************************/
 /*****************Judge Errs*************************/
@@ -2423,12 +2224,12 @@ void JudgeErrs(void)
 /**********************************/
 void JudgeLcErr(void) //冷藏控制传感器故障
 {
-	if (r_lcad >=250 || r_lcad <=5)
+	if (r_lcad_12b > 250 * 16 || r_lcad_12b < 5 * 16)
 	{
 		if (!f_lc_sensor_err)
 		{
 			f_lc_sensor_err = 1;
-			f_stop_alarm = 0;//有问题马上报警
+			f_stop_alarm = 0;
 		}
 	}
 	else if (f_lc_sensor_err)
@@ -5871,10 +5672,10 @@ void ReadE2(void)
 		r_ld_low_alarm = 5;
 		r_lc_high_alarm = 3;
 		r_lc_low_alarm = 3;
-		r_lcwdjzx = 12;//控制传感器温度偏移量上调2度
-		r_lcwdjz = 12;//控制传感器温度偏移量上调2度
-		r_lcxswdjz=13;//显示传感器温度偏移量上调3度
-		r_lcxswdjzx=13;//控制传感器温度偏移量上调3度
+		r_lcwdjzx = 110;//控制传感器温度偏移量上调2度
+		r_lcwdjz = 110;//控制传感器温度偏移量上调2度
+		r_lcxswdjz=110;//显示传感器温度偏移量上调3度
+		r_lcxswdjzx=110;//控制传感器温度偏移量上调3度
 		u8_ld_bjycsjx = 2; //冷冻报警延迟时间,小时
 		u8_ld_bjycsj = 2;
 		u8_lc_bjycsjx = 2;
@@ -7760,9 +7561,46 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 
 		Lc_Temp_2 = Pannel_Uart1Data[7] << 4; //NTC2的数据 冷藏显示传感器
 		Lc_Temp_2 |= Pannel_Uart1Data[8] >> 4; // 20190410  HYC-386项目修改为NTC2作为冷藏传感器HW
-		r_lcad = Lc_Temp;//控制传感器 冷藏AD值 这个值只用于控制当前温度比如设置为5度时，高于5.5度开压机。低于4.5度关压机
-		r_lcXsad=Lc_Temp_2;
+//		r_lcad = Lc_Temp;//控制传感器 冷藏AD值 这个值只用于控制当前温度比如设置为5度时，高于5.5度开压机。低于4.5度关压机
 		
+		
+//		if (Lc_Temp >= 250 || Lc_Temp <= 10) //温度大于60 小于-20认为错误,兼容NTC1与NTC2
+//		{
+				 //r_lcXsad = Lc_Temp_2;
+				 r_lcXsad=Lc_Temp_2;
+         r_lcad_12b_c = Pannel_Uart1Data[7] * 256 + Pannel_Uart1Data[8];
+//		}
+//		else
+//		{
+			r_lcad_8b = Lc_Temp;
+      r_lcad_12b = Pannel_Uart1Data[5] * 256 + Pannel_Uart1Data[6];
+//		}
+
+        /*8位ad偏移处理*/
+		if ((r_lcad_8b < 250) && (r_lcad_8b > 5))
+		{
+			if (SelfCheckFlag == 0)
+			{
+				if ((r_lcwdjz >= 100) && (r_lcad_8b > 20)) //温度校正
+				{
+					r_lcad_8b = r_lcad_8b - ((r_lcwdjz - 100) / 10.0) * 3;
+				}
+				else if ((r_lcwdjz < 10) && (r_lcad_8b < 235))
+				{
+					r_lcad_8b = r_lcad_8b + ((100 - r_lcwdjz) / 10.0) * 3;
+				}
+			}
+		}
+		r_lcad_8b_c = CheckLcTable(r_lcXsad);   //整数温度现在只用于测试模式
+		r_lcwd_float_c = (float)CheckLcTable_12b(r_lcad_12b_c) + (r_lcxswdjz - 100) / 10.0;;   //
+		r_lcwd = CheckLcTable(r_lcad_8b);   //整数温度现在只用于测试模式
+		r_lcwd_float = (float)CheckLcTable_12b(r_lcad_12b) + (r_lcwdjz - 100) / 10.0;
+        if(r_lcwd_float < 8.0)
+            r_lcwd_float = 8.0;
+        if(r_lcwd_float > 98.0)
+            r_lcwd_float = 98.0;
+				
+
 		//拿化霜传感器的AD值
 		lc_Hs_Temp=0;
 		lc_Hs_Temp = Pannel_Uart1Data[9]; //对应底板byte[13]
@@ -7811,53 +7649,58 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 		}
 **********************************************************************/
 
-		if ((r_lcad < 250) && (r_lcad > 5))
-		{//冷藏控制传感器温度误差矫正
-			if (SelfCheckFlag == 0)
-			{//当前为正常程序运行，非自检模式
-				if ((r_lcwdjz >= 10) && (r_lcad > 5)) //温度校正
-				{//温度1度大约对应3个ad，r_lcwdjz的范围是5-15代表正负5度偏移 AD值与温度为反比关系
-					r_lcwd = CheckLcTable(r_lcad) + (r_lcwdjz - 10);//使用AD值获取到温度值 -24以后上偏38为温度例如AD值(116+24)代表2度
-					//r_lcad = r_lcad - (r_lcwdjz - 10) * 3;
-				}
-				else if ((r_lcwdjz < 10) && (r_lcad < 250))
-				{
-					r_lcwd = CheckLcTable(r_lcad) - (10 - r_lcwdjz);//使用AD值获取到温度值 -24以后上偏38为温度例如AD值(116+24)代表2度
+//		if ((r_lcad < 250) && (r_lcad > 5))
+//		{//冷藏控制传感器温度误差矫正
+//			if (SelfCheckFlag == 0)
+//			{//当前为正常程序运行，非自检模式
+//				if ((r_lcwdjz >= 10) && (r_lcad > 5)) //温度校正
+//				{//温度1度大约对应3个ad，r_lcwdjz的范围是5-15代表正负5度偏移 AD值与温度为反比关系
+//					r_lcwd = CheckLcTable(r_lcad) + (r_lcwdjz - 10);//使用AD值获取到温度值 -24以后上偏38为温度例如AD值(116+24)代表2度
+//					//r_lcad = r_lcad - (r_lcwdjz - 10) * 3;
+//				}
+//				else if ((r_lcwdjz < 10) && (r_lcad < 250))
+//				{
+//					r_lcwd = CheckLcTable(r_lcad) - (10 - r_lcwdjz);//使用AD值获取到温度值 -24以后上偏38为温度例如AD值(116+24)代表2度
 
-					//r_lcad = r_lcad + (10 - r_lcwdjz) * 3;
-				}
-				if(r_lcwd<=8){r_lcwd = 8;}
-				if(r_lcwd>=98){r_lcwd = 98;}
-			}
-		}else{
-			r_lcwd = CheckLcTable(r_lcad);
-		}
+//					//r_lcad = r_lcad + (10 - r_lcwdjz) * 3;
+//				}
+//				if(r_lcwd<=8){r_lcwd = 8;}
+//				if(r_lcwd>=98){r_lcwd = 98;}
+//			}
+//		}else{
+//			r_lcwd = CheckLcTable(r_lcad);
+//		}
 
-		if ((Lc_Temp_2 < 250) && (Lc_Temp_2 > 5))
-		{//冷藏显示传感器温度误差矫正
-			if (SelfCheckFlag == 0)
-			{//当前为正常程序运行，非自检模式
-				if ((r_lcxswdjz >= 10) && (Lc_Temp_2 > 5)) //温度校正
-				{//温度1度大约对应3个ad，r_lcwdjz的范围是5-15代表正负5度偏移 AD值与温度为反比关系
-					//Lc_Temp_2 = Lc_Temp_2 - (r_lcxswdjz - 10) * 3;
-					r_lcwd_float = (float)CheckLcTable(Lc_Temp_2) + (r_lcxswdjz - 10);//jhw，只作为显示使用
-				}
-				else if ((r_lcxswdjz < 10) && (Lc_Temp_2 < 250))
-				{
-					r_lcwd_float = (float)CheckLcTable(Lc_Temp_2) - (10 - r_lcxswdjz);
-					//Lc_Temp_2 = Lc_Temp_2 + (10 - r_lcxswdjz) * 3;
-				}
-				if(r_lcwd_float<=8){r_lcwd_float=(float)8;}
-				if(r_lcwd_float>=98){r_lcwd_float=(float)98;}
-			}
-		}else{
-			r_lcwd_float = (float)CheckLcTable(Lc_Temp_2);
-		}
-		if (Lc_Temp_2 >= 250 || Lc_Temp_2 <= 5) //温度大于60 小于-30认为错误,使用ntc1控制传感器 刚上电时有这个问题//TODO
-		{
-			//Lc_Temp_2 = r_lcad;
-			r_lcwd_float=(float)r_lcwd;
-		}
+//		if ((Lc_Temp_2 < 250) && (Lc_Temp_2 > 5))
+//		{//冷藏显示传感器温度误差矫正
+//			if (SelfCheckFlag == 0)
+//			{//当前为正常程序运行，非自检模式
+//				if ((r_lcxswdjz >= 10) && (Lc_Temp_2 > 5)) //温度校正
+//				{//温度1度大约对应3个ad，r_lcwdjz的范围是5-15代表正负5度偏移 AD值与温度为反比关系
+//					//Lc_Temp_2 = Lc_Temp_2 - (r_lcxswdjz - 10) * 3;
+//					//r_lcwd_float = (float)CheckLcTable(Lc_Temp_2) + (r_lcxswdjz - 10);//jhw，只作为显示使用
+//					r_lcwd_float = (float)CheckLcTable_12b(r_lcad_12b) + (r_lcwdjz - 100) / 10.0;
+//					if(r_lcwd_float < 8.0)
+//							r_lcwd_float = 8.0;
+//					if(r_lcwd_float > 98.0)
+//							r_lcwd_float = 98.0;
+//				}
+//				else if ((r_lcxswdjz < 10) && (Lc_Temp_2 < 250))
+//				{
+//					r_lcwd_float = (float)CheckLcTable(Lc_Temp_2) - (10 - r_lcxswdjz);
+//					//Lc_Temp_2 = Lc_Temp_2 + (10 - r_lcxswdjz) * 3;
+//				}
+//				if(r_lcwd_float<=8){r_lcwd_float=(float)8;}
+//				if(r_lcwd_float>=98){r_lcwd_float=(float)98;}
+//			}
+//		}else{
+//			r_lcwd_float = (float)CheckLcTable(Lc_Temp_2);
+//		}
+//		if (Lc_Temp_2 >= 250 || Lc_Temp_2 <= 5) //温度大于60 小于-30认为错误,使用ntc1控制传感器 刚上电时有这个问题//TODO
+//		{
+//			//Lc_Temp_2 = r_lcad;
+//			r_lcwd_float=(float)r_lcwd;
+//		}
 		
 //		//r_lcad = 210; // TEST 测试 @20181025 CFJ
 //		r_lcwd = CheckLcTable(r_lcad);//使用AD值获取到温度值 -24以后上偏38为温度例如AD值(116+24)代表2度
@@ -8038,7 +7881,7 @@ void l_Send_Data_Build(void)
 	{
 		g_IDM_TX_ODM_Data[19] = 0x01; //蜂鸣报警
 	}
-	g_IDM_TX_ODM_Data[22] = r_lcad;//冷藏控制传感器温度NTC1
+	g_IDM_TX_ODM_Data[22] = r_lcad_8b_c;//冷藏控制传感器温度NTC1
 	g_IDM_TX_ODM_Data[23] = r16_ldad / 256;
 	g_IDM_TX_ODM_Data[24] = r16_ldad % 256;
 	g_IDM_TX_ODM_Data[25] = 0xFF; //压缩机1

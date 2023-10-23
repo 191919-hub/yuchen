@@ -7,7 +7,7 @@ extern const unsigned short table_ld_3840[];
 extern const unsigned short table_ld_3840_s[];
 
 extern const unsigned char table_lc[];
-									   
+extern const float table_lc_12b[19][2];   
 
 /************************************************************/
 extern const unsigned char table_led[];
@@ -251,11 +251,11 @@ extern unsigned char r_key;//扫描的时候调整到一个字节的按键值
 extern unsigned char r_keyz;//有按键按下的时候的记录的按键值
 extern unsigned char r_sfkeyz;//存储按键的值
 extern unsigned char t_write_e2;//上次写E2时间
-extern unsigned char r_lcad;
+//extern unsigned char r_lcad;
 extern unsigned char r_set_state;//调节时显示的屏编码
 extern unsigned char r_flash_bit;//数码管位数
-
-//extern unsigned int  r_lcad_12b;//后期用来冷藏的显示温度
+extern unsigned char r_lcad_8b;
+extern unsigned int  r_lcad_12b;//后期用来冷藏的显示温度
 extern unsigned char Eheatcontrolpin;
 extern unsigned char t_rec;   //通讯
 extern unsigned char r_rbit;
@@ -761,6 +761,8 @@ extern unsigned int r16_lcLengNingad;//冷藏冷凝传感器AD值
 extern signed char r_lclnsjwd;
 extern signed char r_lcHuaShuangsjwd;//冷藏的化霜传感器实际温度
 extern unsigned char r_lcXsad;//冷藏显示传感器ad值
+extern unsigned int  r_lcad_8b_c;
+extern unsigned int  r_lcad_12b_c;
 extern unsigned short u16_lcCompRunMinForHuaShuang;//化霜传感器进入条件中的压机累计运行时间
 extern unsigned char u8_lcChuShuangTime;
 extern unsigned char u8_lcChuShuangTime1;
