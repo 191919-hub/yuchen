@@ -1,9 +1,10 @@
 //#pragma CODE_SEG DEFAULT @20180920 cfj
 #include "includes.h"
-#include "Program_Cfg.h"  //???????????????????????????????????????
+#include "Program_Cfg.h"   //程序功能配置，比如禁止蜂鸣器、控制冷藏温度分辨率
 #include "Disp.H"
 #include "Coupler.h"
-const unsigned short  table_ld_3840[] =                //3840?????????????
+				   
+const unsigned short  table_ld_3840[] =               //环温表,上偏38度,表头偏移24 
 {
     3817,   //-40
     3800,   //-39
@@ -335,7 +336,7 @@ const unsigned short table_ld_3840_s[] =                //3840?????????????
 
 const unsigned char table_lc[]= //???±?,???38??,??????24 
 {
-    98,97,95,94,93,92,91,90,89,//24           ad=24?????? = 98 - 38 = 60???ad=25?????? = 97-38 = 59 ??
+    98,97,95,94,93,92,91,90,89,//24          ad=24时，温度 = 98 - 38 = 60度；ad=25时，温度 = 97-38 = 59 度
  88,87,87,86,85,84,83,82,82,81,//33,34,35
  80,80,79,78,77,77,76,76,75,74,//43
  74,73,73,72,71,71,70,70,69,69,//53
@@ -356,6 +357,29 @@ const unsigned char table_lc[]= //???±?,???38??,??????24
  18,17,17,17,16,16,15,15,14,14,//203
  13,13,12,12,11,11,10,10,9,9,8,//213
  };
+
+								  
+			   
+				
+				
+				
+				
+				
+			   
+			  
+			  
+			   
+			   
+			   
+			   
+			   
+			  
+			  
+			  
+			  
+			  
+			  
+  
 
 /************************************************************/
 const unsigned char table_led[]= 
@@ -536,68 +560,68 @@ const unsigned short tab_on[]=
 418	,	//	152
 414	,	//	153
 410	,	//	154
-406	,	//	155 ,-45??  ******************************************************************
-402	,	//	156 ,-44??
-398	,	//	157 ,-43??
-394	,	//	158 ,-42??
-390	,	//	159 ,-41??
-386	,	//	160 ,-40??
-383	,	//	161 ,-39??
-379	,	//	162 ,-38??
-375	,	//	163 ,-37??
-371	,	//	164 ,-36??
-367	,	//	165 ,-35??
-363	,	//	166 ,-34??
-359	,	//	167 ,-33??
-356	,	//	168 ,-32??
-352	,	//	169 ,-31??
-348	,	//	170 ,-30??
-344	,	//	171 ,-29??
-340	,	//	172 ,-28??
-336	,	//	173 ,-27??
-332	,	//	174 ,-26??
-328	,	//	175 ,-25??
-324	,	//	176 ,-24??
-320	,	//	177 ,-23??
-316	,	//	178 ,-22??
-313	,	//	179 ,-21??
-309	,	//	180 ,-20??
-305	,	//	181 ,-19??
-301	,	//	182 ,-18??
-297	,	//	183 ,-17??
-293	,	//	184 ,-16??
-289	,	//	185 ,-15??
-285	,	//	186 ,-14??
-281	,	//	187 ,-13??
-277	,	//	188 ,-12??
-273	,	//	189 ,-11??
-270	,	//	190 ,-10??  ***********************************************************************
-266	,	//	191 ,-9??
-262	,	//	192 ,-8??
-258	,	//	193 ,-7??
-254	,	//	194 ,-6??
-250	,	//	195 ,-5??
-246	,	//	196 ,-4??
-242	,	//	197 ,-3??
-238	,	//	198 ,-2?? 
-234	,	//	199 ,-1??
-228	,	//	200 ,0??
-224	,	//	201 ,1??
-220	,	//	202 ,2??
-216	,	//	203 ,3??
-212	,	//	204 ,4??
-209	,	//	205 ,5??
-205	,	//	206 ,6??
-201	,	//	207 ,7??
-197	,	//	208 ,8??
-193	,	//	209 ,9??
-189	,	//	210 ,10??
-185	,	//	211 ,11??
-181	,	//	212 ,12??
-177	,	//	213 ,13??
-173	,	//	214 ,14??
-169	,	//	215 ,15??
-166	,	//	216 ,16??
+406	,	//	155 ,-45℃  ******************************************************************
+402	,	//	156 ,-44℃
+398	,	//	157 ,-43℃
+394	,	//	158 ,-42℃
+390	,	//	159 ,-41℃
+386	,	//	160 ,-40℃
+383	,	//	161 ,-39℃
+379	,	//	162 ,-38℃
+375	,	//	163 ,-37℃
+371	,	//	164 ,-36℃
+367	,	//	165 ,-35℃
+363	,	//	166 ,-34℃
+359	,	//	167 ,-33℃
+356	,	//	168 ,-32℃
+352	,	//	169 ,-31℃
+348	,	//	170 ,-30℃
+344	,	//	171 ,-29℃
+340	,	//	172 ,-28℃
+336	,	//	173 ,-27℃
+332	,	//	174 ,-26℃
+328	,	//	175 ,-25℃
+324	,	//	176 ,-24℃
+320	,	//	177 ,-23℃
+316	,	//	178 ,-22℃
+313	,	//	179 ,-21℃
+309	,	//	180 ,-20℃
+305	,	//	181 ,-19℃
+301	,	//	182 ,-18℃
+297	,	//	183 ,-17℃
+293	,	//	184 ,-16℃
+289	,	//	185 ,-15℃
+285	,	//	186 ,-14℃
+281	,	//	187 ,-13℃
+277	,	//	188 ,-12℃
+273	,	//	189 ,-11℃
+270	,	//	190 ,-10℃  ***********************************************************************
+266	,	//	191 ,-9℃
+262	,	//	192 ,-8℃
+258	,	//	193 ,-7℃
+254	,	//	194 ,-6℃
+250	,	//	195 ,-5℃
+246	,	//	196 ,-4℃
+242	,	//	197 ,-3℃
+238	,	//	198 ,-2℃ 
+234	,	//	199 ,-1℃
+228	,	//	200 ,0℃
+224	,	//	201 ,1℃
+220	,	//	202 ,2℃
+216	,	//	203 ,3℃
+212	,	//	204 ,4℃
+209	,	//	205 ,5℃
+205	,	//	206 ,6℃
+201	,	//	207 ,7℃
+197	,	//	208 ,8℃
+193	,	//	209 ,9℃
+189	,	//	210 ,10℃
+185	,	//	211 ,11℃
+181	,	//	212 ,12℃
+177	,	//	213 ,13℃
+173	,	//	214 ,14℃
+169	,	//	215 ,15℃
+166	,	//	216 ,16℃
 160	,	//	217
 154	,	//	218
 150	,	//	219
@@ -781,68 +805,68 @@ const unsigned short tab_off[]=
 422	,	//	152
 418	,	//	153
 414	,	//	154
-410 , //408	,	//	155 ??-45??  ******************************************************************************
-406 , //404	,	//	156 ??-44??
-403 , //400	,	//	157 ??-43??
-399 , //396	,	//	158 ??-42??
-395 , //392	,	//	159 ??-41??
-391 , //388	,	//	160 ??-40??
-387 , //384	,	//	161 ??-39??
-383 , //380	,	//	162 ??-38??
-379 , //376	,	//	163 ??-37??
-375 , //372	,	//	164 ??-36??
-371 , //368	,	//	165 ??-35??
-367 , //364	,	//	166 ??-34??
-363 , //360	,	//	167 ??-33??
-359 , //356	,	//	168 ??-32??
-355 , //352	,	//	169 ??-31??
-351 , //348	,	//	170 ??-30??
-347 , //344	,	//	171 ??-29??
-342 , //340	,	//	172 ??-28??
-338 , //336	,	//	173 ??-27??
-334 , //333	,	//	174 ??-26??
-330 , //329	,	//	175 ??-25??
-326 , //325	,	//	176 ??-24??
-323 , //321	,	//	177 ??-23??
-319 , //317	,	//	178 ??-22??
-316 , //313	,	//	179 ??-21??
-312 , //309	,	//	180 ??-20??
-308 , //305	,	//	181 ??-19??
-304 , //301	,	//	182 ??-18??
-300 , //297	,	//	183 ??-17??
-296 , //293	,	//	184 ??-16??
-292 , //289	,	//	185 ??-15??
-288 , //285	,	//	186 ??-14??
-284 , //281	,	//	187 ??-13??
-280 , //277	,	//	188 ??-12??
-276 , //273	,	//	189 ??-11??
-273 , //269	,	//	190 ??-10?? ****************************************************************************
-269	,	//	191 ??-9??
-265	,	//	192 ??-8??
-261	,	//	193 ??-7??
-257	,	//	194 ??-6??
-253	,	//	195 ??-5??
-249	,	//	196 ??-4??
-245	,	//	197 ??-3??
-241	,	//	198 ??-2??
-237	,	//	199 ??-1??
-233	,	//	200 ??0??
-230	,	//	201 ??1??
-226	,	//	202 ??2??
-222	,	//	203 ??3??
-218	,	//	204 ??4??
-214	,	//	205 ??5??
-210	,	//	206 ??6??
-206	,	//	207 ??7??
-202	,	//	208 ??8??
-198	,	//	209 ??9??
-194	,	//	210 ??10??
-190,	//	211 ??11??
-187	,	//	212 ??12??
-183	,	//	213 ??13??
-179	,	//	214 ??14??
-175	,	//	215 ??15??
-171	,	//	216 ??16??
+410 , //408	,	//	155 ，-45℃  ******************************************************************************
+406 , //404	,	//	156 ，-44℃
+403 , //400	,	//	157 ，-43℃
+399 , //396	,	//	158 ，-42℃
+395 , //392	,	//	159 ，-41℃
+391 , //388	,	//	160 ，-40℃
+387 , //384	,	//	161 ，-39℃
+383 , //380	,	//	162 ，-38℃
+379 , //376	,	//	163 ，-37℃
+375 , //372	,	//	164 ，-36℃
+371 , //368	,	//	165 ，-35℃
+367 , //364	,	//	166 ，-34℃
+363 , //360	,	//	167 ，-33℃
+359 , //356	,	//	168 ，-32℃
+355 , //352	,	//	169 ，-31℃
+351 , //348	,	//	170 ，-30℃
+347 , //344	,	//	171 ，-29℃
+342 , //340	,	//	172 ，-28℃
+338 , //336	,	//	173 ，-27℃
+334 , //333	,	//	174 ，-26℃
+330 , //329	,	//	175 ，-25℃
+326 , //325	,	//	176 ，-24℃
+323 , //321	,	//	177 ，-23℃
+319 , //317	,	//	178 ，-22℃
+316 , //313	,	//	179 ，-21℃
+312 , //309	,	//	180 ，-20℃
+308 , //305	,	//	181 ，-19℃
+304 , //301	,	//	182 ，-18℃
+300 , //297	,	//	183 ，-17℃
+296 , //293	,	//	184 ，-16℃
+292 , //289	,	//	185 ，-15℃
+288 , //285	,	//	186 ，-14℃
+284 , //281	,	//	187 ，-13℃
+280 , //277	,	//	188 ，-12℃
+276 , //273	,	//	189 ，-11℃
+273 , //269	,	//	190 ，-10℃ ****************************************************************************
+269	,	//	191 ，-9℃
+265	,	//	192 ，-8℃
+261	,	//	193 ，-7℃
+257	,	//	194 ，-6℃
+253	,	//	195 ，-5℃
+249	,	//	196 ，-4℃
+245	,	//	197 ，-3℃
+241	,	//	198 ，-2℃
+237	,	//	199 ，-1℃
+233	,	//	200 ，0℃
+230	,	//	201 ，1℃
+226	,	//	202 ，2℃
+222	,	//	203 ，3℃
+218	,	//	204 ，4℃
+214	,	//	205 ，5℃
+210	,	//	206 ，6℃
+206	,	//	207 ，7℃
+202	,	//	208 ，8℃
+198	,	//	209 ，9℃
+194	,	//	210 ，10℃
+190,	//	211 ，11℃
+187	,	//	212 ，12℃
+183	,	//	213 ，13℃
+179	,	//	214 ，14℃
+175	,	//	215 ，15℃
+171	,	//	216 ，16℃
 167	,	//	217
 163	,	//	218
 159	,	//	219
@@ -1087,9 +1111,9 @@ const unsigned char tab_voltage[]=
           255,    // 215
 };
 /************************************************************/
-const	unsigned char tab_temperature[]=//????+200   ?? 
+const	unsigned char tab_temperature[]=//温度值+200   冷冻 
 {
-250	,	//	36   ad=36??????= 250 - 200 = 50?? 
+250	,	//	36  ad=36时，温度= 250 - 200 = 50℃ 
 250	,	//	37
 250	,	//	38
 250	,	//	39
@@ -2204,24 +2228,25 @@ const float Humi_Tab[21][2]=   //???????????? AD--????
 
 #define C_send  PTCD_PTCD0
 #define C_rec   PTCD_PTCD1
-#define C_bit 8      //????????λ??
-#define C_byte 5     //???????????
-#define C_bp_byte 1  //?????????????????????
-#define C_rbit 8     //????????λ??
-#define C_rbyte 9   //???????????
+#define C_bit 8      //发送每字节位数
+#define C_byte 5     //发送字节总数
+#define C_bp_byte 1  //发送蜂鸣器帧时发送的字节数
+#define C_rbit 8     //接收每字节位数
+#define C_rbyte 9   //接收字节总数
 ///****************Constant define*****************/
-#define KEY_UNLOCK       0x02//0b00000010             // key2 ?????? 
-#define KEY_SET          0x01//0b00000001             // key1 ???ü?  
-#define KEY_DISABLE_BUZZ  0x20//0b00100000             // ??????
-#define KEY_ADJUST       0x04//0b00000100             // ??????
-#define KEY_TEST_ALARM   0x10//0b00010000             // ?????????
-#define KEY_DEFROST      0x40//0b01000000             // ?????
-#define KEY_SWITCH       0x08//0b00001000             // ?л???
-#define KEY_DELAY        0x05//0b00000101             // ????????
-#define KEY_WDJZ         0x03//0b00000011             // ????????
-#define KEY_BJYCSJ       0x21//0b00100001             // ??????????
-#define KEY_DATE         0x07//0b00000111             // ???????ü?
-#define KEY_UsbCheck     0x09//0b00001001             // usb?????
+#define KEY_UNLOCK       0x02//0b00000010             // key2 解锁键 
+#define KEY_SET          0x01//0b00000001             // key1 设置键  
+#define KEY_DISABLE_BUZZ  0x20//0b00100000             // 消音键
+#define KEY_ADJUST       0x04//0b00000100             // 温湿度调节键
+#define KEY_TEST_ALARM   0x10//0b00010000             // 测试报警键
+#define KEY_DEFROST      0x40//0b01000000             // 照明灯
+#define KEY_SWITCH       0x08//0b00001000             // 温区切换
+#define KEY_DELAY        0x05//0b00000101             // 压机延时键   KEY_SET+KEY_ADJUST              设置键+温湿度调节
+#define KEY_WDJZ         0x03//0b00000011             // 温度调整键KEY_UNLOCK+KEY_SET                 设置+位数切换
+#define KEY_BJYCSJ       0x21//0b00100001             // 报警延迟时间KEY_DISABLE_BUZZ+KEY_SET          消音键+设置键
+#define KEY_DATE         0x07//0b00000111             // 日期设置键KEY_UNLOCK+KEY_SET+KEY_ADJUST 解锁键+设置键+调整键
+#define KEY_UsbCheck     0x09//0b00001001             // usb查询状态KEY_SWITCH+KEY_SET               温区切换切换键+设置键
+#define KEY_LCXSWDJZ	 0x11//0b00010001			  //设置+报警测试按键					调节显示传感器偏移量
 
 #define SET_NC_LD       0//????????????????
 #define SET_LD_L0       1
@@ -2275,8 +2300,8 @@ const float Humi_Tab[21][2]=   //???????????? AD--????
 #define BIT5  5
 #define BIT6  6
 
-#define DISP_NO 10//?????
-#define DISP_FH 11//????
+#define DISP_NO 10//不显示
+#define DISP_FH 11//负号
 #define DISP_F  12
 #define DISP_L  13
 #define DISP_H  14
@@ -2285,7 +2310,7 @@ const float Humi_Tab[21][2]=   //???????????? AD--????
 #define DISP_C  17
 #define DISP_P  18
 #define DISP_D  19
-#define DISP_ZH 20//????
+#define DISP_ZH 20//正号
 
 //#define DISP_U  21     //zyj  100621
 #define DISP_b  22     
@@ -2295,9 +2320,9 @@ const float Humi_Tab[21][2]=   //???????????? AD--????
 #define DISP_N  26 //zyj  100621
 
 
-#define LOCK_LED_ON    0x80//0b10000000//???????????
+#define LOCK_LED_ON    0x80//0b10000000//锁定灯的数据
 #define LOCK_LED_OFF   0x7F//0b01111111
-#define ALARM_LED_ON   0x04//0b00000100//???????????
+#define ALARM_LED_ON   0x04//0b00000100//报警灯的数据
 #define ALARM_LED_OFF  0xFB//0b11111011
 
 #define V220 0
@@ -2315,43 +2340,42 @@ const float Humi_Tab[21][2]=   //???????????? AD--????
 //#pragma DATA_SEG _DATA_ZEROPAGE @20180920 cfj
 
 
-
 unsigned char t_key_dly;
-unsigned char t_key3s;
-unsigned char r_key;//???????????????????????
-unsigned char r_keyz;//?а????????????????????
-unsigned char r_sfkeyz;//?洢???????
-unsigned char t_write_e2;//???дE2???
+uint32_t t_key3s;
+unsigned char r_key;//扫描的时候调整到一个字节的按键值
+unsigned char r_keyz;//有按键按下的时候的记录的按键值
+unsigned char r_sfkeyz;//存储按键的值
+unsigned char t_write_e2;//上次写E2时间
 unsigned char r_lcad;
-unsigned char r_lcXsad;//????????????ad?
-unsigned char r_set_state;//????????????????
-unsigned char r_flash_bit;//?????λ??
-//unsigned int  r_lcad_12b;//???????????
+unsigned char r_lcXsad;//
+unsigned char r_set_state;//调节时显示的屏编码
+unsigned char r_flash_bit;//数码管位数
+unsigned int  r_lcad_12b;
 unsigned char Eheatcontrolpin;
-unsigned char t_rec;   //??
+unsigned char t_rec;   //通讯
 unsigned char r_rbit;
 unsigned char r_rbyte;
 unsigned char t_send;
 unsigned char r_bit;
 unsigned char r_byte;
-unsigned char r_send_byte;  //?????????????
+unsigned char r_send_byte;  //要发送的字节总数
 unsigned char send[12];
 unsigned char rec[18];
 
-unsigned char r_buzz;//???????????е????,????5??????;0,2,4??100ms;1,3?50ms
-unsigned char t_buzz;//????????????
+unsigned char r_buzz;//蜂鸣器连续叫的步骤,共计5个步骤;0,2,4叫100ms;1,3停50ms
+unsigned char t_buzz;//蜂鸣器叫时计时
 unsigned char u8_test_alarm_count;
 unsigned char u8_test_alarm_time;
 
-unsigned char r_lczt;//????趨???
+unsigned char r_lczt;//冷藏设定温度
 unsigned char r_lcztCopy;
 unsigned char r_lcztx;
-unsigned char r_ldzt;//???趨???,???200 ????????????е???????
+unsigned char r_ldzt;//冷冻设定温度,上偏200
 unsigned char r_ldztCopy;
 
-unsigned char r_bwtj;//?趨??????λ
-unsigned char r_swtj;//?趨????λ??
-unsigned char r_gwtj;//?趨????λ??
+unsigned char r_bwtj;//
+unsigned char r_swtj;//设定时的高位数
+unsigned char r_gwtj;//设定时的低位数
 
 unsigned char r_poise_valve_set;
 unsigned char t_fan2min;
@@ -2368,22 +2392,23 @@ unsigned char r_led34;
 /*************************************************/
 
 unsigned char t_1ms;
+					 
 unsigned char t_2ms;
 uint32_t t_halfsec;
 unsigned char t_1min;
-unsigned char t_onems;//1ms??1
+unsigned char t_onems;//1ms加1
 unsigned char t_twoms;
-unsigned char t_20ms;//20ms??1
+unsigned char t_20ms;//20ms加1
 unsigned char t_j20ms;
 unsigned char t_10s;
 unsigned char t_tens;//10s+1
-unsigned char t_auto_lock;
+uint32_t t_auto_lock;
 unsigned char t_data_to_led;
 
 unsigned char r_hwxswd;
-unsigned char r_hwsjwd;//???????????,???38
-signed char r_lclnsjwd;//?????????????????
-signed char r_lcHuaShuangsjwd;//??????????????????
+unsigned char r_hwsjwd;//环境温度显示值,上偏38
+signed char r_lclnsjwd;//
+signed char r_lcHuaShuangsjwd;//
 
 unsigned char r_lcwd;
 unsigned char u8_CompMin;
@@ -2395,12 +2420,12 @@ unsigned char r_lcxswd;
 unsigned char r_ldxs;
 unsigned char r_hwad;
 unsigned char t_ad;
-unsigned char r_hwadtemp;//??????ε????
+unsigned char r_hwadtemp;//环温上次的温度
 unsigned char t_hwdisp;
 unsigned char t_on_off_dly;
 unsigned char t_valve_dly;
 unsigned char r_hwhc;
-unsigned char t_lc_err_disp;
+uint32_t t_lc_err_disp;
 unsigned char t_lc_high_buzz;
 unsigned char t_lc_low_buzz;
 unsigned char t_lc_low_Protect;
@@ -2410,51 +2435,51 @@ unsigned char u8_LcRule;
 unsigned char u8_CompStop5min;
 unsigned char u8_CompRunMin;
 
-unsigned char u8_ld_bjycsj;//????????????,С?
+unsigned char u8_ld_bjycsj;//冷冻报警延迟时间,小时
 unsigned char u8_ld_bjycsjx;
-unsigned char u8_lc_bjycsj;//????????????,С?
+unsigned char u8_lc_bjycsj;//冷藏报警延迟时间,小时
 unsigned char u8_lc_bjycsjx;
 unsigned char u8_BuzzDlyMinld;
 unsigned char u8_BuzzDlyHourld;
 unsigned char u8_BuzzDlyMinlc;
-unsigned char u8_BuzzDlyHourlc;//?????????????????????
-unsigned char r_ldgzwd;//?????????,????????????
-unsigned char r_ldxswd;//????????,???200
+unsigned char u8_BuzzDlyHourlc;//冷藏上电延迟报警时间计数单元
+unsigned char r_ldgzwd;//冷冻修正温度,实际也是现实温度
+unsigned char r_ldxswd;//冷冻显示温度,上偏200
 unsigned int  r16_ldad;
-unsigned int r16_lcHuaShuangad;//???????????AD?
-unsigned int r16_lcLengNingad;//?????????????AD?
-unsigned char r_ldsjwd;//AD???????????
+unsigned int r16_lcHuaShuangad;//
+unsigned int r16_lcLengNingad;//
+unsigned char r_ldsjwd;//AD转换的实际温度
 unsigned char r_voltage_ad;
 unsigned char r_voltage;
 unsigned char r_voltageCopy;
 unsigned char r_lcgzwd;
-unsigned char t_lc_rule;
-unsigned char t_yj_delay;	//???????????
+ uint32_t t_lc_rule;
+unsigned char t_yj_delay;	//压缩机延迟时间
 unsigned char t_yj_delayx;
 unsigned char t_yj_dly_time;
-unsigned char t_ld_rule;//???????????????????????
-unsigned char r_ldwdjz;	//?????У?,???10
-unsigned char r_ldwdjzx;//??У????,???10
-unsigned char r_ld_high_alarm;//?????±????趨????
+ uint32_t t_ld_rule;//用于冷冻显示规则的一个计时单元
+unsigned char r_ldwdjz;	//冷冻温度校准,上偏10
+unsigned char r_ldwdjzx;//冷冻校准差值,上偏10
+unsigned char r_ld_high_alarm;//冷冻高温报警设定的差值
 unsigned char r_ld_high_alarmCopy;
-unsigned char r_ld_low_alarm;//?????±????趨????
+unsigned char r_ld_low_alarm;//冷冻低温报警设定的差值
 unsigned char r_ld_low_alarmCopy;
-unsigned char r_lc_high_alarm;//?????±????趨????
+unsigned char r_lc_high_alarm;//冷藏高温报警设定的差值
 unsigned char r_lc_high_alarmCopy;
-unsigned char r_lc_low_alarm; //?????±????趨????
+unsigned char r_lc_low_alarm; //冷藏低温报警设定的差值
 unsigned char r_lc_low_alarmCopy;
 unsigned char t_compressor;
-unsigned char t_ld_err_disp;
+uint32_t t_ld_err_disp;
 unsigned char t_ld_high_buzz;
 unsigned char t_ld_low_buzz;
-unsigned char t_voltage_buzz;
-unsigned char t_power_buzz;
-unsigned char t_power_Off; //@20181226 CFJ ????????
+uint32_t t_voltage_buzz;
+ uint32_t t_power_buzz;
+uint32_t t_power_Off; //@20181226 CFJ 掉电的时间
 unsigned char t_stop_alarm;
 unsigned char r_battery_ad;
-unsigned char r_lcwdjz;//?????????У??
+unsigned char r_lcwdjz;//冷藏温度校准值,乘以10 再偏移100
 unsigned char r_lcwdjzx;
-unsigned char r_lcxswdjz;//?????????У??
+unsigned char r_lcxswdjz;//冷藏显示温度校准值
 unsigned char r_lcxswdjzx;
 unsigned char  t_WriteE2;
 unsigned char  WriteE2_num;
@@ -2485,21 +2510,21 @@ unsigned char t_ack5s;
 unsigned char t_lightms;
 unsigned char t_lc_on_off_dly;
 unsigned char t_lc_compressor;//
-unsigned short  t_lc_ChuShi_Compressor;//???????? ???????
-unsigned char f_deHum_and_lcTemp;//??????????0???????????1???????????4???? 2????С??4????
+unsigned short  t_lc_ChuShi_Compressor;//
+unsigned char f_deHum_and_lcTemp;//
 unsigned char t_nd_fan;
-unsigned char r_set_state1;//??????????????????????????????????(2)????????
+unsigned char r_set_state1;//
 unsigned char t_yj_delay_10sec;
 
 unsigned char u8_lcCompMin;
 unsigned char u8_lcCompHour;
 unsigned char u8_lcCompRunMin;
-unsigned char u8_lcChuShuangTime;//????????
-unsigned char u8_lcChuShuangTime1=0;//?????????>6????
-//unsigned char u8_lcChuShuangTime2=0;//??????????????????????????????λ
-unsigned int u32_t_lcChuShuangTime1=0;//??????????????????????3???????
-unsigned int u32_t_lcChuShuangTime2=0;//???????????????????????1???????
-unsigned int u32_t_lcChuShuangTime3=0;//????????????????俪???
+unsigned char u8_lcChuShuangTime;//
+unsigned char u8_lcChuShuangTime1=0;//
+//unsigned char u8_lcChuShuangTime2=0;//
+unsigned int u32_t_lcChuShuangTime1=0;//
+unsigned int u32_t_lcChuShuangTime2=0;//
+unsigned int u32_t_lcChuShuangTime3=0;//
 
 
 
@@ -2536,7 +2561,7 @@ unsigned int u16_random_time;
 uchar R_VoidFrameCode;  //zyj 100504
 uchar R_HomeNetCounter;
 
-uchar    r_voltage_report;//??Ч
+uchar    r_voltage_report;//无效
 uchar    r_lczt_report;
 uchar    r_ldzt_report;
 uchar    lc_high_alarm_report;
@@ -2556,24 +2581,24 @@ uint  R_HomeNetResponseCheckTime100ms;    //100504  zyj
 uchar R_HomeNetResponseCheckTime_H8;
 uchar R_HomeNetResponseCheckTime_L8;
 uint  R_HomeNetResponseCheckTime;
-uchar t_door;/////wys11.03.19??????
+uchar t_door;/////wys11.03.19开门计时
 
 uchar    ACKok;
-uchar f8_lcCompAddUp6HourProtect;               // 140819 6С???? 
-uint  u16_lcComp_Addup_Minute;                  // ??????
-uchar u8_lcCompAddUp6HourProtectTimer;          // ??????? 
-uchar f8_lcCompAddUp6HourTimer;                 // 141017 ???6С???? 
+uchar f8_lcCompAddUp6HourProtect;               // 累计运行y小时，停机化霜
+uint  u16_lcComp_Addup_Minute;                  // 累计时间
+uchar u8_lcCompAddUp6HourProtectTimer;          // 保护时间 
+uchar f8_lcCompAddUp6HourTimer;                 // 141017 冷藏6小时时间到 
 unsigned int g_Txd_Time;    //CFJ
-unsigned int g_Bus_Error_Time;
+volatile unsigned int g_Bus_Error_Time;
 unsigned char g_UART1_RCV_Cyc;
 unsigned char g_UART1_RCV_Counter ;
 unsigned char  g_IDM_TX_ODM_Data[30];
 unsigned char  g_IDM_RX_ODM_Data[30];
-unsigned int  g_Bus_Rec_Time; //????????2s???????
+unsigned int  g_Bus_Rec_Time; //转为接受状态2s的时间标志
 unsigned char  Uart1RxCnt;
 unsigned char  Uart1RxSum;
-unsigned char  Pannel_Uart1Buf[27];		// ?????????
-unsigned char  Pannel_Uart1Data[27];		// ?????????
+unsigned char  Pannel_Uart1Buf[27];		// 串口缓存区
+unsigned char  Pannel_Uart1Data[27];		// 串口缓存区
 unsigned char  g_UART1_TXD_Counter;
 //unsigned char  g_UART1_TXD_Step;
 unsigned char SelfCheckFlag;
