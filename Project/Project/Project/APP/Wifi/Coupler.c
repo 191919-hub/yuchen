@@ -63,6 +63,7 @@ void UART_Wifi_SEND_IRQHandler(void)  //函数名需要根据实际情况修改�
     if(Uart_WF.uart_tx_count >= Uart_WF.uart_tx_length)
     {
         Uart_WF.uart_tx_count = 0;
+				u8_Send2_data_State = 0;
         UART_ITConfig(UART5, UART_IT_TB, DISABLE); //无效发送中断
     }
 

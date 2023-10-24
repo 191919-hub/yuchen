@@ -80,7 +80,7 @@ int32_t main(void)
 
     UART3_USB_Init(); //USB模块通讯初始化
 
-    UART5_Wifi_Init(); //wifi模块或打印机通讯初始化
+    UART5_Wifi_Init(); //安卓屏通讯初始化
 
     UART4_PwrBoard_Init(); //UART 初始化 9600 主控板与面板通讯 初始化
 

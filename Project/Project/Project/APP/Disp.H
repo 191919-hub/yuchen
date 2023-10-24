@@ -136,7 +136,7 @@ extern const float Humi_Tab[21][2];
 #define KEY_BJYCSJ       0x21//0b00100001             // 报警延迟时间KEY_DISABLE_BUZZ+KEY_SET          消音键+设置键
 #define KEY_DATE         0x07//0b00000111             // 日期设置键KEY_UNLOCK+KEY_SET+KEY_ADJUST 解锁键+设置键+调整键
 #define KEY_UsbCheck     0x09//0b00001001             // usb查询状态KEY_SWITCH+KEY_SET               温区切换切换键+设置键
-#define KEY_LCXSWDJZ	 0x11//0b00010001			  //设置+报警测试按键					调节显示传感器偏移量
+#define KEY_LCXSWDJZ	 	 0x11//0b00010001			  //设置+报警测试按键					调节显示传感器偏移量
 
 #define SET_NC_LD       0//冷冻设置前不闪烁画面
 #define SET_LD_L0       1

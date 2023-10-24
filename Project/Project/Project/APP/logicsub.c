@@ -1709,33 +1709,57 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 	}
 	else if (r_set_state == SET_LC_WDJZ)
 	{
-		if (r_lcwdjzx >= 10)
+		flag_Now_Disp_LCWD = 1;
+		flag_Disp_LCWD_D = 1;
+		
+		if (r_lcwdjzx >= 100)
 		{
 			r_bw = DISP_NO;
-			r_sw = DISP_NO;
-			r_gw = r_lcwdjzx - 10;
+			r_sw = (r_lcwdjzx - 100)/10;
+			r_gw = (r_lcwdjzx - 100)%10;
 		}
 		else
 		{
-			r_bw = DISP_NO;
-			r_sw = DISP_FH;
-			r_gw = 10 - r_lcwdjzx;
+			r_bw = DISP_FH;
+			r_sw = (100 - r_lcwdjzx)/10;
+			r_gw = (100 - r_lcwdjzx)%10;
 		}
+		if (flag_Now_Disp_LCWD)
+			{
+				if (flag_Disp_LCWD_D)
+					r_led22 |= 0x20; //显示小数点
+				else
+					r_led22 &= ~0x20; //关闭小数点
+			}
+			else
+				r_led22 &= ~0x20; //关闭小数点
 	}
 	else if (r_set_state == SET_LC_XSWDJZ)
 	{
-		if (r_lcxswdjzx >= 10)
+		flag_Now_Disp_LCWD = 1;
+		flag_Disp_LCWD_D = 1;
+		
+		if (r_lcxswdjzx >= 100)
 		{
 			r_bw = DISP_NO;
-			r_sw = DISP_NO;
-			r_gw = r_lcxswdjzx - 10;
+			r_sw = (r_lcxswdjzx - 100)/10;
+			r_gw = (r_lcxswdjzx - 100)%10;
 		}
 		else
 		{
-			r_bw = DISP_NO;
-			r_sw = DISP_FH;
-			r_gw = 10 - r_lcxswdjzx;
+			r_bw = DISP_FH;
+			r_sw = (100 - r_lcxswdjzx)/10;
+			r_gw = (100 - r_lcxswdjzx)%10;
 		}
+		if (flag_Now_Disp_LCWD)
+			{
+				if (flag_Disp_LCWD_D)
+					r_led22 |= 0x20; //显示小数点
+				else
+					r_led22 &= ~0x20; //关闭小数点
+			}
+			else
+				r_led22 &= ~0x20; //关闭小数点
 	}
 	else if (r_set_state == SET_LC_BJYCSJ)
 	{
@@ -3918,18 +3942,18 @@ void KeyPutDown(void)
 		else if (r_set_state == SET_LC_WDJZ)
 		{
 			r_lcwdjzx++;
-			if (r_lcwdjzx > 15)
+			if (r_lcwdjzx > 150)
 			{
-				r_lcwdjzx = 5;
+				r_lcwdjzx = 50;
 			}
 			goto NotSaveKey;
 		}
 		else if (r_set_state == SET_LC_XSWDJZ)
 		{
 			r_lcxswdjzx++;
-			if (r_lcxswdjzx > 15)
+			if (r_lcxswdjzx > 150)
 			{
-				r_lcxswdjzx = 5;
+				r_lcxswdjzx = 50;
 			}
 			goto NotSaveKey;
 		}
@@ -5933,23 +5957,35 @@ void MachineTimeStatistics(void)
 
 void GetSum2(void)
 {
+//	uchar r_checksum = 0, count;
+
+//	u8_Send2dataMemory[0] = 0x55;
+//	u8_Send2dataMemory[1] = 0xFF;
+//	u8_Send2dataMemory[2] = u8_Send2_data_Num;
+
+//	r_checksum = u8_Send2_data_Num;
+
+//	for (count = 0; count < u8_Send2_data_Num - 1; count++)
+//	{
+//		r_checksum = r_checksum + u8_Send2data[count];
+//		u8_Send2dataMemory[count + 3] = u8_Send2data[count];
+//	}
+
+//	u8_Send2dataMemory[count + 3] = r_checksum;
+//	u8_Send2_data_Num = u8_Send2_data_Num + 3;
 	uchar r_checksum = 0, count;
-
-	u8_Send2dataMemory[0] = 0x55;
-	u8_Send2dataMemory[1] = 0xFF;
-	u8_Send2dataMemory[2] = u8_Send2_data_Num;
-
-	r_checksum = u8_Send2_data_Num;
-
-	for (count = 0; count < u8_Send2_data_Num - 1; count++)
+	for (count = 1; count < 50 ; count++)
 	{
-		r_checksum = r_checksum + u8_Send2data[count];
-		u8_Send2dataMemory[count + 3] = u8_Send2data[count];
+		r_checksum += u8_Send2data[count];
 	}
-
-	u8_Send2dataMemory[count + 3] = r_checksum;
-	u8_Send2_data_Num = u8_Send2_data_Num + 3;
-
+	u8_Send2data[50]=r_checksum;
+	for(count=0;count<52;count++){
+		u8_Send2dataMemory[count]=u8_Send2data[count];
+	}
+	u8_Send2_data_Num = 52;//要发送的数据长度
+	u8_Send2_data_Num_Count = 0;
+	u8_Send2_data_State = 1;
+	
 	SendData(u8_Send2dataMemory, u8_Send2_data_Num); 
 }
 
@@ -7567,13 +7603,13 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 //		if (Lc_Temp >= 250 || Lc_Temp <= 10) //温度大于60 小于-20认为错误,兼容NTC1与NTC2
 //		{
 				 //r_lcXsad = Lc_Temp_2;
-				 r_lcXsad=Lc_Temp_2;
-         r_lcad_12b_c = Pannel_Uart1Data[7] * 256 + Pannel_Uart1Data[8];
+				 r_lcad_8b=Lc_Temp_2;
+         r_lcad_12b = Pannel_Uart1Data[7] * 256 + Pannel_Uart1Data[8];
 //		}
 //		else
 //		{
-			r_lcad_8b = Lc_Temp;
-      r_lcad_12b = Pannel_Uart1Data[5] * 256 + Pannel_Uart1Data[6];
+			r_lcXsad = Lc_Temp;
+      r_lcad_12b_c = Pannel_Uart1Data[5] * 256 + Pannel_Uart1Data[6];
 //		}
 
         /*8位ad偏移处理*/

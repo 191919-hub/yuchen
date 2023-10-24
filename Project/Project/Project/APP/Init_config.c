@@ -536,39 +536,6 @@ void UART5_IRQHandler(void)
 
 void UART5_Wifi_Init(void) //初始化
 {
-    // stc_mfs_uart_config_t stcUartConfig; //UART0
-    // stc_uart_irq_cb_t stcUart0IrqCb;
-
-    // PDL_ZERO_STRUCT(stcUartConfig);
-    // PDL_ZERO_STRUCT(stcUart0IrqCb);
-
-    // SetPinFunc_SIN0_1();
-    // SetPinFunc_SOT0_1();
-
-    // stcUart0IrqCb.pfnTxIrqCb = UART_Wifi_SEND_IRQHandler;
-    // stcUart0IrqCb.pfnRxIrqCb = UART_Wifi_RECV_IRQHandler;
-
-    // stcUartConfig.enMode = UartNormal;
-    // stcUartConfig.u32BaudRate = 115200; //wifi模块115200，打印机9600
-    // stcUartConfig.enDataLength = UartEightBits;
-    // stcUartConfig.enParity = UartParityNone;
-    // stcUartConfig.enStopBit = UartOneStopBit;
-    // stcUartConfig.enBitDirection = UartDataLsbFirst;
-    // stcUartConfig.bInvertData = FALSE;
-    // stcUartConfig.bHwFlow = FALSE;
-    // stcUartConfig.pstcFifoConfig = NULL;
-    // stcUartConfig.bUseExtClk = FALSE;
-    // stcUartConfig.pstcIrqEn = NULL;
-    // stcUartConfig.pstcIrqCb = &stcUart0IrqCb;
-    // stcUartConfig.bTouchNvic = TRUE;
-
-    // Mfs_Uart_Init(&UART0, &stcUartConfig);
-
-    // Mfs_Uart_EnableFunc(&UART0, UartRx); ////使能接收
-    // Mfs_Uart_EnableFunc(&UART0, UartTx); //使能发送
-
-    // Mfs_Uart_EnableIrq(&UART0, UartRxIrq);  //使能接受中断
-    // Mfs_Uart_DisableIrq(&UART0, UartTxIrq); //无效发送中断
 
     UART_InitStruType y;
 
@@ -577,7 +544,7 @@ void UART5_Wifi_Init(void) //初始化
     y.UART_TxPolar  = UART_Polar_Normal;    //发送端口极性：正常
     y.UART_RxMode   = UART_DataMode_8;      //接收数据格式：8位数据
     y.UART_RxPolar  = UART_Polar_Normal;    //接收端口极性：正常      
-	y.UART_BaudRate = 115200;                 //波特率			
+	y.UART_BaudRate = 9600;                 //波特率			
     y.UART_ClockSet = UART_Clock_1;         //时钟选择：Pclk
     UART_Init(UART5, &y);
 
