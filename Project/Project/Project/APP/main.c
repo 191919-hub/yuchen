@@ -80,7 +80,7 @@ int32_t main(void)
 
     UART3_USB_Init(); //USB模块通讯初始化
 
-    UART5_Wifi_Init(); //安卓屏通讯初始化
+    UART5_Wifi_Init(); //安卓屏通讯初始化 原来是wifi
 
     UART4_PwrBoard_Init(); //UART 初始化 9600 主控板与面板通讯 初始化
 
@@ -90,6 +90,7 @@ int32_t main(void)
     ReadCfgData(); //从flash中读取wifi物联的配置数据，比如SSID/密码/BE码等信息
     InitialUserRegister();
     WdtInit();
+		
     f_First_PowerOnFlag = ON; // 首次上电这样蜂鸣器不叫 @21081120 CFJ //f_test_alarm=ON;//上电全显88,待事业部确认。@20181101 TEST  CFJ
     bSelfUartSendStartFlag = 1;
     l_Self_Detect(); //增加自检测试程序  @20190121 CFJ
@@ -114,21 +115,19 @@ int32_t main(void)
     //RS_485_STATUS=1; //发送有效
     */
      //-----
-        for(;;)  
+        for(;;)
         {        
-		
             IWDT_Clear(); ///// __RESET_WATCHDOG();                           /* feeds the dog */
             BuzzPrg();//检测凤鸣的状态，例如是叫一声还是连续叫
             PowerUpBuzzDelaylc();//判断系统上电后的时间是否大于了报警延时设定值，一旦大于以后，这个函数失效 f_Powerupdelaylc(冷藏)一直有效
 #ifdef  Need_Ld
-			 PowerUpBuzzDelayld();//判断系统上电后的时间是否大于了报警延时设定值，一旦大于以后，这个函数失效 f_Powerupdelayld(冷冻)一直有效
+						PowerUpBuzzDelayld();//判断系统上电后的时间是否大于了报警延时设定值，一旦大于以后，这个函数失效 f_Powerupdelayld(冷冻)一直有效
 #endif
-			ad_convert(); //需检查下，是否正确 CFJ  ？？ 得到环温实际温度r_hwsjwd
+						ad_convert(); //需检查下，是否正确 CFJ  ？？ 得到环温实际温度r_hwsjwd
             WriteToE2();//根据f_need_write_e2判断是不是需要写E2
             IWDT_Clear();////  __RESET_WATCHDOG(); 
             WriteE2();//根据函数WriteToE2中的f_e2prom判断需不需要写，如果函数WriteToE2中将f_e2prom置位则需要写，包括一些报警上下限等
-
-			//g_Pannel_Comm_bRcv_Done=1代表收到主控板数据，无误。接收完成数据处理  计算温度，拿到ld lc温度，拿到一次AD值以后f_first_ad一直=1
+						//g_Pannel_Comm_bRcv_Done=1代表收到主控板数据，无误。接收完成数据处理  计算温度，拿到ld lc温度，拿到一次AD值以后f_first_ad一直=1
             Pannel_Comm_Deal();//DealRecData();从uart1拿485的数据
             JudgeErrs();//判断各传感器是否故障
             AlarmControl();//蜂鸣器报警和远程报警
@@ -178,8 +177,8 @@ void UART5_Init_As_Printer(void) //调整波特率为9600
     y.UART_TxMode   = UART_DataMode_8;      //发送数据格式：8位数据
     y.UART_TxPolar  = UART_Polar_Normal;    //发送端口极性：正常
     y.UART_RxMode   = UART_DataMode_8;      //接收数据格式：8位数据
-    y.UART_RxPolar  = UART_Polar_Normal;    //接收端口极性：正常      
-	y.UART_BaudRate = 9600;                 //波特率			
+    y.UART_RxPolar  = UART_Polar_Normal;    //接收端口极性：正常   
+		y.UART_BaudRate = 9600;                 //波特率			
     y.UART_ClockSet = UART_Clock_1;         //时钟选择：Pclk
     UART_Init(UART5, &y);
 

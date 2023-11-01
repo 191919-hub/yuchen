@@ -1,0 +1,830 @@
+<polyspace-bug-finder R2022b Update 3 PID43396 PGID43396>
+
+Polyspace verification of HYCD-469_Disp_ES8P5066 project.
+Starting at 06/09/2023, 13h16.
+
+Note: -to is ignored in Polyspace Bug Finder.
+Note: -O2 is ignored in Polyspace Bug Finder.
+Note: -unsigned-integer-overflows is ignored in Polyspace Bug Finder.
+Note: -uncalled-function-checks is ignored in Polyspace Bug Finder.
+Note: -signed-integer-overflows is ignored in Polyspace Bug Finder.
+Note: -main-generator-calls is ignored in Polyspace Bug Finder.
+Note: -check-subnormal is ignored in Polyspace Bug Finder.
+Note: -main-generator-writes-variables is ignored in Polyspace Bug Finder.
+Note: -float-rounding-mode is ignored in Polyspace Bug Finder.
+
+Verifying sources compliance ...
+
+Options used with Verifier:
+-prog=HYCD-469_Disp_ES8P5066
+-lang=C
+-polyspace-version=3.7 (R2022b Update 3)
+-results-dir=G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Polyspace\BF_Result
+-date=09/06/2023
+
+User:
+-no-default-system-includes=true (non-official option)
+-enum-type-definition=auto-unsigned-first
+-target=arm
+-compiler=armcc
+-c-version=c90
+-library=none
+-import-comments=G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Polyspace\BF_Result\comments_bak
+-verif-version=1.0
+-author=19033292
+
+
+Checkers enabled:
+    Defects 94/269
+
+
+Verifying host configuration:
+Number of physical cores:                4
+Number of logical cores:                 8
+Processor type:                          amd64
+Processor model:                Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz
+Processor frequency:            1800 MHz
+Memory > 4 GB:                                                  15.89 GB
+Tmp space available in C:\Users\19033292\AppData\Local\Temp:    8.42 GB
+
+Remark: 4 physical core(s) detected. The verification creates 4 process(es).
+*** Configuration of the host :	OK
+
+Type G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Polyspace\BF_Result\kill-rte-kernel.bat on host 01d693719033292 to halt Verifier process
+
+Checking license ...
+License is OK
+
+
+Polyspace C analysis
+Copyright 1999-2022 The MathWorks, Inc.
+All rights reserved.
+
+Starting at: Fri Jun 09 13:16:36 2023
+Host: MINGW64_NTx_64-6.2 01d693719033292 0 amd64
+User: 19033292
+**********************************************************
+***
+*** Verifying armcc C sources
+***
+**********************************************************
+
+Verifying sources ...
+Verifying Coupler.c (1/8)
+Verifying Disp.c (2/8)
+Verifying Init_config.c (3/8)
+Verifying esp8266.c (4/8)
+Verifying main.c (5/8)
+Verifying systick.c (6/8)
+Verifying irqhandler.c (7/8)
+Verifying logicsub.c (8/8)
+Global compilation phase...
+
+Number of files                  : 8
+Number of lines                  : 10374
+Number of lines without comments : 9035
+
+These metrics include header file content in addition to source files and reflect the true complexity of code and analysis.
+Number of source files    : 8
+Number of C lines of code : 39737 (excludes commented (18390) and empty lines (7085))
+Number of headers         : 144 (directly included in sources 43, Maximum depth of inclusion 6)
+
+Verifying cross-files ANSI C compliance
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c, line 147: Warning: Global declaration of 'ReturnPrintFrame' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c, line 4126: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Init_config.c, line 273: Warning: Global declaration of 'WIFI_UART_TimeOut_CntDown' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 403: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Init_config.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c, line 154: Warning: Global declaration of 'WIFI_RX_Data_Deal' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 91: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 441: Warning: Global declaration of 'Stop' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c, line 4076: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c, line 158: Warning: Global declaration of 'WIFI_TX_Data' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 103: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 429: Warning: Global declaration of 'Begin' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c, line 4063: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 486: Warning: Global declaration of 'Sendscl' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c, line 4086: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c, line 70: Warning: Global declaration of 'User_SysTickInit' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\systick.c, line 22: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\systick.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c, line 74: Warning: Global declaration of 'User_AD_Init' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Init_config.c, line 160: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\main.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Init_config.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Init_config.c, line 176: Warning: Global declaration of 'Delay_100us' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\systick.c, line 41: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Init_config.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\systick.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c, line 327: Warning: Global declaration of 'Delay_100us' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined void type.
+| Declared function type has unknown arguments incompatible with its definition.
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\systick.c, line 41: warning: other location for previous warning
+| warning when linking the 2 translation units:
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c
+| G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\systick.c
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Init_config.c, line 176: Warning: calling function 'Delay_100us' with incompatible type (arg. 1)
+| Declared type size or sign incompatible with its definition.
+| In declaration parameter type is unsigned int:32 type
+| In call parameter type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Init_config.c, line 273: Warning: calling function 'WIFI_UART_TimeOut_CntDown' with incompatible type (arg. 1)
+| Declared type size or sign incompatible with its definition.
+| In declaration parameter type is unsigned int:32 type
+| In call parameter type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c, line 327: Warning: calling function 'Delay_100us' with incompatible type (arg. 1)
+| Declared type size or sign incompatible with its definition.
+| In declaration parameter type is unsigned int:32 type
+| In call parameter type is signed int:32 type
+
+
+Stubbing standard library functions ...
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\logicsub.c, line 4553: Warning: Global declaration of 'abs' function has a type incompatible with its definition.
+| Declared function type has unknown arguments incompatible with its definition.
+C-STUBS\__polyspace__stdstubs.c, line 6348: warning: other location for previous warning
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 841: Warning: Global declaration of 'memcmp' function has a type incompatible with its definition.
+| Declared function type has unknown arguments incompatible with its definition.
+C-STUBS\__polyspace__stdstubs.c, line 7596: warning: other location for previous warning
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 610: Warning: Global declaration of 'strlen' function has a type incompatible with its definition.
+| Declared function type has unknown arguments incompatible with its definition.
+C-STUBS\__polyspace__stdstubs.c, line 7247: warning: other location for previous warning
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 435: Warning: Global declaration of 'strcat' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined pointer type.
+| Declared function type has unknown arguments incompatible with its definition.
+C-STUBS\__polyspace__stdstubs.c, line 7437: warning: other location for previous warning
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 496: Warning: Global declaration of 'strcpy' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined pointer type.
+| Declared function type has unknown arguments incompatible with its definition.
+C-STUBS\__polyspace__stdstubs.c, line 7298: warning: other location for previous warning
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 56: Warning: Global declaration of 'strstr' function has a type incompatible with its definition.
+| Declared function type has incompatible return type with definition.
+| Declared signed int:32 type incompatible with defined pointer type.
+| Declared function type has unknown arguments incompatible with its definition.
+C-STUBS\__polyspace__stdstubs.c, line 8737: warning: other location for previous warning
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 56: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 68: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 91: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 102: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 114: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 136: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 158: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 180: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 271: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 282: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 293: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 304: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 315: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 326: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 338: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 359: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 370: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 821: Warning: calling function 'strstr' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is pointer type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 610: Warning: calling function 'strlen' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is unsigned int:32 type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 612: Warning: calling function 'strlen' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is unsigned int:32 type
+| In call return type is signed int:32 type
+
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\esp8266.c, line 616: Warning: calling function 'strlen' with incompatible return type
+| Declared type size or sign incompatible with its definition.
+| In declaration return type is unsigned int:32 type
+| In call return type is signed int:32 type
+
+Doing code transformations ...
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 117 (column 4): Warning: the prototype for function 'memset' is unknown.
+| Derived prototype of function from its call is: int memset(void *, int, int)
+G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Project\Project\Project\APP\Wifi\Coupler.c, line 118 (column 4): Warning: the prototype for function 'memcpy' is unknown.
+| Derived prototype of function from its call is: int memcpy(void *, void *, int)
+Remark: The generated default DRS XML file "drs-template.xml" can be found in <result_dir> folder.
+
+
+
+Packing compilation data
+
+Defects statistics:
+  - Total number of defects: 2
+  - PTR_CAST: 1
+  - VAR_SHADOWING: 1
+done.
+
+**********************************************************
+***
+*** armcc C sources verification done
+***
+**********************************************************
+Ending at: Fri Jun 09 13:16:55 2023
+User time for compilation: 00:00:19.23 (19.24real, 19.24u + 0s (0.02gc))
+
+Polyspace C analysis
+Copyright 1999-2022 The MathWorks, Inc.
+All rights reserved.
+
+Starting at: Fri Jun 09 13:16:55 2023
+Host: MINGW64_NTx_64-6.2 01d693719033292 0 amd64
+User: 19033292
+**********************************************************
+***
+*** Beginning Bug-finder - Pre-analysis
+***
+**********************************************************
+**** Bug-finder - Pre-analysis - 1 (P_AL)
+Total complexity = 84243
+**** Bug-finder - Pre-analysis - 1 (P_AL) took 7.26real, 7.26u + 0s (1.52gc)
+**** Bug-finder - Pre-analysis - 2 (P_ACP)
+* n-acp-t = 0 n-epp' = 0 n-acp-l = 0
+**** Bug-finder - Pre-analysis - 2 (P_ACP) took 2.38real, 2.38u + 0s (0.11gc)
+**** Bug-finder - Pre-analysis - 3 (P_O)
+**** Bug-finder - Pre-analysis - 3 (P_O) took 0.82real, 0.82u + 0s (0.12gc)
+**** Bug-finder - Pre-analysis - 4 (P_MA)
+**** Bug-finder - Pre-analysis - 4 (P_MA) took 0.36real, 0.36u + 0s (0.05gc)
+**** Bug-finder - Pre-analysis - 5 (P_G)
+**** Bug-finder - Pre-analysis - 5 (P_G) took 0.65real, 0.65u + 0s (0.09gc)
+**** Bug-finder - Pre-analysis - 6 (P_DRC)
+**** Bug-finder - Pre-analysis - 6 (P_DRC) took 0.01real, 0.01u + 0s
+**** Bug-finder - Pre-analysis - 7 (P_TT)
+**** Bug-finder - Pre-analysis - 7 (P_TT) took 0real, 0u + 0s
+**** Bug-finder - Pre-analysis - 8 (P_FI)
+**** Bug-finder - Pre-analysis - 8 (P_FI) took 2.05real, 2.05u + 0s (0.09gc)
+
+Generating GUI files
+
+Defects statistics:
+  - Total number of defects: 2
+  - PTR_CAST: 1
+  - VAR_SHADOWING: 1
+
+GUI files generation completed in 1.99real
+
+**********************************************************
+***
+*** Bug-finder - Pre-analysis done
+***
+**********************************************************
+Ending at: Fri Jun 09 13:17:12 2023
+User time for pre-analysis: 00:00:17.74 (17.75real, 17.75u + 0s (0.12gc))
+
+Polyspace C analysis
+Copyright 1999-2022 The MathWorks, Inc.
+All rights reserved.
+
+Starting at: Fri Jun 09 13:17:12 2023
+Host: MINGW64_NTx_64-6.2 01d693719033292 0 amd64
+User: 19033292
+**********************************************************
+***
+*** Beginning Bug-finder - Function Analysis
+***
+**********************************************************
+**** Bug-finder - Function Analysis - (Verifying function #1 / 139: UART5_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #2 / 139: RuleForLdDisp)
+**** Bug-finder - Function Analysis - (Verifying function #3 / 139: DataToLed)
+**** Bug-finder - Function Analysis - (Verifying function #4 / 139: UART4_PwrBoard_Init)
+**** Bug-finder - Function Analysis - (Verifying function #5 / 139: LedWriteByte)
+**** Bug-finder - Function Analysis - (Verifying function #6 / 139: l_Self_Send_Data_Build)
+**** Bug-finder - Function Analysis - (Verifying function #7 / 139: WdgHwCallback)
+**** Bug-finder - Function Analysis - (Verifying function #8 / 139: SysTick_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #9 / 139: Begin)
+**** Bug-finder - Function Analysis - (Verifying function #10 / 139: l_Self_Detect)
+**** Bug-finder - Function Analysis - (Verifying function #11 / 139: WIFI_RX_Data_Deal)
+**** Bug-finder - Function Analysis - (Verifying function #12 / 139: ad_convert)
+**** Bug-finder - Function Analysis - (Verifying function #13 / 139: DealDispData)
+**** Bug-finder - Function Analysis - (Verifying function #14 / 139: Rec2Action)
+**** Bug-finder - Function Analysis - (Verifying function #15 / 139: Door_Open)
+**** Bug-finder - Function Analysis - (Verifying function #16 / 139: Uart_Usb_RxCallback)
+**** Bug-finder - Function Analysis - (Verifying function #17 / 139: NMI_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #18 / 139: GetSum)
+**** Bug-finder - Function Analysis - (Verifying function #19 / 139: ReturnStateFrame)
+**** Bug-finder - Function Analysis - (Verifying function #20 / 139: UART3_USB_Init)
+**** Bug-finder - Function Analysis - (Verifying function #21 / 139: Compressor_on_delay)
+**** Bug-finder - Function Analysis - (Verifying function #22 / 139: WIFI_UART_IdleTimer)
+**** Bug-finder - Function Analysis - (Verifying function #23 / 139: KeyPut5s)
+**** Bug-finder - Function Analysis - (Verifying function #24 / 139: NetErrAlarm)
+**** Bug-finder - Function Analysis - (Verifying function #25 / 139: Pannel_Comm_Deal)
+**** Bug-finder - Function Analysis - (Verifying function #26 / 139: LedStop)
+**** Bug-finder - Function Analysis - (Verifying function #27 / 139: l_ODM_Data_Parse)
+**** Bug-finder - Function Analysis - (Verifying function #28 / 139: User_SysTickInit)
+**** Bug-finder - Function Analysis - (Verifying function #29 / 139: WriteCfgData)
+**** Bug-finder - Function Analysis - (Verifying function #30 / 139: CopyDataToIOTStructure)
+**** Bug-finder - Function Analysis - (Verifying function #31 / 139: Event_Log)
+**** Bug-finder - Function Analysis - (Verifying function #32 / 139: ReadE2)
+**** Bug-finder - Function Analysis - (Verifying function #33 / 139: LongRangeAlarm)
+**** Bug-finder - Function Analysis - (Verifying function #34 / 139: LedSendScl)
+**** Bug-finder - Function Analysis - (Verifying function #35 / 139: KeyPress)
+**** Bug-finder - Function Analysis - (Verifying function #36 / 139: SetTimeFrame)
+**** Bug-finder - Function Analysis - (Verifying function #37 / 139: l_Pannel_DataTx)
+**** Bug-finder - Function Analysis - (Verifying function #38 / 139: PWM_Start)
+**** Bug-finder - Function Analysis - (Verifying function #39 / 139: WiFi_SendCmd)
+**** Bug-finder - Function Analysis - (Verifying function #40 / 139: Uart_Usb_TxCallback)
+**** Bug-finder - Function Analysis - (Verifying function #41 / 139: TimingDelay_Decrement)
+**** Bug-finder - Function Analysis - (Verifying function #42 / 139: GetSum2)
+**** Bug-finder - Function Analysis - (Verifying function #43 / 139: SendStr)
+**** Bug-finder - Function Analysis - (Verifying function #44 / 139: T16N0Init)
+**** Bug-finder - Function Analysis - (Verifying function #45 / 139: Stop)
+**** Bug-finder - Function Analysis - (Verifying function #46 / 139: WriteByte)
+**** Bug-finder - Function Analysis - (Verifying function #47 / 139: Uart_PwrBoard_RxCallback)
+**** Bug-finder - Function Analysis - (Verifying function #48 / 139: Sendscl)
+**** Bug-finder - Function Analysis - (Verifying function #49 / 139: ReadCfgData)
+**** Bug-finder - Function Analysis - (Verifying function #50 / 139: Delay_100us)
+**** Bug-finder - Function Analysis - (Verifying function #51 / 139: AlarmControl)
+**** Bug-finder - Function Analysis - (Verifying function #52 / 139: lcCompRunOneHour)
+**** Bug-finder - Function Analysis - (Verifying function #53 / 139: Compressor_delay_10sec)
+**** Bug-finder - Function Analysis - (Verifying function #54 / 139: l_Pannel_Self_DataTx)
+**** Bug-finder - Function Analysis - (Verifying function #55 / 139: UART_Wifi_RECV_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #56 / 139: JudgePowerOff)
+**** Bug-finder - Function Analysis - (Verifying function #57 / 139: JudgeErrs)
+**** Bug-finder - Function Analysis - (Verifying function #58 / 139: User_GPIO_Init)
+**** Bug-finder - Function Analysis - (Verifying function #59 / 139: AlarmAndLockLed)
+**** Bug-finder - Function Analysis - (Verifying function #60 / 139: JudgeLcLow)
+**** Bug-finder - Function Analysis - (Verifying function #61 / 139: Lc_CompressorJudge)
+**** Bug-finder - Function Analysis - (Verifying function #62 / 139: User_AD_Init)
+**** Bug-finder - Function Analysis - (Verifying function #63 / 139: PWM_Stop)
+**** Bug-finder - Function Analysis - (Verifying function #64 / 139: RuleForLcDisp_0D1)
+**** Bug-finder - Function Analysis - (Verifying function #65 / 139: JudgeHwErr)
+**** Bug-finder - Function Analysis - (Verifying function #66 / 139: MQTT_Conect)
+**** Bug-finder - Function Analysis - (Verifying function #67 / 139: WIFI_UART_TimeOut_CntDown)
+**** Bug-finder - Function Analysis - (Verifying function #68 / 139: UART4_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #69 / 139: LcDisp)
+**** Bug-finder - Function Analysis - (Verifying function #70 / 139: Defrost_Prog)
+**** Bug-finder - Function Analysis - (Verifying function #71 / 139: ADCRead)
+**** Bug-finder - Function Analysis - (Verifying function #72 / 139: ResponseFirstPowerState)
+**** Bug-finder - Function Analysis - (Verifying function #73 / 139: main)
+**** Bug-finder - Function Analysis - (Verifying function #74 / 139: MQTT_Send_Data)
+**** Bug-finder - Function Analysis - (Verifying function #75 / 139: UART5_Wifi_Init)
+**** Bug-finder - Function Analysis - (Verifying function #76 / 139: InitialUserRegister)
+**** Bug-finder - Function Analysis - (Verifying function #77 / 139: ADCSetCHS)
+**** Bug-finder - Function Analysis - (Verifying function #78 / 139: JudgeLdLow)
+**** Bug-finder - Function Analysis - (Verifying function #79 / 139: UART_Wifi_SEND_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #80 / 139: BuzzBiBiBi)
+**** Bug-finder - Function Analysis - (Verifying function #81 / 139: JudgeLcErr)
+**** Bug-finder - Function Analysis - (Verifying function #82 / 139: Judge_PubType)
+**** Bug-finder - Function Analysis - (Verifying function #83 / 139: WdtInit)
+**** Bug-finder - Function Analysis - (Verifying function #84 / 139: HardFault_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #85 / 139: WriteE2)
+**** Bug-finder - Function Analysis - (Verifying function #86 / 139: Uart_PwrBoard_TxCallback)
+**** Bug-finder - Function Analysis - (Verifying function #87 / 139: CheckLcTable)
+**** Bug-finder - Function Analysis - (Verifying function #88 / 139: LnFan)
+**** Bug-finder - Function Analysis - (Verifying function #89 / 139: SVC_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #90 / 139: JudgeLdErr)
+**** Bug-finder - Function Analysis - (Verifying function #91 / 139: ReceiveInitial)
+**** Bug-finder - Function Analysis - (Verifying function #92 / 139: Uart_PwrBoard_TxDoneCallback)
+**** Bug-finder - Function Analysis - (Verifying function #93 / 139: ReturnVoidFrame)
+**** Bug-finder - Function Analysis - (Verifying function #94 / 139: JudgeHwHigh)
+**** Bug-finder - Function Analysis - (Verifying function #95 / 139: Send_To_Wifi_Module)
+**** Bug-finder - Function Analysis - (Verifying function #96 / 139: BuzzPrg)
+**** Bug-finder - Function Analysis - (Verifying function #97 / 139: PowerUpBuzzDelaylc)
+**** Bug-finder - Function Analysis - (Verifying function #98 / 139: AutoLock)
+**** Bug-finder - Function Analysis - (Verifying function #99 / 139: UART5_Init_As_Printer)
+**** Bug-finder - Function Analysis - (Verifying function #100 / 139: ReturnReportFrame)
+**** Bug-finder - Function Analysis - (Verifying function #101 / 139: LedBegin)
+**** Bug-finder - Function Analysis - (Verifying function #102 / 139: ReadByte)
+**** Bug-finder - Function Analysis - (Verifying function #103 / 139: BuzzBp)
+**** Bug-finder - Function Analysis - (Verifying function #104 / 139: JudgeLcHigh)
+**** Bug-finder - Function Analysis - (Verifying function #105 / 139: ReturnPrintFrame)
+**** Bug-finder - Function Analysis - (Verifying function #106 / 139: DelayControl)
+**** Bug-finder - Function Analysis - (Verifying function #107 / 139: Lc_lightProg)
+**** Bug-finder - Function Analysis - (Verifying function #108 / 139: Nd_fan_Prog)
+**** Bug-finder - Function Analysis - (Verifying function #109 / 139: ReturnIdentifycodeFrame)
+**** Bug-finder - Function Analysis - (Verifying function #110 / 139: l_ClrIDMSendBuf)
+**** Bug-finder - Function Analysis - (Verifying function #111 / 139: PendSV_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #112 / 139: PowerUpBuzzDelayld)
+**** Bug-finder - Function Analysis - (Verifying function #113 / 139: LdCompressorJudge)
+**** Bug-finder - Function Analysis - (Verifying function #114 / 139: ldCompRunOneHour)
+**** Bug-finder - Function Analysis - (Verifying function #115 / 139: l_Send_Data_Build)
+**** Bug-finder - Function Analysis - (Verifying function #116 / 139: Deal_RecData_From_WifiModule)
+**** Bug-finder - Function Analysis - (Verifying function #117 / 139: ldCompressorRun10Hour)
+**** Bug-finder - Function Analysis - (Verifying function #118 / 139: T16N0_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #119 / 139: JudgeLdHigh)
+**** Bug-finder - Function Analysis - (Verifying function #120 / 139: WriteToE2)
+**** Bug-finder - Function Analysis - (Verifying function #121 / 139: Time)
+**** Bug-finder - Function Analysis - (Verifying function #122 / 139: RecOkAction)
+**** Bug-finder - Function Analysis - (Verifying function #123 / 139: UART3_IRQHandler)
+**** Bug-finder - Function Analysis - (Verifying function #124 / 139: LdDisp)
+**** Bug-finder - Function Analysis - (Verifying function #125 / 139: KeyPutUp)
+**** Bug-finder - Function Analysis - (Verifying function #126 / 139: ReadKey)
+**** Bug-finder - Function Analysis - (Verifying function #127 / 139: ReturnAckFrame)
+**** Bug-finder - Function Analysis - (Verifying function #128 / 139: BuzzAlarmControl)
+**** Bug-finder - Function Analysis - (Verifying function #129 / 139: Parse_CfgData)
+**** Bug-finder - Function Analysis - (Verifying function #130 / 139: SendData)
+**** Bug-finder - Function Analysis - (Verifying function #131 / 139: KeyPutDown)
+**** Bug-finder - Function Analysis - (Verifying function #132 / 139: BuzzBi)
+**** Bug-finder - Function Analysis - (Verifying function #133 / 139: NetResponseStateControl)
+**** Bug-finder - Function Analysis - (Verifying function #134 / 139: WIFI_TX_Data)
+**** Bug-finder - Function Analysis - (Verifying function #135 / 139: JudgeVoltageErr)
+**** Bug-finder - Function Analysis - (Verifying function #136 / 139: Delay_ms)
+**** Bug-finder - Function Analysis - (Verifying function #137 / 139: CheckLcTable_12b)
+**** Bug-finder - Function Analysis - (Verifying function #138 / 139: KeyAction)
+**** Bug-finder - Function Analysis - (Verifying function #139 / 139: NetRecOver)
+**** Bug-finder - Function Analysis - (Verifying function #138 / 139: KeyAction) took 0.99real
+**** Bug-finder - Function Analysis - (Verifying function #137 / 139: CheckLcTable_12b) took 0.74real
+**** Bug-finder - Function Analysis - (Verifying function #139 / 139: NetRecOver) took 1.76real
+**** Bug-finder - Function Analysis - (Verifying function #136 / 139: Delay_ms) took 0.49real
+**** Bug-finder - Function Analysis - (Verifying function #135 / 139: JudgeVoltageErr) took 0.5real
+**** Bug-finder - Function Analysis - (Verifying function #134 / 139: WIFI_TX_Data) took 0.2real
+**** Bug-finder - Function Analysis - (Verifying function #131 / 139: KeyPutDown) took 2.7real
+**** Bug-finder - Function Analysis - (Verifying function #133 / 139: NetResponseStateControl) took 0.71real
+**** Bug-finder - Function Analysis - (Verifying function #132 / 139: BuzzBi) took 0.29real
+**** Bug-finder - Function Analysis - (Verifying function #130 / 139: SendData) took 0.39real
+**** Bug-finder - Function Analysis - (Verifying function #128 / 139: BuzzAlarmControl) took 0.41real
+**** Bug-finder - Function Analysis - (Verifying function #127 / 139: ReturnAckFrame) took 0.26real
+**** Bug-finder - Function Analysis - (Verifying function #126 / 139: ReadKey) took 0.31real
+**** Bug-finder - Function Analysis - (Verifying function #129 / 139: Parse_CfgData) took 1.81real
+**** Bug-finder - Function Analysis - (Verifying function #124 / 139: LdDisp) took 2.35real
+**** Bug-finder - Function Analysis - (Verifying function #121 / 139: Time) took 0.61real
+**** Bug-finder - Function Analysis - (Verifying function #123 / 139: UART3_IRQHandler) took 0.45real
+**** Bug-finder - Function Analysis - (Verifying function #120 / 139: WriteToE2) took 0.26real
+**** Bug-finder - Function Analysis - (Verifying function #122 / 139: RecOkAction) took 2.39real
+**** Bug-finder - Function Analysis - (Verifying function #119 / 139: JudgeLdHigh) took 0.47real
+**** Bug-finder - Function Analysis - (Verifying function #125 / 139: KeyPutUp) took 6.76real
+**** Bug-finder - Function Analysis - (Verifying function #118 / 139: T16N0_IRQHandler) took 0.8real
+**** Bug-finder - Function Analysis - (Verifying function #117 / 139: ldCompressorRun10Hour) took 0.51real
+**** Bug-finder - Function Analysis - (Verifying function #114 / 139: ldCompRunOneHour) took 0.47real
+**** Bug-finder - Function Analysis - (Verifying function #112 / 139: PowerUpBuzzDelayld) took 0.58real
+**** Bug-finder - Function Analysis - (Verifying function #109 / 139: ReturnIdentifycodeFrame) took 0.43real
+**** Bug-finder - Function Analysis - (Verifying function #115 / 139: l_Send_Data_Build) took 2.13real
+**** Bug-finder - Function Analysis - (Verifying function #113 / 139: LdCompressorJudge) took 0.83real
+**** Bug-finder - Function Analysis - (Verifying function #111 / 139: PendSV_IRQHandler) took 0.35real
+**** Bug-finder - Function Analysis - (Verifying function #110 / 139: l_ClrIDMSendBuf) took 0.62real
+**** Bug-finder - Function Analysis - (Verifying function #116 / 139: Deal_RecData_From_WifiModule) took 4.34real
+**** Bug-finder - Function Analysis - (Verifying function #108 / 139: Nd_fan_Prog) took 0.56real
+**** Bug-finder - Function Analysis - (Verifying function #107 / 139: Lc_lightProg) took 0.76real
+**** Bug-finder - Function Analysis - (Verifying function #100 / 139: ReturnReportFrame) took 1.15real
+**** Bug-finder - Function Analysis - (Verifying function #106 / 139: DelayControl) took 0.77real
+**** Bug-finder - Function Analysis - (Verifying function #104 / 139: JudgeLcHigh) took 0.46real
+**** Bug-finder - Function Analysis - (Verifying function #103 / 139: BuzzBp) took 0.19real
+**** Bug-finder - Function Analysis - (Verifying function #99 / 139: UART5_Init_As_Printer) took 0.67real
+**** Bug-finder - Function Analysis - (Verifying function #101 / 139: LedBegin) took 0.39real
+**** Bug-finder - Function Analysis - (Verifying function #102 / 139: ReadByte) took 0.9real
+**** Bug-finder - Function Analysis - (Verifying function #105 / 139: ReturnPrintFrame) took 1.41real
+**** Bug-finder - Function Analysis - (Verifying function #94 / 139: JudgeHwHigh) took 0.65real
+**** Bug-finder - Function Analysis - (Verifying function #97 / 139: PowerUpBuzzDelaylc) took 0.3real
+**** Bug-finder - Function Analysis - (Verifying function #96 / 139: BuzzPrg) took 1.36real
+**** Bug-finder - Function Analysis - (Verifying function #93 / 139: ReturnVoidFrame) took 0.4real
+**** Bug-finder - Function Analysis - (Verifying function #92 / 139: Uart_PwrBoard_TxDoneCallback) took 0.31real
+**** Bug-finder - Function Analysis - (Verifying function #91 / 139: ReceiveInitial) took 0.52real
+**** Bug-finder - Function Analysis - (Verifying function #90 / 139: JudgeLdErr) took 0.29real
+**** Bug-finder - Function Analysis - (Verifying function #89 / 139: SVC_IRQHandler) took 0.28real
+**** Bug-finder - Function Analysis - (Verifying function #88 / 139: LnFan) took 0.46real
+**** Bug-finder - Function Analysis - (Verifying function #87 / 139: CheckLcTable) took 0.4real
+**** Bug-finder - Function Analysis - (Verifying function #85 / 139: WriteE2) took 0.51real
+**** Bug-finder - Function Analysis - (Verifying function #98 / 139: AutoLock) took 2.05real
+**** Bug-finder - Function Analysis - (Verifying function #83 / 139: WdtInit) took 0.68real
+**** Bug-finder - Function Analysis - (Verifying function #84 / 139: HardFault_IRQHandler) took 0.27real
+**** Bug-finder - Function Analysis - (Verifying function #86 / 139: Uart_PwrBoard_TxCallback) took 0.4real
+**** Bug-finder - Function Analysis - (Verifying function #79 / 139: UART_Wifi_SEND_IRQHandler) took 0.43real
+**** Bug-finder - Function Analysis - (Verifying function #82 / 139: Judge_PubType) took 1.09real
+**** Bug-finder - Function Analysis - (Verifying function #81 / 139: JudgeLcErr) took 0.45real
+**** Bug-finder - Function Analysis - (Verifying function #80 / 139: BuzzBiBiBi) took 0.45real
+**** Bug-finder - Function Analysis - (Verifying function #78 / 139: JudgeLdLow) took 1.26real
+**** Bug-finder - Function Analysis - (Verifying function #76 / 139: InitialUserRegister) took 0.41real
+**** Bug-finder - Function Analysis - (Verifying function #77 / 139: ADCSetCHS) took 0.34real
+**** Bug-finder - Function Analysis - (Verifying function #74 / 139: MQTT_Send_Data) took 3.87real
+**** Bug-finder - Function Analysis - (Verifying function #95 / 139: Send_To_Wifi_Module) took 5.42real
+**** Bug-finder - Function Analysis - (Verifying function #72 / 139: ResponseFirstPowerState) took 0.55real
+**** Bug-finder - Function Analysis - (Verifying function #75 / 139: UART5_Wifi_Init) took 0.46real
+**** Bug-finder - Function Analysis - (Verifying function #70 / 139: Defrost_Prog) took 0.29real
+**** Bug-finder - Function Analysis - (Verifying function #73 / 139: main) took 3.53real
+**** Bug-finder - Function Analysis - (Verifying function #67 / 139: WIFI_UART_TimeOut_CntDown) took 0.29real
+**** Bug-finder - Function Analysis - (Verifying function #69 / 139: LcDisp) took 2.37real
+**** Bug-finder - Function Analysis - (Verifying function #68 / 139: UART4_IRQHandler) took 0.31real
+**** Bug-finder - Function Analysis - (Verifying function #65 / 139: JudgeHwErr) took 0.26real
+**** Bug-finder - Function Analysis - (Verifying function #64 / 139: RuleForLcDisp_0D1) took 0.59real
+**** Bug-finder - Function Analysis - (Verifying function #71 / 139: ADCRead) took 1.16real
+**** Bug-finder - Function Analysis - (Verifying function #61 / 139: Lc_CompressorJudge) took 0.69real
+**** Bug-finder - Function Analysis - (Verifying function #63 / 139: PWM_Stop) took 0.35real
+**** Bug-finder - Function Analysis - (Verifying function #66 / 139: MQTT_Conect) took 2.03real
+**** Bug-finder - Function Analysis - (Verifying function #62 / 139: User_AD_Init) took 0.49real
+**** Bug-finder - Function Analysis - (Verifying function #55 / 139: UART_Wifi_RECV_IRQHandler) took 0.61real
+**** Bug-finder - Function Analysis - (Verifying function #58 / 139: User_GPIO_Init) took 1.31real
+**** Bug-finder - Function Analysis - (Verifying function #54 / 139: l_Pannel_Self_DataTx) took 0.49real
+**** Bug-finder - Function Analysis - (Verifying function #60 / 139: JudgeLcLow) took 0.71real
+**** Bug-finder - Function Analysis - (Verifying function #57 / 139: JudgeErrs) took 0.4real
+**** Bug-finder - Function Analysis - (Verifying function #56 / 139: JudgePowerOff) took 0.34real
+**** Bug-finder - Function Analysis - (Verifying function #59 / 139: AlarmAndLockLed) took 0.93real
+**** Bug-finder - Function Analysis - (Verifying function #52 / 139: lcCompRunOneHour) took 0.43real
+**** Bug-finder - Function Analysis - (Verifying function #51 / 139: AlarmControl) took 0.39real
+**** Bug-finder - Function Analysis - (Verifying function #53 / 139: Compressor_delay_10sec) took 0.45real
+**** Bug-finder - Function Analysis - (Verifying function #48 / 139: Sendscl) took 0.36real
+**** Bug-finder - Function Analysis - (Verifying function #44 / 139: T16N0Init) took 0.82real
+**** Bug-finder - Function Analysis - (Verifying function #50 / 139: Delay_100us) took 0.57real
+**** Bug-finder - Function Analysis - (Verifying function #45 / 139: Stop) took 0.25real
+**** Bug-finder - Function Analysis - (Verifying function #46 / 139: WriteByte) took 0.76real
+**** Bug-finder - Function Analysis - (Verifying function #42 / 139: GetSum2) took 0.74real
+**** Bug-finder - Function Analysis - (Verifying function #47 / 139: Uart_PwrBoard_RxCallback) took 1.23real
+**** Bug-finder - Function Analysis - (Verifying function #40 / 139: Uart_Usb_TxCallback) took 0.73real
+**** Bug-finder - Function Analysis - (Verifying function #41 / 139: TimingDelay_Decrement) took 0.19real
+**** Bug-finder - Function Analysis - (Verifying function #43 / 139: SendStr) took 0.8real
+**** Bug-finder - Function Analysis - (Verifying function #39 / 139: WiFi_SendCmd) took 0.76real
+**** Bug-finder - Function Analysis - (Verifying function #35 / 139: KeyPress) took 0.48real
+**** Bug-finder - Function Analysis - (Verifying function #38 / 139: PWM_Start) took 0.29real
+**** Bug-finder - Function Analysis - (Verifying function #37 / 139: l_Pannel_DataTx) took 0.32real
+**** Bug-finder - Function Analysis - (Verifying function #49 / 139: ReadCfgData) took 3.41real
+**** Bug-finder - Function Analysis - (Verifying function #34 / 139: LedSendScl) took 0.23real
+**** Bug-finder - Function Analysis - (Verifying function #33 / 139: LongRangeAlarm) took 0.49real
+**** Bug-finder - Function Analysis - (Verifying function #36 / 139: SetTimeFrame) took 0.76real
+**** Bug-finder - Function Analysis - (Verifying function #32 / 139: ReadE2) took 0.45real
+**** Bug-finder - Function Analysis - (Verifying function #31 / 139: Event_Log) took 0.43real
+**** Bug-finder - Function Analysis - (Verifying function #28 / 139: User_SysTickInit) took 0.27real
+**** Bug-finder - Function Analysis - (Verifying function #30 / 139: CopyDataToIOTStructure) took 2.13real
+**** Bug-finder - Function Analysis - (Verifying function #25 / 139: Pannel_Comm_Deal) took 0.32real
+**** Bug-finder - Function Analysis - (Verifying function #29 / 139: WriteCfgData) took 0.77real
+**** Bug-finder - Function Analysis - (Verifying function #26 / 139: LedStop) took 0.2real
+**** Bug-finder - Function Analysis - (Verifying function #23 / 139: KeyPut5s) took 0.73real
+**** Bug-finder - Function Analysis - (Verifying function #27 / 139: l_ODM_Data_Parse) took 1.78real
+**** Bug-finder - Function Analysis - (Verifying function #21 / 139: Compressor_on_delay) took 0.25real
+**** Bug-finder - Function Analysis - (Verifying function #24 / 139: NetErrAlarm) took 0.58real
+**** Bug-finder - Function Analysis - (Verifying function #22 / 139: WIFI_UART_IdleTimer) took 0.69real
+**** Bug-finder - Function Analysis - (Verifying function #20 / 139: UART3_USB_Init) took 0.5real
+**** Bug-finder - Function Analysis - (Verifying function #17 / 139: NMI_IRQHandler) took 0.26real
+**** Bug-finder - Function Analysis - (Verifying function #19 / 139: ReturnStateFrame) took 1.17real
+**** Bug-finder - Function Analysis - (Verifying function #16 / 139: Uart_Usb_RxCallback) took 0.51real
+**** Bug-finder - Function Analysis - (Verifying function #4 / 139: UART4_PwrBoard_Init) took 1.12real
+**** Bug-finder - Function Analysis - (Verifying function #15 / 139: Door_Open) took 0.42real
+**** Bug-finder - Function Analysis - (Verifying function #14 / 139: Rec2Action) took 0.31real
+**** Bug-finder - Function Analysis - (Verifying function #13 / 139: DealDispData) took 0.31real
+**** Bug-finder - Function Analysis - (Verifying function #11 / 139: WIFI_RX_Data_Deal) took 0.23real
+**** Bug-finder - Function Analysis - (Verifying function #18 / 139: GetSum) took 1.37real
+**** Bug-finder - Function Analysis - (Verifying function #12 / 139: ad_convert) took 0.58real
+**** Bug-finder - Function Analysis - (Verifying function #9 / 139: Begin) took 0.3real
+**** Bug-finder - Function Analysis - (Verifying function #8 / 139: SysTick_IRQHandler) took 0.25real
+**** Bug-finder - Function Analysis - (Verifying function #7 / 139: WdgHwCallback) took 0.19real
+**** Bug-finder - Function Analysis - (Verifying function #5 / 139: LedWriteByte) took 0.71real
+**** Bug-finder - Function Analysis - (Verifying function #3 / 139: DataToLed) took 0.7real
+**** Bug-finder - Function Analysis - (Verifying function #1 / 139: UART5_IRQHandler) took 0.7real
+**** Bug-finder - Function Analysis - (Verifying function #2 / 139: RuleForLdDisp) took 1.05real
+**** Bug-finder - Function Analysis - (Verifying function #6 / 139: l_Self_Send_Data_Build) took 1.71real
+**** Bug-finder - Function Analysis - (Verifying function #10 / 139: l_Self_Detect) took 4.58real
+Maximum Memory Usage: 2292 MB
+
+Generating GUI files
+
+Defects statistics:
+  - Total number of defects: 11
+  - DEAD_CODE: 4
+  - INT_CONV_OVFL: 2
+  - PTR_CAST: 1
+  - USELESS_IF: 2
+  - USELESS_WRITE: 1
+  - VAR_SHADOWING: 1
+
+GUI files generation completed in 1.72real
+
+* Total IL complexity: 61250
+
+**********************************************************
+***
+*** Bug-finder - Function Analysis done
+***
+**********************************************************
+Ending at: Fri Jun 09 13:17:51 2023
+User time for function: 00:00:38.04 (38.04real, 38.04u + 0s (0.08gc))
+
+Polyspace C analysis
+Copyright 1999-2022 The MathWorks, Inc.
+All rights reserved.
+
+Starting at: Fri Jun 09 13:17:51 2023
+Host: MINGW64_NTx_64-6.2 01d693719033292 0 amd64
+User: 19033292
+**********************************************************
+***
+*** Beginning Bug-finder - Module Analysis
+***
+**********************************************************
+**** Bug-finder - Module Analysis - 1 (Computing modules)
+**** Bug-finder - Module Analysis - 1 (Computing modules) took 0.02real, 0.02u + 0s
+* Created 1 module
+**** Bug-finder - Module Analysis - (Verifying module #1 / 1: 132 functions)
+**** Bug-finder - Module Analysis - (Verifying module #1 / 1: 132 functions) took 16.46real
+Maximum Memory Usage: 573 MB
+
+Generating GUI files
+
+Defects statistics:
+  - Total number of defects: 14
+  - DEAD_CODE: 4
+  - INT_CONV_OVFL: 2
+  - PTR_CAST: 1
+  - SIGN_CHANGE: 2
+  - UINT_CONV_OVFL: 1
+  - USELESS_IF: 2
+  - USELESS_WRITE: 1
+  - VAR_SHADOWING: 1
+
+GUI files generation completed in 2.27real
+
+**********************************************************
+***
+*** Bug-finder - Module Analysis done
+***
+**********************************************************
+Ending at: Fri Jun 09 13:18:11 2023
+User time for module: 00:00:20.47 (20.47real, 20.47u + 0s (0.02gc))
+
+Polyspace C analysis
+Copyright 1999-2022 The MathWorks, Inc.
+All rights reserved.
+
+Starting at: Fri Jun 09 13:18:11 2023
+Host: MINGW64_NTx_64-6.2 01d693719033292 0 amd64
+User: 19033292
+**********************************************************
+***
+*** Beginning Bug-finder - Global analysis
+***
+**********************************************************
+
+Generating GUI files
+
+Defects statistics:
+  - Total number of defects: 14
+  - DEAD_CODE: 4
+  - INT_CONV_OVFL: 2
+  - PTR_CAST: 1
+  - SIGN_CHANGE: 2
+  - UINT_CONV_OVFL: 1
+  - USELESS_IF: 2
+  - USELESS_WRITE: 1
+  - VAR_SHADOWING: 1
+
+GUI files generation completed in 1.29real
+
+Importing comments from G:\Haier\Project\HYCD-469\Code\Disp Board\0271800139A_Program_ES8P5088\Polyspace\BF_Result\comments_bak folder
+
+Operation completed:
+--------------------
+
+Diff statistics for Defect results:
+-----------------------------------
+| Number of backuped comments attached to disappeared results                : 0
+| Number of unmatched uncommented results                                    : 7
+| Number of results comments not imported because a more recent one was found: 0
+| Number of partially imported results comments (due to a result change)     : 0
+| Number of fully imported results comments                                  : 2
+| Number of matched results without comment                                  : 12
+| Number of matched results with a comment coming from source code annotation: 0
+| Total number of results                                                    : 21
+
+
+**********************************************************
+***
+*** Bug-finder - Global analysis done
+***
+**********************************************************
+Ending at: Fri Jun 09 13:18:13 2023
+User time for global: 00:00:02.05 (2.05real, 2.05u + 0s (0.06gc))
+User time for polyspace-bug-finder: 00:01:42 (102.09real, 102.09u + 0s (0.33gc))
+
+***
+*** End of Polyspace analysis
+***

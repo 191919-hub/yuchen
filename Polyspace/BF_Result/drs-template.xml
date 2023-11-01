@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--EDRS Version 2.0-->
+<global>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\CMSIS\\system_ES8P508x.h" comment="">
+      <scalar name="SystemCoreClock" comment="" line="17" base_type="uint32" attributes="extern" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="14" init_range="" global_assert="NO" assert_range=""/>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Library\\Include\\lib_adc.h" comment="">
+      <function name="ADC_ClearIFStatus" comment="" line="237" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="237" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="237" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="ADC_GetConvValue" comment="" line="227" main_generator_called="disabled" attributes="extern">
+         <scalar name="return" comment="" line="227" base_type="uint16" complete_type="uint16" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="ADC_GetFlagStatus" comment="" line="235" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="235" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="235" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="ADC_Init" comment="" line="225" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="225" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="225">
+               <scalar name="ADC_ChS" comment="" line="225" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="ADC_ClkDiv" comment="" line="225" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="ADC_ClkS" comment="" line="225" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="ADC_SampS" comment="" line="225" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="ADC_VRBUF_EN" comment="" line="225" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="ADC_VREFN" comment="" line="225" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="ADC_VrefP" comment="" line="225" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="ST" comment="" line="225" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+            </struct>
+         </pointer>
+      </function>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Library\\Include\\lib_gpio.h" comment="">
+      <function name="GPIOA_ResetBit" comment="" line="311" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="311" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="GPIOA_SetBit" comment="" line="310" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="310" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="GPIOB_ResetBit" comment="" line="314" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="314" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="GPIOB_SetBit" comment="" line="313" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="313" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="GPIOB_SetDirection" comment="" line="317" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="317" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg2" comment="" line="317" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="GPIO_Init" comment="" line="306" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg2" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <pointer name="arg3" comment="" line="306" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="306">
+               <scalar name="GPIO_DS" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="GPIO_Direction" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="GPIO_Func" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="GPIO_OD" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="GPIO_PDEN" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="GPIO_PUEN" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="GPIO_Signal" comment="" line="306" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+            </struct>
+         </pointer>
+      </function>
+      <function name="GPIO_ReadBit" comment="" line="309" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="309" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg2" comment="" line="309" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="309" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Library\\Include\\lib_scs.h" comment="">
+      <function name="NVIC_Init" comment="" line="91" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="91" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg2" comment="" line="91" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg3" comment="" line="91" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="SysTick_Init" comment="" line="94" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="94" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="94">
+               <scalar name="SysTick_ClkSource" comment="" line="94" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="SysTick_ITEnable" comment="" line="94" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="SysTick_Value" comment="" line="94" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+            </struct>
+         </pointer>
+      </function>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Library\\Include\\lib_scu.h" comment="">
+      <function name="SCU_SysClkSelect" comment="" line="298" main_generator_called="disabled" attributes="extern">
+         <scalar name="arg1" comment="" line="298" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Library\\Include\\lib_timer.h" comment="">
+      <function name="T16Nx_BaseInit" comment="" line="249" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="249" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="249">
+               <struct name="CON0" comment="" line="249">
+                  <struct comment="" line="249">
+                     <scalar name="EN" comment="" line="249" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <pointer name="arg2" comment="" line="249" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="249">
+               <scalar name="TIM_ClkS" comment="" line="249" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="TIM_EDGE" comment="" line="249" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="TIM_Mode" comment="" line="249" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="TIM_SYNC" comment="" line="249" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+            </struct>
+         </pointer>
+      </function>
+      <function name="T16Nx_ITConfig" comment="" line="259" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="259" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="259">
+               <struct name="CON0" comment="" line="259">
+                  <struct comment="" line="259">
+                     <scalar name="EN" comment="" line="259" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="259" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg3" comment="" line="259" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="T16Nx_MAT0ITConfig" comment="" line="251" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="251" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="251">
+               <struct name="CON0" comment="" line="251">
+                  <struct comment="" line="251">
+                     <scalar name="EN" comment="" line="251" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="251" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="T16Nx_SetCNT" comment="" line="265" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="265" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="265">
+               <struct name="CON0" comment="" line="265">
+                  <struct comment="" line="265">
+                     <scalar name="EN" comment="" line="265" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="265" base_type="uint16" complete_type="uint16" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="T16Nx_SetMAT0" comment="" line="268" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="268" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="268">
+               <struct name="CON0" comment="" line="268">
+                  <struct comment="" line="268">
+                     <scalar name="EN" comment="" line="268" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="268" base_type="uint16" complete_type="uint16" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="T16Nx_SetPREMAT" comment="" line="267" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="267" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="267">
+               <struct name="CON0" comment="" line="267">
+                  <struct comment="" line="267">
+                     <scalar name="EN" comment="" line="267" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="267" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Library\\Include\\lib_uart.h" comment="">
+      <function name="UART_GetFlagStatus" comment="" line="165" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="165" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="165">
+               <struct name="CON" comment="" line="165">
+                  <struct comment="" line="165">
+                     <scalar name="RXEN" comment="" line="165" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                     <scalar name="TXEN" comment="" line="165" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="165" base_type="uint16" complete_type="uint16" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="165" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="UART_GetITStatus" comment="" line="166" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="166" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="166">
+               <struct name="CON" comment="" line="166">
+                  <struct comment="" line="166">
+                     <scalar name="RXEN" comment="" line="166" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                     <scalar name="TXEN" comment="" line="166" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="166" base_type="uint16" complete_type="uint16" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="166" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="UART_ITConfig" comment="" line="156" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="156" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="156">
+               <struct name="CON" comment="" line="156">
+                  <struct comment="" line="156">
+                     <scalar name="RXEN" comment="" line="156" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                     <scalar name="TXEN" comment="" line="156" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="156" base_type="uint16" complete_type="uint16" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg3" comment="" line="156" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="UART_Init" comment="" line="155" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="155" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="155">
+               <struct name="CON" comment="" line="155">
+                  <struct comment="" line="155">
+                     <scalar name="RXEN" comment="" line="155" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                     <scalar name="TXEN" comment="" line="155" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <pointer name="arg2" comment="" line="155" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="155">
+               <scalar name="UART_BaudRate" comment="" line="155" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="UART_ClockSet" comment="" line="155" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="UART_RxMode" comment="" line="155" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="UART_RxPolar" comment="" line="155" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="UART_StopBits" comment="" line="155" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="UART_TxMode" comment="" line="155" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="UART_TxPolar" comment="" line="155" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+            </struct>
+         </pointer>
+      </function>
+      <function name="UART_RBIMConfig" comment="" line="158" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="158" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="158">
+               <struct name="CON" comment="" line="158">
+                  <struct comment="" line="158">
+                     <scalar name="RXEN" comment="" line="158" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                     <scalar name="TXEN" comment="" line="158" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="158" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="UART_RecByte" comment="" line="162" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="162" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="162">
+               <struct name="CON" comment="" line="162">
+                  <struct comment="" line="162">
+                     <scalar name="RXEN" comment="" line="162" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                     <scalar name="TXEN" comment="" line="162" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="return" comment="" line="162" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="UART_SendByte" comment="" line="159" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="159" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="159">
+               <struct name="CON" comment="" line="159">
+                  <struct comment="" line="159">
+                     <scalar name="RXEN" comment="" line="159" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                     <scalar name="TXEN" comment="" line="159" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="159" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="UART_TBIMConfig" comment="" line="157" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="157" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="157">
+               <struct name="CON" comment="" line="157">
+                  <struct comment="" line="157">
+                     <scalar name="RXEN" comment="" line="157" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                     <scalar name="TXEN" comment="" line="157" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+                  </struct>
+               </struct>
+            </struct>
+         </pointer>
+         <scalar name="arg2" comment="" line="157" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Library\\Include\\lib_wdt.h" comment="">
+      <function name="IWDT_Init" comment="" line="86" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="86" complete_type="struct *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE">
+            <struct comment="" line="86">
+               <scalar name="WDT_Clock" comment="" line="86" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="WDT_IE" comment="" line="86" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="WDT_Rst" comment="" line="86" base_type="uint8" complete_type="uint8" init_mode="PERMANENT" init_modes_allowed="4" init_range="enum_min..enum_max" global_assert="unsupported" assert_range="unsupported"/>
+               <scalar name="WDT_Tms" comment="" line="86" base_type="uint32" complete_type="uint32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+            </struct>
+         </pointer>
+      </function>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Project\\Project\\Project\\APP\\Disp.c" comment="">
+      <scalar name="Eheatcontrolpin" comment="" line="1773" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <array name="Pannel_Uart1Buf" comment="" line="1982" complete_type="uint8 [27]">
+         <scalar comment="" line="1982" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <array name="Pannel_Uart1Data" comment="" line="1983" complete_type="uint8 [27]">
+         <scalar comment="" line="1983" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <scalar name="R_HomeNetCounter" comment="" line="1944" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="R_HomeNetResponseCheckTime" comment="" line="1965" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="R_HomeNetResponseCheckTime100ms" comment="" line="1962" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="R_HomeNetResponseTimeSecond" comment="" line="1961" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="R_NetTimeBase1ms" comment="" line="1959" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="R_VoidFrameCode" comment="" line="1943" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="SelfCheckFlag" comment="" line="1986" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="SelfCheckNoErrFlag" comment="" line="1988" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="flag_err1_copy" comment="" line="1892" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="flag_err2_copy" comment="" line="1893" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="g_Bus_Error_Time" comment="" line="1974" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <array name="g_IDM_TX_ODM_Data" comment="" line="1977" complete_type="uint8 [30]">
+         <scalar comment="" line="1977" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <scalar name="g_Txd_Time" comment="" line="1973" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="g_UART1_RCV_Counter" comment="" line="1976" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="g_UART1_RCV_Cyc" comment="" line="1975" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="g_UART1_TXD_Counter" comment="" line="1984" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="lc_high_alarm_report" comment="" line="1949" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="lc_low_alarm_report" comment="" line="1950" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="ld_high_alarm_report" comment="" line="1951" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="ld_low_alarm_report" comment="" line="1952" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r1" comment="" line="1936" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r16_ldad" comment="" line="1859" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_battery_ad" comment="" line="1888" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_buzz" comment="" line="1784" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_flash_bit" comment="" line="1771" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_gwtj" comment="" line="1795" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_hwad" comment="" line="1834" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_hwadtemp" comment="" line="1836" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_hwsjwd" comment="" line="1825" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_key" comment="" line="1765" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_keyz" comment="" line="1766" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lc_high_alarm" comment="" line="1876" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lc_high_alarmCopy" comment="" line="1877" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lc_low_alarm" comment="" line="1878" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lc_low_alarmCopy" comment="" line="1879" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcad_12b" comment="" line="1772" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcad_8b" comment="" line="1769" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcgzwd" comment="" line="1864" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcwd" comment="" line="1826" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcwdjz" comment="" line="1889" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcwdjzx" comment="" line="1890" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcxswd" comment="" line="1832" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lczt" comment="" line="1789" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcztCopy" comment="" line="1790" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lczt_report" comment="" line="1947" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ld_high_alarm" comment="" line="1872" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ld_high_alarmCopy" comment="" line="1873" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ld_low_alarm" comment="" line="1874" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ld_low_alarmCopy" comment="" line="1875" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ldgzwd" comment="" line="1857" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ldsjwd" comment="" line="1860" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ldwdjz" comment="" line="1870" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ldwdjzx" comment="" line="1871" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ldxswd" comment="" line="1858" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ldzt" comment="" line="1792" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ldztCopy" comment="" line="1793" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_ldzt_report" comment="" line="1948" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_led11" comment="" line="1799" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_led12" comment="" line="1800" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_led13" comment="" line="1801" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_led21" comment="" line="1802" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_led22" comment="" line="1803" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_led23" comment="" line="1804" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_led34" comment="" line="1805" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_rec55sum" comment="" line="1901" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_receiver" comment="" line="1899" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_recsum" comment="" line="1900" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_sendr" comment="" line="1894" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_sendsum" comment="" line="1895" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_set_state" comment="" line="1770" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_set_state1" comment="" line="1908" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_sfkeyz" comment="" line="1767" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_swtj" comment="" line="1794" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_voltage" comment="" line="1862" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_voltageCopy" comment="" line="1863" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_voltage_ad" comment="" line="1861" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_voltage_report" comment="" line="1946" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <array name="rec_net" comment="" line="1898" complete_type="uint8 [25]">
+         <scalar comment="" line="1898" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <array name="send_net" comment="" line="1896" complete_type="uint8 [50]">
+         <scalar comment="" line="1896" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <scalar name="t_10s" comment="" line="1819" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_1min" comment="" line="1814" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_1ms" comment="" line="1810" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_1ms_2" comment="" line="1811" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_20ms" comment="" line="1817" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_2ms" comment="" line="1812" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_Self_Times" comment="" line="1987" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_ack5s" comment="" line="1903" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_ad" comment="" line="1835" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_auto_lock" comment="" line="1821" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_buzz" comment="" line="1785" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_compressor" comment="" line="1880" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_data_to_led" comment="" line="1822" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_door" comment="" line="1966" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_err200ms" comment="" line="1902" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_fan2min" comment="" line="1797" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_halfsec" comment="" line="1813" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_j20ms" comment="" line="1818" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_key3s" comment="" line="1764" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_key_dly" comment="" line="1763" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_lc_compressor" comment="" line="1906" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_lc_err_disp" comment="" line="1841" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_lc_high_buzz" comment="" line="1842" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_lc_low_buzz" comment="" line="1843" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_lc_on_off_dly" comment="" line="1905" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_lc_rule" comment="" line="1865" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_ld_err_disp" comment="" line="1881" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_ld_high_buzz" comment="" line="1882" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_ld_low_buzz" comment="" line="1883" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_ld_rule" comment="" line="1869" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_lightms" comment="" line="1904" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_nd_fan" comment="" line="1907" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_net_rec" comment="" line="1897" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_on_off_dly" comment="" line="1838" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_onems" comment="" line="1815" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_power_Off" comment="" line="1886" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_power_buzz" comment="" line="1885" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_stop_alarm" comment="" line="1887" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_tens" comment="" line="1820" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_twoms" comment="" line="1816" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_voltage_buzz" comment="" line="1884" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_write_e2" comment="" line="1768" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_yj_delay" comment="" line="1866" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_yj_delay_10sec" comment="" line="1909" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_yj_delayx" comment="" line="1867" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_yj_dly_time" comment="" line="1868" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <array name="tab_off" comment="" line="330" complete_type="uint16 const [240]">
+         <scalar comment="" line="330" base_type="uint16" attributes="const" complete_type="uint16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <array name="tab_on" comment="" line="85" complete_type="uint16 const [240]">
+         <scalar comment="" line="85" base_type="uint16" attributes="const" complete_type="uint16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <array name="tab_temperature" comment="" line="783" complete_type="uint8 const [974]">
+         <scalar comment="" line="783" base_type="uint8" attributes="const" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <array name="tab_voltage" comment="" line="576" complete_type="uint8 const [203]">
+         <scalar comment="" line="576" base_type="uint8" attributes="const" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <array name="table_lc" comment="" line="6" complete_type="uint8 const [200]">
+         <scalar comment="" line="6" base_type="uint8" attributes="const" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <array name="table_lc_12b" comment="" line="30" complete_type="float32 const [2][19]">
+         <array comment="" line="30" complete_type="float32 const [2]">
+            <scalar comment="" line="30" base_type="float32" attributes="const" complete_type="float32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+      </array>
+      <array name="table_led" comment="" line="54" complete_type="uint8 const [27]">
+         <scalar comment="" line="54" base_type="uint8" attributes="const" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <scalar name="u16_random" comment="" line="1937" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u16_random_copy" comment="" line="1938" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u16_random_copyTemp" comment="" line="1939" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u16_random_errcopy" comment="" line="1940" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u16_random_time" comment="" line="1941" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_BuzzDlyHourlc" comment="" line="1856" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_BuzzDlyHourld" comment="" line="1854" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_BuzzDlyMinlc" comment="" line="1855" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_BuzzDlyMinld" comment="" line="1853" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_CompHour" comment="" line="1828" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_CompMin" comment="" line="1827" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_CompRunMin" comment="" line="1847" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_CompStop5min" comment="" line="1846" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_CompStopTime" comment="" line="1829" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_LcRule" comment="" line="1845" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_Send_Print_Time" comment="" line="1917" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_UsbState" comment="" line="1957" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_day" comment="" line="1920" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_day_copy" comment="" line="1926" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_day_set" comment="" line="1932" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_hour" comment="" line="1921" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_hour_copy" comment="" line="1927" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_hour_set" comment="" line="1933" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_lcCompRunMin" comment="" line="1913" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_lcCompStop5min" comment="" line="1915" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_lc_bjycsj" comment="" line="1851" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_lc_bjycsjx" comment="" line="1852" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_ld_bjycsj" comment="" line="1849" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_ld_bjycsjx" comment="" line="1850" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_minute" comment="" line="1922" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_minute_copy" comment="" line="1928" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_minute_set" comment="" line="1934" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_month" comment="" line="1919" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_month_copy" comment="" line="1925" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_month_set" comment="" line="1931" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_test_alarm_count" comment="" line="1786" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_test_alarm_time" comment="" line="1787" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_year" comment="" line="1918" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_year_copy" comment="" line="1924" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_year_set" comment="" line="1930" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Project\\Project\\Project\\APP\\Wifi\\Coupler.c" comment="">
+      <scalar name="CntDown_n_ms_1" comment="" line="43" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <function name="Delay_ms" comment="" line="522" main_generator_called="MAIN_GENERATOR" attributes="static">
+         <scalar name="arg1" comment="" line="522" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <array name="EVT_Queue" comment="" line="40" complete_type="int32 [20]">
+         <scalar comment="" line="40" base_type="int32" complete_type="int32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <scalar name="EVT_Queue_head" comment="" line="41" base_type="int32" complete_type="int32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="EVT_Queue_tail" comment="" line="42" base_type="int32" complete_type="int32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <function name="SendData" comment="" line="115" main_generator_called="MAIN_GENERATOR">
+         <pointer name="arg1" comment="" line="115" complete_type="uint8 *" init_mode="MAIN_GENERATOR" init_modes_allowed="10" initialize_pointer="Not NULL" number_allocated="max" init_pointed="MAIN_GENERATOR">
+            <scalar comment="" line="115" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+         </pointer>
+         <scalar name="arg2" comment="" line="115" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="SendStr" comment="" line="134" main_generator_called="MAIN_GENERATOR">
+         <pointer name="arg1" comment="" line="134" complete_type="uint8 *" init_mode="MAIN_GENERATOR" init_modes_allowed="10" initialize_pointer="Not NULL" number_allocated="max" init_pointed="MAIN_GENERATOR">
+            <scalar comment="" line="134" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+         </pointer>
+      </function>
+      <struct name="Uart_WF" comment="" line="34">
+         <scalar name="uart_rx_count" comment="" line="34" base_type="uint16" complete_type="uint16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="uart_rx_finish_flag" comment="" line="34" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="uart_rx_length" comment="" line="34" base_type="uint16" complete_type="uint16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="uart_rx_start_flag" comment="" line="34" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="uart_rx_time" comment="" line="34" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <array name="uart_rxbuf" comment="" line="34" complete_type="uint8 [1024]">
+            <scalar comment="" line="34" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+         <scalar name="uart_tx_count" comment="" line="34" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="uart_tx_length" comment="" line="34" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <array name="uart_txbuf" comment="" line="34" complete_type="uint8 [255]">
+            <scalar comment="" line="34" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+      </struct>
+      <function name="WIFI_UART_IdleTimer" comment="" line="373" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="373" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="WIFI_UART_TimeOut_CntDown" comment="" line="403" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="403" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="memcpy" comment="" line="118" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="118" complete_type="void *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE"/>
+         <pointer name="arg2" comment="" line="118" complete_type="void *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE"/>
+         <scalar name="arg3" comment="" line="118" base_type="int32" complete_type="int32" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="118" base_type="int32" complete_type="int32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="memset" comment="" line="117" main_generator_called="disabled" attributes="extern">
+         <pointer name="arg1" comment="" line="117" complete_type="void *" init_mode="disabled" initialize_pointer="disabled" number_allocated="disabled" init_pointed="MULTI_CERTAIN_WRITE"/>
+         <scalar name="arg2" comment="" line="117" base_type="int32" complete_type="int32" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg3" comment="" line="117" base_type="int32" complete_type="int32" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="117" base_type="int32" complete_type="int32" init_mode="PERMANENT" init_modes_allowed="4" init_range="min..max" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <struct name="para_base" comment="" line="35" complete_type="struct _Para_Base">
+         <scalar name="Ambient_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="BackGas_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="CdsFan_Current" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Cds_Outlet_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Comp_Current" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Defr_Sens_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Down_Sens_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="EvapFan_Current" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="High_Pressure" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Disp_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Humi" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Disp_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Low_Pressure" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="OutGas_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_1" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_2" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_3" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_4" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_5" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_6" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Up_Sens_Temp" comment="" line="35" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="para_event" comment="" line="38" complete_type="struct _Para_Event">
+         <array name="flag_event" comment="" line="38" complete_type="uint8 [17]">
+            <scalar comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+      </struct>
+      <struct name="para_fault" comment="" line="37" complete_type="struct _Para_Fault">
+         <scalar name="Reserve_1" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_2" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_3" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <array name="flag_fault" comment="" line="37" complete_type="uint8 [3]">
+            <scalar comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+      </struct>
+      <struct name="para_fault_last" comment="" line="37" complete_type="struct _Para_Fault">
+         <scalar name="Reserve_1" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_2" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_3" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <array name="flag_fault" comment="" line="37" complete_type="uint8 [3]">
+            <scalar comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+      </struct>
+      <struct name="para_heart" comment="" line="39" complete_type="struct _Para_Heart">
+         <scalar name="Sec_From_PwrOn" comment="" line="39" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="para_state" comment="" line="36" complete_type="struct _Para_State">
+         <scalar name="Ambient_Temp_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Door_is_Open" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Down_Sens_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Alarm_HTemp" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Alarm_LTemp" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Comp_Running" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Humi_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Humi_Set" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Temp_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Temp_Set" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Alarm_HTemp" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Alarm_LTemp" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Comp_Running" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Temp_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Temp_Set" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Light_is_On" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="RefrigValve_is_Open" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_1" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_2" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_3" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Up_Sens_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="in_Defrost_State" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="para_state_last" comment="" line="36" complete_type="struct _Para_State">
+         <scalar name="Ambient_Temp_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Door_is_Open" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Down_Sens_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Alarm_HTemp" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Alarm_LTemp" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Comp_Running" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Humi_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Humi_Set" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Temp_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LC_Temp_Set" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Alarm_HTemp" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Alarm_LTemp" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Comp_Running" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Temp_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="LD_Temp_Set" comment="" line="36" base_type="int16" complete_type="int16" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Light_is_On" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="RefrigValve_is_Open" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_1" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_2" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Reserve_3" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="Up_Sens_Adjust" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         <scalar name="in_Defrost_State" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Project\\Project\\Project\\APP\\Wifi\\esp8266.c" comment="">
+      <array name="AT_CMD_Buf" comment="" line="32" complete_type="uint8 [255]" attributes="static">
+         <scalar comment="" line="32" base_type="uint8" attributes="static" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <struct name="Cfg_Data" comment="" line="39">
+         <array name="BECode" comment="" line="39" complete_type="uint8 [31]">
+            <scalar comment="" line="39" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+         <array name="MQTTServerDomain" comment="" line="39" complete_type="uint8 [101]">
+            <scalar comment="" line="39" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+         <array name="MQTTServerPort" comment="" line="39" complete_type="uint8 [11]">
+            <scalar comment="" line="39" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+         <array name="Password" comment="" line="39" complete_type="uint8 [51]">
+            <scalar comment="" line="39" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+         <array name="Username" comment="" line="39" complete_type="uint8 [51]">
+            <scalar comment="" line="39" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+         <array name="WifiPwd" comment="" line="39" complete_type="uint8 [51]">
+            <scalar comment="" line="39" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+         <array name="WifiSSID" comment="" line="39" complete_type="uint8 [51]">
+            <scalar comment="" line="39" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </array>
+      </struct>
+      <array name="Client_ID" comment="" line="31" complete_type="uint8 [51]">
+         <scalar comment="" line="31" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <scalar name="Cnt_Publish_NoReply" comment="" line="27" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="Delay_HalfSec_Between_Cmd" comment="" line="21" base_type="uint32" attributes="static" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="First_Fault_Frame" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="First_State_Frame" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <function name="Judge_PubType" comment="" line="834" main_generator_called="MAIN_GENERATOR">
+         <scalar name="return" comment="" line="834" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="MQTT_Send_Data" comment="" line="664" main_generator_called="MAIN_GENERATOR" attributes="static">
+         <scalar name="arg1" comment="" line="664" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="arg2" comment="" line="664" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="Parse_CfgData" comment="" line="812" main_generator_called="MAIN_GENERATOR">
+         <scalar name="return" comment="" line="812" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <scalar name="Published_Type" comment="" line="25" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="Timeout_Wifi_Module" comment="" line="15" base_type="int32" complete_type="int32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <array name="WiFi_RX_BUF" comment="" line="33" complete_type="uint8 [1024]">
+         <scalar comment="" line="33" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <scalar name="WiFi_RxCounter" comment="" line="34" base_type="uint32" attributes="volatile" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="12" init_range="" global_assert="disabled" assert_range="disabled"/>
+      <function name="WiFi_SendCmd" comment="" line="579" main_generator_called="MAIN_GENERATOR">
+         <pointer name="arg1" comment="" line="579" complete_type="uint8 *" init_mode="MAIN_GENERATOR" init_modes_allowed="10" initialize_pointer="Not NULL" number_allocated="max" init_pointed="MAIN_GENERATOR">
+            <scalar comment="" line="579" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+         </pointer>
+         <scalar name="arg2" comment="" line="579" base_type="int32" complete_type="int32" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <scalar name="Wifi_Module_Uart_State" comment="" line="17" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_Enter_WifiCfg" comment="" line="18" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_Exist_WifiModule" comment="" line="29" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_Exit_WifiCfg" comment="" line="19" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_No_WifiModule" comment="" line="28" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_RePublish" comment="" line="26" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_RecStr_Err" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_Wait_Wifi_Module_Resp" comment="" line="16" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_disp_Wifi_Cfg" comment="" line="12" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="gPubType" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_Last_Cmd" comment="" line="20" base_type="uint32" attributes="static" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_Last_MQTT_BASE_Publish" comment="" line="23" base_type="uint32" attributes="static" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_Last_MQTT_HEART_Publish" comment="" line="24" base_type="uint32" attributes="static" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_Last_MQTT_Publish" comment="" line="22" base_type="uint32" attributes="static" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="t_Set_RePublish" comment="" line="35" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Project\\Project\\Project\\APP\\logicsub.c" comment="">
+      <function name="ADCRead" comment="" line="310" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="310" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="310" base_type="uint16" complete_type="uint16" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="ADCSetCHS" comment="" line="347" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="347" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="CheckLcTable" comment="" line="352" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="352" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="352" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="CheckLcTable_12b" comment="" line="376" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="376" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+         <scalar name="return" comment="" line="376" base_type="float32" complete_type="float32" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="DelayControl" comment="" line="2021" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="2021" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="LedWriteByte" comment="" line="2094" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="2094" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="ReadByte" comment="" line="4036" main_generator_called="MAIN_GENERATOR">
+         <scalar name="return" comment="" line="4036" base_type="uint8" complete_type="uint8" init_mode="disabled" init_range="disabled" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <function name="WriteByte" comment="" line="4005" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="4005" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <scalar name="f_Set_Time" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="f_door_state" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="flag_Disp_LCWD_D" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="flag_Now_Disp_LCWD" comment="" line="35" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcgzwd_float" comment="" line="34" base_type="float32" complete_type="float32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcwd_float" comment="" line="34" base_type="float32" complete_type="float32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lcxswd_float" comment="" line="34" base_type="float32" complete_type="float32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="r_lczt_float" comment="" line="34" base_type="float32" complete_type="float32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="u8_Send2_data_Num" comment="" line="4099" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <array name="u8_Send2data" comment="" line="4095" complete_type="uint8 [20]">
+         <scalar comment="" line="4095" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+      <array name="u8_Send2dataMemory" comment="" line="4096" complete_type="uint8 [20]">
+         <scalar comment="" line="4096" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </array>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Project\\Project\\Project\\APP\\main.c" comment="">
+      <scalar name="Clock_Test" comment="" line="57" base_type="uint32" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <scalar name="g_1s_flag_Iot" comment="" line="56" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      <struct name="g_CommErrflag1" comment="" line="54">
+         <struct name="Bits" comment="" line="54">
+            <scalar name="b0" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="54" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="g_PannelCommflag1" comment="" line="53">
+         <struct name="Bits" comment="" line="53">
+            <scalar name="b0" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="53" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag1" comment="" line="36">
+         <struct name="Bits" comment="" line="36">
+            <scalar name="b0" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="36" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag10" comment="" line="45">
+         <struct name="Bits" comment="" line="45">
+            <scalar name="b0" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="45" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag11" comment="" line="46">
+         <struct name="Bits" comment="" line="46">
+            <scalar name="b0" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="46" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag12" comment="" line="47">
+         <struct name="Bits" comment="" line="47">
+            <scalar name="b0" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="47" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag13" comment="" line="48">
+         <struct name="Bits" comment="" line="48">
+            <scalar name="b0" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="48" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag14" comment="" line="49">
+         <struct name="Bits" comment="" line="49">
+            <scalar name="b0" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="49" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag15" comment="" line="50">
+         <struct name="Bits" comment="" line="50">
+            <scalar name="b0" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="50" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag16" comment="" line="51">
+         <struct name="Bits" comment="" line="51">
+            <scalar name="b0" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="51" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag2" comment="" line="37">
+         <struct name="Bits" comment="" line="37">
+            <scalar name="b0" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="37" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag3" comment="" line="38">
+         <struct name="Bits" comment="" line="38">
+            <scalar name="b0" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="38" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag5" comment="" line="40">
+         <struct name="Bits" comment="" line="40">
+            <scalar name="b0" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="40" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag6" comment="" line="41">
+         <struct name="Bits" comment="" line="41">
+            <scalar name="b0" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="41" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag7" comment="" line="42">
+         <struct name="Bits" comment="" line="42">
+            <scalar name="b0" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="42" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag8" comment="" line="43">
+         <struct name="Bits" comment="" line="43">
+            <scalar name="b0" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="43" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="myflag9" comment="" line="44">
+         <struct name="Bits" comment="" line="44">
+            <scalar name="b0" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="44" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+      <struct name="mylc_flag" comment="" line="52">
+         <struct name="Bits" comment="" line="52">
+            <scalar name="b0" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b1" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b2" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b3" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b4" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b5" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b6" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+            <scalar name="b7" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+         </struct>
+         <scalar name="Byte" comment="" line="52" base_type="uint8" complete_type="uint8" init_mode="MAIN_GENERATOR" init_modes_allowed="15" init_range="" global_assert="NO" assert_range=""/>
+      </struct>
+   </file>
+   <file name="G:\\Haier\\Project\\HYCD-469\\Code\\Disp Board\\0271800139A_Program_ES8P5088\\Project\\Project\\Project\\APP\\systick.c" comment="">
+      <function name="Delay_100us" comment="" line="41" main_generator_called="MAIN_GENERATOR">
+         <scalar name="arg1" comment="" line="41" base_type="uint32" attributes="volatile" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="10" init_range="" global_assert="unsupported" assert_range="unsupported"/>
+      </function>
+      <scalar name="TimingDelay" comment="" line="13" base_type="uint32" attributes="volatile" complete_type="uint32" init_mode="MAIN_GENERATOR" init_modes_allowed="12" init_range="" global_assert="disabled" assert_range="disabled"/>
+   </file>
+</global>
