@@ -468,7 +468,7 @@ unsigned short ADC2Temper_3840(uint16_t data)
 {
     unsigned short  i,temp;
 
-   for(i=0;i<161;i++)
+   for(i=0;i<160;i++)
     {
         if((table_ld_3840[i] > data && table_ld_3840[i+1] < data)
            || (table_ld_3840[i] == data))
@@ -772,7 +772,7 @@ void RuleForLcDisp_0D1(void)
 /****************************************************/
 void LdDisp(void)
 {
-	unsigned char r_bw, r_sw, r_gw;
+	unsigned char r_bw=0, r_sw=0, r_gw=0;
 
 	if (!f_first_ad)
 	{
@@ -1228,6 +1228,9 @@ void LdDisp(void)
 			r_bw = DISP_o;
 			break;
 		default:
+			r_gw = 0;
+			r_sw = 0;
+			r_bw = 0;
 			break;
 		}
 	}
@@ -1339,7 +1342,7 @@ void LdDisp(void)
 /****************************************************/
 void LcDisp(void) //把每个数码管显示内容确定下来
 {
-	unsigned char r_bw, r_sw, r_gw;
+	unsigned char r_bw = 0, r_sw = 0, r_gw = 0;
 
 	flag_Now_Disp_LCWD = 0; //
 
@@ -1627,7 +1630,7 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 			r_sw = DISP_E;
 			r_gw = 3;
 		}
-		if (r_lcwd_float_c >= 38.0) //温度为正  分辨率为0.1
+		else if (r_lcwd_float_c >= 38.0) //温度为正  分辨率为0.1
 			{
 				r_bw = (unsigned int)((r_lcwd_float_c - 38.0) * 10 + 0.5) / 100;		//+0.5是为了float强制转换整数时，四舍五入
 				r_sw = ((unsigned int)((r_lcwd_float_c - 38.0) * 10 + 0.5) % 100) / 10; //+0.5是为了float强制转换整数时，四舍五入
@@ -1655,15 +1658,15 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 				r_gw = temp_lc_x10 % 10;
 				flag_Disp_LCWD_D = 1;
 			}
-			if (flag_Now_Disp_LCWD)
-			{
-				if (flag_Disp_LCWD_D)
-					r_led22 |= 0x20; //显示小数点
-				else
-					r_led22 &= ~0x20; //关闭小数点
-			}
-			else
-				r_led22 &= ~0x20; //关闭小数点
+//			if (flag_Now_Disp_LCWD)
+//			{
+//				if (flag_Disp_LCWD_D)
+//					r_led22 |= 0x20; //显示小数点
+//				else
+//					r_led22 &= ~0x20; //关闭小数点
+//			}
+//			else
+//				r_led22 &= ~0x20; //关闭小数点
 	}
 	else if (r_set_state == LC_CHK_LCHS) //冷藏控制传感器实际温度
 	{
@@ -1724,15 +1727,15 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 			r_sw = (100 - r_lcwdjzx)/10;
 			r_gw = (100 - r_lcwdjzx)%10;
 		}
-		if (flag_Now_Disp_LCWD)
-			{
-				if (flag_Disp_LCWD_D)
-					r_led22 |= 0x20; //显示小数点
-				else
-					r_led22 &= ~0x20; //关闭小数点
-			}
-			else
-				r_led22 &= ~0x20; //关闭小数点
+//		if (flag_Now_Disp_LCWD)
+//			{
+//				if (flag_Disp_LCWD_D)
+//					r_led22 |= 0x20; //显示小数点
+//				else
+//					r_led22 &= ~0x20; //关闭小数点
+//			}
+//			else
+//				r_led22 &= ~0x20; //关闭小数点
 	}
 	else if (r_set_state == SET_LC_XSWDJZ)
 	{
@@ -1751,15 +1754,15 @@ void LcDisp(void) //把每个数码管显示内容确定下来
 			r_sw = (100 - r_lcxswdjzx)/10;
 			r_gw = (100 - r_lcxswdjzx)%10;
 		}
-		if (flag_Now_Disp_LCWD)
-			{
-				if (flag_Disp_LCWD_D)
-					r_led22 |= 0x20; //显示小数点
-				else
-					r_led22 &= ~0x20; //关闭小数点
-			}
-			else
-				r_led22 &= ~0x20; //关闭小数点
+//		if (flag_Now_Disp_LCWD)
+//			{
+//				if (flag_Disp_LCWD_D)
+//					r_led22 |= 0x20; //显示小数点
+//				else
+//					r_led22 &= ~0x20; //关闭小数点
+//			}
+//			else
+//				r_led22 &= ~0x20; //关闭小数点
 	}
 	else if (r_set_state == SET_LC_BJYCSJ)
 	{
@@ -3029,12 +3032,12 @@ void KeyPutUp(void) //按键抬起有效
 						r_gwtj=0;
 						
 					}
-					else if((r_ldzt + r_ld_high_alarm)<0)
-					{
-						r_bwtj=0;
-						r_swtj=0;
-						r_gwtj=0;
-					}
+//					else if((r_ldzt + r_ld_high_alarm)<0)
+//					{
+//						r_bwtj=0;
+//						r_swtj=0;
+//						r_gwtj=0;
+//					}
 				#endif
 				goto NotSaveKey2;
 			}
@@ -3228,10 +3231,10 @@ void KeyPutUp(void) //按键抬起有效
 						{
 							goto SetErr;
 						}
-						else if (((r_swtj * 10 + r_gwtj)) < 0) //<-60
-						{
-							goto SetErr;
-						}
+//						else if (((r_swtj * 10 + r_gwtj)) < 0) //<-60
+//						{
+//							goto SetErr;
+//						}
 						else
 						{
 							r_ld_low_alarm = r_ldzt - ((r_swtj * 10 + r_gwtj));//拿到差值
@@ -3869,8 +3872,8 @@ void KeyPutDown(void)
 				}
 				else if (r_flash_bit == 2)
 				{
-					if (r_set_state == SET_LC_LOW)
-					{
+//					if (r_set_state == SET_LC_LOW)
+//					{
 						if (r_lczt >= (LC_SET_TEMP_MIN + 38)) //zyj  100604
 						{
 							r_swtj++;
@@ -3879,20 +3882,20 @@ void KeyPutDown(void)
 								r_swtj = 0;
 							}
 						}
-					}
-					else
-					{
-						r_swtj++;
-						if (r_swtj > 9)
-						{
-							r_swtj = 0;
-						}
-					}
+//					}
+//					else
+//					{
+//						r_swtj++;
+//						if (r_swtj > 9)
+//						{
+//							r_swtj = 0;
+//						}
+//					}
 				}
 				else if (r_flash_bit == 3)
 				{
-					if (r_set_state == SET_LC_LOW)
-					{
+//					if (r_set_state == SET_LC_LOW)
+//					{
 						if (r_lczt >= (LC_SET_TEMP_MIN + 38)) //zyj  100604
 						{
 							r_gwtj++;
@@ -3901,15 +3904,15 @@ void KeyPutDown(void)
 								r_gwtj = 0;
 							}
 						}
-					}
-					else
-					{
-						r_gwtj++;
-						if (r_gwtj > 9)
-						{
-							r_gwtj = 0;
-						}
-					}
+//					}
+//					else
+//					{
+//						r_gwtj++;
+//						if (r_gwtj > 9)
+//						{
+//							r_gwtj = 0;
+//						}
+//					}
 				}
 			}
 			goto NotSaveKey;
@@ -4283,12 +4286,13 @@ void AutoLock(void)
 			#else
 				if (f_zf == ZHENG_SIGN)
 				{
-					if (((r_swtj * 10 + r_gwtj)) < 0)
-					{
-						BuzzBiBiBi();
-					}
+//					if (((r_swtj * 10 + r_gwtj)) < 0)
+//					{
+//						BuzzBiBiBi();
+//					}
 
-					else if (((r_swtj * 10 + r_gwtj)) > (r_ldzt - 1))
+//					else 
+						if (((r_swtj * 10 + r_gwtj)) > (r_ldzt - 1))
 					{
 						BuzzBiBiBi();
 					}
@@ -5752,7 +5756,7 @@ void WriteByte(unsigned char tem_dat)
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 unsigned char ReadByte(void)
 {
-	unsigned char r_dat, r_clk;
+	unsigned char r_dat = 0, r_clk = 0;
 	C_SDA_SET_HIGH;
 	C_SDA_IN;
 
@@ -6304,21 +6308,25 @@ void NetRecOver(void)
 	uchar r_cheksum = 0;
 	if (f_rec_over)
 	{
-		for (r_receiver = 0; r_receiver < (unsigned char)(r_recsum - 1); r_receiver++)
+		if(r_recsum != 0)
 		{
-			r_cheksum = r_cheksum + rec_net[r_receiver];
+			for (r_receiver = 0; r_receiver < (unsigned char)(r_recsum - 1); r_receiver++)
+			{
+				r_cheksum = r_cheksum + rec_net[r_receiver];
+			}
+			r_cheksum = r_cheksum + r_recsum + r_rec55sum;
+			r_rec55sum = 0;
+			if (r_cheksum == rec_net[r_receiver])
+			{
+				RecOkAction(); //接收完成生效程序
+				f_rec_over = 0;
+			}
+			else
+			{
+				f_rec_over = 0;
+			}
 		}
-		r_cheksum = r_cheksum + r_recsum + r_rec55sum;
-		r_rec55sum = 0;
-		if (r_cheksum == rec_net[r_receiver])
-		{
-			RecOkAction(); //接收完成生效程序
-			f_rec_over = 0;
-		}
-		else
-		{
-			f_rec_over = 0;
-		}
+		
 	}
 }
 
@@ -7404,8 +7412,10 @@ float Check_Humi_Tab(unsigned int Ad)
 	} 
 	else 
 	{
-	   while( (float)Ad > Humi_Tab[i][0] ) 
+	   while( (i<21)&&((float)Ad > Humi_Tab[i][0]) ) 
 	      i++;
+		 if(i == 0)
+			 i = 1;
 	   Temp  = Humi_Tab[i-1][1] + 5*( Ad - Humi_Tab[i-1][0] )/( Humi_Tab[i][0] - Humi_Tab[i-1][0] ); //浮点型
 	   Temp2 = (unsigned char) floor( Temp + 0.5 );  //四舍五入取整
 	}
@@ -7581,11 +7591,11 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 				else if ((r_ldwdjz < 20) && (r_ldwdjz>=5))
 				{
 						
-						if((r_ldsjwd-(20-r_ldwdjz))<=0){
-							r_ldsjwd=0;
-						}else{
+//						if((r_ldsjwd+r_ldwdjz)<=20){
+//							r_ldsjwd=0;
+//						}else{
 							r_ldsjwd=r_ldsjwd-(20-r_ldwdjz);
-						}
+//						}
 				}
 			}
 		#endif
@@ -7638,7 +7648,7 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 				
 
 		//拿化霜传感器的AD值
-		lc_Hs_Temp=0;
+//		lc_Hs_Temp=0;
 		lc_Hs_Temp = Pannel_Uart1Data[9]; //对应底板byte[13]
 		lc_Hs_Temp = lc_Hs_Temp << 8;		 //r16_ldad<<8;
 		r16_lcHuaShuangad = (lc_Hs_Temp & 0xff00) | Pannel_Uart1Data[10];
@@ -7654,7 +7664,7 @@ void l_ODM_Data_Parse(void) //接受主板解析数据 CFJ
 //		}
 		
 		//拿冷凝传感器的AD值
-		lc_Hs_Temp=0;
+//		lc_Hs_Temp=0;
 		lc_Hs_Temp = Pannel_Uart1Data[11]; //对应底板byte[13]
 		lc_Hs_Temp = lc_Hs_Temp << 8;		 //r16_ldad<<8;
 		r16_lcLengNingad = (lc_Hs_Temp & 0xff00) | Pannel_Uart1Data[12];
@@ -8027,7 +8037,7 @@ void l_Self_Detect(void)
 	//unsigned char SelfCheckFlag;
 	unsigned char SelfCheckStep;
 	unsigned char r_bw, r_sw, r_gw;
-	l_ucTemp = 0;
+	//l_ucTemp = 0;
 	l_uci = 5;
 	SelfCheckFlag = 0;
 	SelfCheckStep = 0;
@@ -8228,18 +8238,18 @@ temp:		        IWDT_Clear();
 			}
 			else
 			{
-				if (r_lcwd >= 38)
-				{
+//				if (r_lcwd >= 38)
+//				{
 					r_bw = DISP_NO;
 					r_sw = (uchar)((r_lcwd - 38) / 10);
 					r_gw = (uchar)((r_lcwd - 38) % 10);
-				}
-				else
-				{
-					r_bw = DISP_FH; //-
-					r_sw = (uchar)((38 - r_lcwd) / 10);
-					r_gw = (uchar)((38 - r_lcwd) % 10);
-				}
+//				}
+//				else
+//				{
+//					r_bw = DISP_FH; //-
+//					r_sw = (uchar)((38 - r_lcwd) / 10);
+//					r_gw = (uchar)((38 - r_lcwd) % 10);
+//				}
 			}
 			r_led21 = table_led[r_bw];
 			r_led22 = table_led[r_sw];
